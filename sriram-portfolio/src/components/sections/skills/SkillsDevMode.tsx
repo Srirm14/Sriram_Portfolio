@@ -74,16 +74,18 @@ export function SkillsDevMode() {
         </motion.div>
 
         {/* Two column layout on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left — terminal */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            {inView && <SkillTerminal />}
-          </motion.div>
+          <div className="w-full" style={{ height: "480px" }}>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              {inView && <SkillTerminal />}
+            </motion.div>
+          </div>
 
           {/* Right — supporting context */}
           <motion.div

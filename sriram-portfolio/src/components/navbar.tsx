@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useCallback } from "react";
 import { useModeStore } from "@/store";
 import { ModeToggle } from "@/components/mode-toggle";
 import { navLinks } from "@/lib/data/nav";
@@ -20,6 +19,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const scrollToSection = useCallback((href: string) => {
+    const id = href.startsWith("#") ? href.slice(1) : href;
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   const isDev = mode === "developer";
 
   return (
@@ -34,8 +41,9 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link
-          href="#hero"
+        <button
+          type="button"
+          onClick={() => scrollToSection("#hero")}
           className={cn(
             "font-grotesk text-sm font-semibold transition-colors",
             isDev
@@ -44,13 +52,14 @@ export function Navbar() {
           )}
         >
           Sriram V
-        </Link>
+        </button>
         <div className="flex items-center gap-8">
           <ul className="hidden items-center gap-6 md:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
+                <button
+                  type="button"
+                  onClick={() => scrollToSection(link.href)}
                   className={cn(
                     "text-sm font-medium transition-colors",
                     isDev
@@ -59,7 +68,7 @@ export function Navbar() {
                   )}
                 >
                   {link.label}
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
