@@ -1,0 +1,125 @@
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowDown, Download } from "lucide-react";
+import { HeroBackground } from "./HeroBackground";
+import { HeroFloatingTags } from "./HeroFloatingTags";
+import { HeroStats } from "./HeroStats";
+import { HeroTypewriter } from "./HeroTypewriter";
+
+const DEV_WORDS = [
+  "React Engineer",
+  "Next.js Architect",
+  "Frontend Lead",
+  "UI Craftsman",
+];
+
+export function HeroDevMode() {
+  return (
+    <section id="hero" className="relative min-h-screen bg-dev flex items-center dot-grid overflow-hidden">
+      <HeroBackground mode="developer" />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-24 pb-16">
+        {/* Left — text */}
+        <motion.div
+          className="flex-1 flex flex-col items-start"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="badge-available-dev mb-6 flex items-center gap-2"
+          >
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-ping-slow" />
+            <span className="text-white">Open to roles · Bengaluru / Remote</span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="font-grotesk font-bold text-display-xl text-white tracking-tight leading-tight mb-4"
+          >
+            Senior Frontend
+            <br />
+            <span className="text-gradient-dev">Engineer</span>
+          </motion.h1>
+
+          {/* Typewriter */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mb-4"
+          >
+            <HeroTypewriter mode="developer" words={DEV_WORDS} />
+          </motion.div>
+
+          {/* Subheadline */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="font-poppins font-light text-lg text-white/60 max-w-md leading-relaxed mb-8"
+          >
+            Building fast, scalable products with React, Next.js & TypeScript
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-wrap items-center gap-4"
+          >
+            <button
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById("experience")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="dev-btn flex items-center gap-2"
+            >
+              <ArrowDown className="w-4 h-4" />
+              View Experience
+            </button>
+            <Link
+              href="/resume.pdf"
+              download
+              className="dev-btn-outline flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" />
+              Download Resume
+            </Link>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <HeroStats mode="developer" />
+          </motion.div>
+        </motion.div>
+
+        {/* Right — photo with floating tags */}
+        <motion.div
+          className="flex-shrink-0"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        >
+          <HeroFloatingTags mode="developer" />
+        </motion.div>
+      </div>
+    </section>
+  );
+}

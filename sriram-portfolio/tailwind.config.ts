@@ -7,6 +7,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/layout/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/hooks/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/store/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -229,6 +230,14 @@ const config: Config = {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
         },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "spin-slower": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
 
       animation: {
@@ -245,6 +254,8 @@ const config: Config = {
         marquee: "marquee 20s linear infinite",
         "ping-slow": "ping-slow 2s cubic-bezier(0,0,0.2,1) infinite",
         "shimmer-border": "shimmer-border 3s ease-in-out infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
+        "spin-slower": "spin-slower 12s linear infinite reverse",
       },
 
       spacing: {
