@@ -10,21 +10,98 @@ export interface HeroPhotoProps {
 const IMG_SRC = "/images/profile.jpeg";
 
 export function HeroPhoto({ mode }: HeroPhotoProps) {
-  const containerClass =
-    "relative w-72 h-72 md:w-96 md:h-96 mx-auto flex-shrink-0";
-
   if (mode === "developer") {
     return (
-      <div className="relative inline-block">
+      <div className="relative inline-flex items-center justify-center">
+        {/* Ring 1 — outermost, slowest, purple gradient arc */}
         <div
-          className="absolute inset-0 rounded-full border border-[#7c3aed]/20 animate-spin"
-          style={{ animationDuration: "12s" }}
+          className="absolute rounded-full animate-spin"
+          style={{
+            width: "calc(100% + 72px)",
+            height: "calc(100% + 72px)",
+            animationDuration: "6s",
+            border: "1.5px solid transparent",
+            borderTopColor: "#7c3aed",
+            borderRightColor: "rgba(124,58,237,0.15)",
+            borderBottomColor: "transparent",
+            borderLeftColor: "rgba(6,182,212,0.4)",
+            filter: "drop-shadow(0 0 6px #7c3aed)",
+          }}
         />
+        {/* Ring 2 — mid, reverse, cyan arc */}
         <div
-          className="absolute inset-4 rounded-full border border-dashed border-[#06b6d4]/15 animate-spin"
-          style={{ animationDuration: "18s", animationDirection: "reverse" }}
+          className="absolute rounded-full animate-spin"
+          style={{
+            width: "calc(100% + 44px)",
+            height: "calc(100% + 44px)",
+            animationDuration: "4s",
+            animationDirection: "reverse",
+            border: "1px solid transparent",
+            borderTopColor: "rgba(6,182,212,0.8)",
+            borderRightColor: "transparent",
+            borderBottomColor: "rgba(6,182,212,0.3)",
+            borderLeftColor: "transparent",
+            filter: "drop-shadow(0 0 4px #06b6d4)",
+          }}
         />
-        <div className={`relative z-10 ${containerClass}`}>
+        {/* Ring 3 — innermost, fastest, dashed purple */}
+        <div
+          className="absolute rounded-full animate-spin"
+          style={{
+            width: "calc(100% + 20px)",
+            height: "calc(100% + 20px)",
+            animationDuration: "2.5s",
+            border: "1px dashed rgba(124,58,237,0.4)",
+            filter: "drop-shadow(0 0 3px rgba(124,58,237,0.3))",
+          }}
+        />
+        {/* Glow radial behind image */}
+        <div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: "calc(100% + 80px)",
+            height: "calc(100% + 80px)",
+            background:
+              "radial-gradient(circle, rgba(124,58,237,0.18) 0%, rgba(6,182,212,0.08) 50%, transparent 75%)",
+            filter: "blur(20px)",
+          }}
+        />
+        {/* Animated glow pulse ring */}
+        <div
+          className="absolute rounded-full animate-glow-pulse pointer-events-none"
+          style={{
+            width: "calc(100% + 32px)",
+            height: "calc(100% + 32px)",
+            background:
+              "radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%)",
+          }}
+        />
+        {/* Gradient border ring around image */}
+        <div
+          className="absolute rounded-full z-10"
+          style={{
+            inset: "-2px",
+            padding: "2px",
+            background:
+              "linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #7c3aed 100%)",
+            borderRadius: "9999px",
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+          }}
+        />
+        {/* Image */}
+        <div className="relative z-10 w-72 h-72 md:w-96 md:h-96 flex-shrink-0">
+          <div
+            className="absolute inset-0 rounded-full z-20 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%)",
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.3)",
+            }}
+          />
           <Image
             src={IMG_SRC}
             alt="Sriram Venkatachalam"
@@ -39,39 +116,104 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
   }
 
   return (
-    <div className="relative inline-block border-2 border-[#39FF14] shadow-brutal-lg overflow-hidden group">
-      <div className={`${containerClass} relative`}>
+    <div className="relative inline-flex items-center justify-center">
+      {/* Glitch offset layer 1 — cyan */}
+      <div
+        className="absolute z-0 overflow-hidden"
+        style={{
+          width: "calc(100% + 4px)",
+          height: "calc(100% + 4px)",
+          transform: "translate(4px, -4px)",
+          border: "2px solid rgba(6,182,212,0.5)",
+        }}
+      >
+        <Image
+          src={IMG_SRC}
+          alt=""
+          fill
+          className="object-cover object-top opacity-40"
+          sizes="(max-width: 768px) 288px, 384px"
+          style={{ filter: "hue-rotate(120deg) saturate(2)" }}
+          aria-hidden
+        />
+      </div>
+      {/* Glitch offset layer 2 — red */}
+      <div
+        className="absolute z-0 overflow-hidden"
+        style={{
+          width: "calc(100% + 4px)",
+          height: "calc(100% + 4px)",
+          transform: "translate(-4px, 4px)",
+          border: "2px solid rgba(255,45,45,0.4)",
+        }}
+      >
+        <Image
+          src={IMG_SRC}
+          alt=""
+          fill
+          className="object-cover object-top opacity-30"
+          sizes="(max-width: 768px) 288px, 384px"
+          style={{ filter: "hue-rotate(240deg) saturate(2)" }}
+          aria-hidden
+        />
+      </div>
+      {/* Main image — hard brutalist border */}
+      <div
+        className="relative z-10 w-72 h-72 md:w-96 md:h-96
+                   flex-shrink-0 overflow-hidden group"
+        style={{
+          border: "2px solid #39FF14",
+          boxShadow: "6px 6px 0px #39FF14, -2px -2px 0px rgba(57,255,20,0.2)",
+        }}
+      >
         <Image
           src={IMG_SRC}
           alt="Sriram Venkatachalam"
           fill
-          className="object-cover object-top transition-all duration-500 group-hover:scale-105"
+          className="object-cover object-top
+                     transition-all duration-300
+                     group-hover:scale-105"
           priority
           sizes="(max-width: 768px) 288px, 384px"
         />
-        {/* Green duotone overlay — parrot tint */}
+        {/* Parrot green scanline overlay */}
         <div
-          className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-40"
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(57,255,20,0.03) 2px, rgba(57,255,20,0.03) 4px)",
+          }}
+        />
+        {/* Bottom green gradient fade */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10"
           style={{
             background:
-              "linear-gradient(180deg, transparent 30%, rgba(57, 255, 20, 0.25) 100%)",
+              "linear-gradient(180deg, transparent 50%, rgba(57,255,20,0.15) 100%)",
           }}
         />
-        {/* Halftone/dot pattern overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.08]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 50% 50%, rgba(57, 255, 20, 0.9) 1px, transparent 1px)`,
-            backgroundSize: "6px 6px",
-          }}
-        />
-        {/* Subtle vignette */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            boxShadow: "inset 0 0 80px 20px rgba(0, 0, 0, 0.4)",
-          }}
-        />
+        {/* Corner accent — top left */}
+        <div className="absolute top-0 left-0 z-20 pointer-events-none">
+          <div className="w-6 h-0.5 bg-[#39FF14]" />
+          <div className="w-0.5 h-6 bg-[#39FF14]" />
+        </div>
+        {/* Corner accent — bottom right */}
+        <div className="absolute bottom-0 right-0 z-20 pointer-events-none">
+          <div className="w-6 h-0.5 bg-[#39FF14] ml-auto" />
+          <div className="w-0.5 h-6 bg-[#39FF14] ml-auto" />
+        </div>
+      </div>
+      {/* Hard shadow label */}
+      <div
+        className="absolute -bottom-8 left-0 right-0
+                   flex justify-center"
+      >
+        <span
+          className="font-mono text-xs text-[#39FF14]/50 uppercase
+                     tracking-widest"
+        >
+          sriram.v
+        </span>
       </div>
     </div>
   );
