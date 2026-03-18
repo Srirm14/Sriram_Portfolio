@@ -32,7 +32,7 @@ const FOCUS_ITEMS = [
   },
 ];
 
-export function SkillsDevMode({ skills }: SkillsDevModeProps) {
+export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
