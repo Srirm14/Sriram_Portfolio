@@ -192,12 +192,28 @@ export function NavPill() {
         <button
           type="button"
           onClick={() => scrollToSection("#hero")}
-          className={cn(
-            "font-grotesk text-sm font-semibold transition-colors",
-            isDev ? "text-white hover:text-[#06b6d4]" : "text-white hover:text-[#39FF14]",
-          )}
+          className="transition-all duration-300"
         >
-          Sriram Venkatachalam
+          {isDev ? (
+            <span className="font-grotesk text-sm font-semibold text-gradient-dev hover:opacity-80 transition-opacity duration-200">
+              Sriram Venkatachalam
+            </span>
+          ) : (
+            <span className="relative font-syne text-sm font-black uppercase tracking-widest text-white group cursor-pointer">
+              {"Sriram Venkatachalam".split("").map((char, i) => (
+                <span
+                  key={i}
+                  className="inline-block transition-all duration-150 hover:text-[#39FF14] hover:-translate-y-0.5"
+                  style={{ transitionDelay: `${i * 15}ms` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+              <span
+                className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#39FF14] group-hover:w-full transition-all duration-300 shadow-[0_0_6px_#39FF14]"
+              />
+            </span>
+          )}
         </button>
         <div className="flex items-center gap-4 md:gap-8">
           <button
@@ -260,7 +276,7 @@ export function NavPill() {
               : "border-2 border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-150",
           )}
         >
-          S
+          SV
         </button>
         <div
           className={cn(
@@ -324,6 +340,29 @@ export function NavPill() {
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleNavClick("#hero")}
+                className="mb-4"
+              >
+                {isDev ? (
+                  <span className="font-grotesk text-2xl font-bold text-gradient-dev">
+                    Sriram Venkatachalam
+                  </span>
+                ) : (
+                  <span className="relative font-syne text-3xl font-black uppercase tracking-widest text-white group cursor-pointer">
+                    {"Sriram Venkatachalam".split("").map((char, i) => (
+                      <span
+                        key={i}
+                        className="inline-block transition-all duration-150 hover:text-[#39FF14] hover:-translate-y-1"
+                        style={{ transitionDelay: `${i * 20}ms` }}
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                    ))}
+                  </span>
+                )}
               </button>
               {navLinks.map((link) => (
                 <MobileNavLink

@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Code2, Pencil } from "lucide-react";
 import { useModeStore } from "@/store";
 import type { Mode } from "@/types";
 import { cn } from "@/lib/utils";
 
-const OPTIONS: { value: Mode; label: string }[] = [
-  { value: "developer", label: "</> Dev" },
-  { value: "designer", label: "✏ Design" },
+const OPTIONS: { value: Mode; label: string; Icon: typeof Code2 }[] = [
+  { value: "developer", label: "Dev", Icon: Code2 },
+  { value: "designer", label: "Design", Icon: Pencil },
 ];
 
 export function ModeToggle() {
@@ -16,32 +17,36 @@ export function ModeToggle() {
   return (
     <div
       className={cn(
-        "relative flex w-[200px] rounded-full p-0.5",
+        "relative flex w-[180px] rounded-full p-0.5",
         "backdrop-blur-glass bg-black/40 border border-white/10",
         "toggle-border-shimmer",
       )}
     >
       <div className="relative flex w-full">
-        {OPTIONS.map((opt) => (
-          <button
-            key={opt.value}
-            type="button"
-            onClick={() => setMode(opt.value)}
-            className={cn(
-              "relative z-10 flex flex-1 items-center justify-center",
-              "px-4 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-colors",
-              mode === opt.value
-                ? opt.value === "designer"
-                  ? "text-black"
-                  : "text-white"
-                : opt.value === "developer"
-                  ? "text-white/50 hover:text-white"
-                  : "text-white hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]",
-            )}
-          >
-            {opt.label}
-          </button>
-        ))}
+        {OPTIONS.map((opt) => {
+          const Icon = opt.Icon;
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => setMode(opt.value)}
+              className={cn(
+                "relative z-10 flex flex-1 items-center justify-center gap-1.5",
+                "px-3 py-2 font-mono text-[10px] uppercase tracking-wider transition-colors",
+                mode === opt.value
+                  ? opt.value === "designer"
+                    ? "text-black"
+                    : "text-white"
+                  : opt.value === "developer"
+                    ? "text-white/50 hover:text-white"
+                    : "text-white hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]",
+              )}
+            >
+              <Icon className="size-3.5 shrink-0" strokeWidth={2.5} />
+              <span>{opt.label}</span>
+            </button>
+          );
+        })}
         {mode === "developer" ? (
           <motion.div
             layoutId="mode-toggle-indicator"
