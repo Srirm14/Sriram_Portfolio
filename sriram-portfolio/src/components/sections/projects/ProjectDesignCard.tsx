@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { RotateCw } from "lucide-react";
+import { RotateCw, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProjectGradient } from "./ProjectGradient";
 import type { ProjectItem } from "./ProjectsData";
@@ -110,6 +110,18 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
               </span>
             ))}
           </div>
+          {item.link && (
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="mt-3 flex items-center justify-center gap-1.5 py-2 border-2 border-[#39FF14]/60 font-mono text-xs text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-150 uppercase"
+            >
+              <ExternalLink className="w-3 h-3" />
+              View prototype
+            </a>
+          )}
         </div>
       </div>
     </div>

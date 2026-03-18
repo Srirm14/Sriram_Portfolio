@@ -16,6 +16,7 @@ export interface ProjectItem {
     to: string;
   };
   imagePath?: string;
+  link?: string;
 }
 
 export const projects: ProjectItem[] = [
@@ -95,6 +96,7 @@ export const projects: ProjectItem[] = [
     shortDesc: "Doctor appointment booking portal",
     featured: false,
     duration: "Aug – Nov 2024",
+    link: "https://www.figma.com/proto/P3xPx0pKqi2oXf987runmO/Neu-health?page-id=0%3A1&type=design&node-id=261-30192&viewport=8599%2C549%2C0.36&t=MrGwaCRjYSdALQzZ-1&scaling=scale-down&starting-point-node-id=261%3A30166",
     devBullets: [],
     designBullets: [
       "Designed an intuitive app for booking neurologist appointments, managing medical history, and supporting communication for substance abuse treatment.",
