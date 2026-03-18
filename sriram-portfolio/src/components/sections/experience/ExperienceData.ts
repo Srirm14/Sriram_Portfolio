@@ -42,17 +42,8 @@ export const experiences: ExperienceItem[] = [
       "Material UI",
       "TipTap",
     ],
-    designBullets: [
-      "Led end-to-end UI/UX for an internal enterprise CRM — from initial wireframes and user flow mapping to final component design and developer handoff.",
-      "Designed a scalable design system with reusable components, spacing tokens, and interaction patterns used across the entire platform.",
-      "Worked directly with sales team stakeholders to translate complex business workflows into clean, intuitive multi-step form experiences.",
-    ],
-    designTools: [
-      "Figma",
-      "FigJam",
-      "Design Tokens",
-      "Component Architecture",
-    ],
+    designBullets: [],
+    designTools: [],
   },
   {
     id: "brandwatch",

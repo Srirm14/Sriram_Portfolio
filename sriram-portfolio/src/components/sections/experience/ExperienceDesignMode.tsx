@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { experiences } from "./ExperienceData";
 import { ExperienceDesignCard } from "./ExperienceDesignCard";
 
+const designExperiences = experiences.filter(
+  (item) => item.designBullets.length > 0
+);
+
 export function ExperienceDesignMode() {
   return (
     <section
@@ -37,7 +41,7 @@ export function ExperienceDesignMode() {
 
           {/* Desktop: alternating timeline */}
           <div className="hidden lg:flex flex-col gap-12">
-            {experiences.map((item, index) => (
+            {designExperiences.map((item, index) => (
               <ExperienceDesignCard
                 key={item.id}
                 item={item}
@@ -49,7 +53,7 @@ export function ExperienceDesignMode() {
 
           {/* Mobile: stacked with left border */}
           <div className="lg:hidden flex flex-col gap-8">
-            {experiences.map((item, index) => (
+            {designExperiences.map((item, index) => (
               <ExperienceDesignCard
                 key={item.id}
                 item={item}
