@@ -182,7 +182,7 @@ export function NavPill() {
     >
       <div
         className={cn(
-          "mx-auto flex h-16 max-w-6xl items-center justify-between px-6",
+          "flex h-16 w-full items-center justify-between px-6 md:px-12",
           "transition-all duration-300",
           isDev
             ? "backdrop-blur-[16px] bg-[rgba(10,10,15,0.85)] border-b border-white/[0.06]"
@@ -197,7 +197,7 @@ export function NavPill() {
             isDev ? "text-white hover:text-[#06b6d4]" : "text-white hover:text-[#39FF14]",
           )}
         >
-          Sriram V
+          Sriram Venkatachalam
         </button>
         <div className="flex items-center gap-4 md:gap-8">
           <button

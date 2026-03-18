@@ -31,10 +31,12 @@ export function ModeToggle() {
               "relative z-10 flex flex-1 items-center justify-center",
               "px-4 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-colors",
               mode === opt.value
-                ? "text-white"
+                ? opt.value === "designer"
+                  ? "text-black"
+                  : "text-white"
                 : opt.value === "developer"
-                  ? "text-white/60 hover:text-white hover:drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"
-                  : "text-[#39FF14]/70 hover:text-[#39FF14] hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]",
+                  ? "text-white/50 hover:text-white"
+                  : "text-white hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]",
             )}
           >
             {opt.label}
