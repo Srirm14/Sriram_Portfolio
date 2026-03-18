@@ -1,10 +1,12 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
   darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/contexts/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -189,6 +191,10 @@ const config: Config = {
           "0%":      { transform: "scale(1)",   opacity: "0.8" },
           "75%, 100%":{ transform: "scale(2.5)", opacity: "0"   },
         },
+        "shimmer-border": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%":      { opacity: "0.8" },
+        },
       },
 
       animation: {
@@ -204,6 +210,7 @@ const config: Config = {
         "blink":            "blink 1s step-end infinite",
         "marquee":          "marquee 20s linear infinite",
         "ping-slow":        "ping-slow 2s cubic-bezier(0,0,0.2,1) infinite",
+        "shimmer-border":   "shimmer-border 3s ease-in-out infinite",
       },
 
       spacing: {
@@ -221,7 +228,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;

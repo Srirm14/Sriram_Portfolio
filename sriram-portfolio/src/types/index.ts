@@ -10,6 +10,7 @@ export interface Project {
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
+  designTools?: string;
 }
 
 export interface Experience {
@@ -18,7 +19,7 @@ export interface Experience {
   role: string;
   roleDesign?: string;
   duration: string;
-  location: string;
+  location?: string;
   devBullets: string[];
   designBullets: string[];
   stack: string[];

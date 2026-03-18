@@ -79,7 +79,7 @@ export default function RootLayout({
           spaceGrotesk.variable,
           jetbrainsMono.variable,
           syne.variable,
-          "font-sans antialiased",
+          "bg-[#0a0a0a] font-sans antialiased",
         ].join(" ")}
       >
         {children}
