@@ -192,28 +192,42 @@ export function NavPill() {
         <button
           type="button"
           onClick={() => scrollToSection("#hero")}
-          className="transition-all duration-300"
+          className="transition-all duration-300 flex items-center"
         >
-          {isDev ? (
-            <span className="font-grotesk text-sm font-semibold text-gradient-dev hover:opacity-80 transition-opacity duration-200">
-              Sriram Venkatachalam
-            </span>
-          ) : (
-            <span className="relative font-syne text-sm font-black uppercase tracking-widest text-white group cursor-pointer">
-              {"Sriram Venkatachalam".split("").map((char, i) => (
+          {/* Mobile: SV monogram */}
+          <span
+            className={cn(
+              "md:hidden w-8 h-8 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0",
+              isDev
+                ? "rounded-full bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] text-white"
+                : "border-2 border-[#39FF14] text-[#39FF14]",
+            )}
+          >
+            SV
+          </span>
+          {/* Desktop: full name */}
+          <span className="hidden md:block">
+            {isDev ? (
+              <span className="font-grotesk text-sm font-semibold text-gradient-dev hover:opacity-80 transition-opacity duration-200">
+                Sriram Venkatachalam
+              </span>
+            ) : (
+              <span className="relative font-bebas text-sm text-white tracking-wide group cursor-pointer">
+                {"Sriram Venkatachalam".split("").map((char, i) => (
+                  <span
+                    key={i}
+                    className="inline-block transition-all duration-150 hover:text-[#39FF14] hover:-translate-y-0.5"
+                    style={{ transitionDelay: `${i * 15}ms` }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
                 <span
-                  key={i}
-                  className="inline-block transition-all duration-150 hover:text-[#39FF14] hover:-translate-y-0.5"
-                  style={{ transitionDelay: `${i * 15}ms` }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
-              <span
-                className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#39FF14] group-hover:w-full transition-all duration-300 shadow-[0_0_6px_#39FF14]"
-              />
-            </span>
-          )}
+                  className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#39FF14] group-hover:w-full transition-all duration-300 shadow-[0_0_6px_#39FF14]"
+                />
+              </span>
+            )}
+          </span>
         </button>
         <div className="flex items-center gap-4 md:gap-8">
           <button
@@ -251,10 +265,10 @@ export function NavPill() {
     >
       <div
         className={cn(
-          "relative flex items-center gap-1 px-2 py-2 rounded-full",
+          "relative flex items-center gap-1 px-2 py-2",
           isDev
-            ? "backdrop-blur-[20px] bg-[rgba(10,10,15,0.85)] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_0_1px_rgba(124,58,237,0.15)]"
-            : "backdrop-blur-[16px] bg-[rgba(10,10,10,0.9)] border-2 border-[rgba(57,255,20,0.3)] shadow-[0_8px_32px_rgba(0,0,0,0.5),4px_4px_0px_rgba(57,255,20,0.15)]",
+            ? "rounded-full backdrop-blur-[20px] bg-[rgba(10,10,15,0.85)] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_0_1px_rgba(124,58,237,0.15)]"
+            : "rounded-none backdrop-blur-[16px] bg-[rgba(10,10,10,0.9)] border-2 border-[rgba(57,255,20,0.3)] shadow-[0_8px_32px_rgba(0,0,0,0.5),4px_4px_0px_rgba(57,255,20,0.15)]",
         )}
       >
         {isDev && (
@@ -344,25 +358,18 @@ export function NavPill() {
               <button
                 type="button"
                 onClick={() => handleNavClick("#hero")}
-                className="mb-4"
+                className="mb-4 flex items-center justify-center"
               >
-                {isDev ? (
-                  <span className="font-grotesk text-2xl font-bold text-gradient-dev">
-                    Sriram Venkatachalam
-                  </span>
-                ) : (
-                  <span className="relative font-syne text-3xl font-black uppercase tracking-widest text-white group cursor-pointer">
-                    {"Sriram Venkatachalam".split("").map((char, i) => (
-                      <span
-                        key={i}
-                        className="inline-block transition-all duration-150 hover:text-[#39FF14] hover:-translate-y-1"
-                        style={{ transitionDelay: `${i * 20}ms` }}
-                      >
-                        {char === " " ? "\u00A0" : char}
-                      </span>
-                    ))}
-                  </span>
-                )}
+                <span
+                  className={cn(
+                    "w-12 h-12 flex items-center justify-center font-mono text-sm font-bold",
+                    isDev
+                      ? "rounded-full bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] text-white"
+                      : "border-2 border-[#39FF14] text-[#39FF14]",
+                  )}
+                >
+                  SV
+                </span>
               </button>
               {navLinks.map((link) => (
                 <MobileNavLink

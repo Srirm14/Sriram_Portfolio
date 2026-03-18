@@ -13,7 +13,7 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
   return (
     <section
       id="experience"
-      className="relative bg-dev py-24 px-6 lg:px-12 overflow-hidden"
+      className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
     >
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 
@@ -23,7 +23,7 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 md:mb-16 text-center"
         >
           <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
             02 — Experience
@@ -40,7 +40,7 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#7c3aed]/30 to-transparent -translate-x-1/2 hidden lg:block" />
 
           {/* Desktop: alternating timeline */}
-          <div className="hidden lg:flex flex-col gap-12">
+          <div className="hidden lg:flex flex-col gap-8 md:gap-12">
             {devExperiences.map((item, index) => (
               <ExperienceDevCard
                 key={item.id}
@@ -52,7 +52,7 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
           </div>
 
           {/* Mobile: stacked with left border */}
-          <div className="lg:hidden flex flex-col gap-8">
+          <div className="lg:hidden flex flex-col gap-5 md:gap-8">
             {devExperiences.map((item, index) => (
               <ExperienceDevCard
                 key={item.id}

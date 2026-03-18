@@ -14,7 +14,7 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
   return (
     <section
       id="work"
-      className="relative bg-design py-24 px-6 lg:px-12 overflow-hidden"
+      className="relative bg-design py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
     >
       <div className="absolute inset-0 line-grid opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]/20" />
@@ -25,7 +25,7 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="mb-12"
+          className="mb-8 md:mb-12"
         >
           <p className="font-mono text-xs text-[#39FF14]/60 uppercase tracking-widest mb-3">
             03 — Projects
@@ -40,7 +40,7 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {designProjects.map((project, index) => (
             <motion.div
               key={project.id}

@@ -181,8 +181,7 @@
            tracking-tight;
   }
   .section-heading-design {
-    @apply font-syne font-black text-display-md text-white
-           uppercase tracking-widest;
+    @apply font-bebas font-normal text-display-md text-white tracking-widest;
   }
 
   /* ── Availability badge ── */

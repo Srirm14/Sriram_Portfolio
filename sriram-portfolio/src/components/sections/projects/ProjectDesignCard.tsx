@@ -48,7 +48,7 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
           </div>
           <div className="p-4 h-[45%] flex flex-col justify-between min-h-0 overflow-y-auto">
             <div>
-              <h3 className="font-syne font-black text-white uppercase">
+              <h3 className="font-bebas text-white">
                 {item.title}
               </h3>
               <p className="font-mono text-xs text-white/40 mt-1">
@@ -79,7 +79,7 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]" />
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="font-syne font-black text-white uppercase">
+              <h3 className="font-bebas text-white">
                 {item.title}
               </h3>
               <p className="font-mono text-xs text-[#39FF14]/50 mt-0.5">

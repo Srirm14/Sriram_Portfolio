@@ -6,6 +6,7 @@ import {
   JetBrains_Mono,
   Syne,
 } from "next/font/google";
+import "@fontsource/bebas-neue";
 import "./globals.css";
 
 const inter = Inter({

@@ -189,7 +189,7 @@ export function ContactCard({ link, mode }: ContactCardProps) {
               <IconComponent className="w-4 h-4 text-[#39FF14]" />
             </div>
             <div>
-              <p className="font-syne font-black text-white uppercase text-sm">
+              <p className="font-bebas text-white text-sm">
                 {link.label}
               </p>
               <p className="font-mono text-xs text-white/30 mt-0.5">

@@ -14,7 +14,7 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
   return (
     <section
       id="contact"
-      className="relative bg-dev py-24 px-6 lg:px-12 overflow-hidden"
+      className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
     >
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
 
@@ -30,7 +30,7 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
             05 — Contact
@@ -44,7 +44,7 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-3xl mx-auto items-stretch">
           {contactLinks.map((link, index) => (
             <motion.div
               key={link.id}

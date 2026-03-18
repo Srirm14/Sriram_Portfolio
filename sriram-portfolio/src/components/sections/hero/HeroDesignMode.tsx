@@ -30,10 +30,10 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
     <section id="hero" className="relative min-h-screen bg-design flex items-center line-grid overflow-hidden">
       <HeroBackground mode="designer" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-24 pb-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-5 md:gap-12 lg:gap-20 pt-12 md:pt-24 pb-10 md:pb-16">
         {/* Left — text */}
         <motion.div
-          className="flex-1 flex flex-col items-start"
+          className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={springTransition}
@@ -43,7 +43,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="badge-available-design mb-6 flex items-center gap-2"
+            className="badge-available-design mb-3 md:mb-6 flex items-center gap-2"
           >
             <span className="text-[#39FF14]">●</span>
             <span>{meta.availability}</span>
@@ -54,7 +54,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, ...springTransition }}
-            className="font-syne font-black text-display-xl text-white uppercase tracking-tight leading-tight mb-4"
+            className="font-bebas text-2xl sm:text-3xl md:text-display-xl text-white tracking-tight leading-tight mb-3 md:mb-4"
           >
             Product Designer
           </motion.h1>
@@ -74,7 +74,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, ...springTransition }}
-            className="font-poppins font-normal text-lg text-white/50 max-w-md leading-relaxed mb-8"
+            className="font-poppins font-normal text-sm md:text-lg text-white/50 max-w-md leading-relaxed mb-5 md:mb-8"
           >
             Crafting interfaces that feel as good as they look
           </motion.p>
@@ -84,7 +84,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, ...springTransition }}
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-2 md:gap-4"
           >
             <button
               type="button"
@@ -93,15 +93,15 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
                   .getElementById("experience")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="brutal-btn flex items-center gap-2"
+              className="brutal-btn flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 text-sm md:text-base"
             >
-              <ArrowDown className="w-4 h-4" />
+              <ArrowDown className="w-4 h-4 shrink-0" />
               VIEW EXPERIENCE
             </button>
             <Link
               href={meta.resume}
               download
-              className="brutal-btn-outline flex items-center gap-2"
+              className="brutal-btn-outline flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 text-sm md:text-base"
             >
               <Download className="w-4 h-4" />
               RESUME

@@ -14,7 +14,7 @@ export function HeroTypewriter({ mode, words }: HeroTypewriterProps) {
 
   if (mode === "developer") {
     return (
-      <div className="flex items-center gap-2 font-mono text-lg">
+      <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-base md:text-lg">
         <span className="text-white/30">—</span>
         <span
           className={cn(
@@ -30,7 +30,7 @@ export function HeroTypewriter({ mode, words }: HeroTypewriterProps) {
   }
 
   return (
-    <div className="flex items-center gap-2 font-mono text-lg">
+    <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-sm md:text-lg">
       <span className="text-[#39FF14]/40">{"// "}</span>
       <span className="text-[#39FF14] font-bold">{displayed}</span>
       <span className="text-[#39FF14] animate-blink">_</span>

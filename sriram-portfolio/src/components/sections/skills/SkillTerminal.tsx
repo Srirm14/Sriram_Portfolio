@@ -108,8 +108,7 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
 
   return (
     <div
-      className="glass-card rounded-xl overflow-hidden w-full max-w-2xl mx-auto flex flex-col"
-      style={{ height: "480px", maxHeight: "480px", minHeight: "480px" }}
+      className="glass-card rounded-xl overflow-hidden w-full max-w-2xl mx-auto flex flex-col h-full min-h-[300px]"
     >
       {/* Terminal title bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/3">

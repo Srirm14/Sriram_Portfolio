@@ -22,7 +22,7 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
   return (
     <section
       id="skills"
-      className="relative bg-design py-24 px-6 overflow-hidden"
+      className="relative bg-design py-14 md:py-24 px-4 md:px-6 overflow-hidden"
     >
       <div className="absolute inset-0 line-grid opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]/20" />
@@ -33,7 +33,7 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <p className="font-mono text-xs text-[#39FF14]/60 uppercase tracking-widest mb-3">
             04 — Skills
@@ -92,7 +92,7 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
               className="border-2 border-[#39FF14] px-5 py-3 shadow-brutal relative z-10"
               style={{ background: "#0a0a0a" }}
             >
-              <span className="font-syne font-black text-sm text-[#39FF14] whitespace-nowrap uppercase">
+              <span className="font-bebas text-sm text-[#39FF14] whitespace-nowrap">
                 Design
               </span>
             </div>

@@ -17,7 +17,7 @@ export function ExperienceDesignMode({
   return (
     <section
       id="experience"
-      className="relative bg-design py-24 px-6 lg:px-12 overflow-hidden"
+      className="relative bg-design py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
     >
       <div className="absolute inset-0 line-grid opacity-50 pointer-events-none" />
 
@@ -29,7 +29,7 @@ export function ExperienceDesignMode({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
           <p className="font-mono text-xs text-[#39FF14]/60 uppercase tracking-widest mb-3">
             02 — Experience
@@ -45,7 +45,7 @@ export function ExperienceDesignMode({
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#39FF14]/20 -translate-x-1/2 hidden lg:block" />
 
           {/* Desktop: alternating timeline */}
-          <div className="hidden lg:flex flex-col gap-12">
+          <div className="hidden lg:flex flex-col gap-8 md:gap-12">
             {designExperiences.map((item, index) => (
               <ExperienceDesignCard
                 key={item.id}
@@ -57,7 +57,7 @@ export function ExperienceDesignMode({
           </div>
 
           {/* Mobile: stacked with left border */}
-          <div className="lg:hidden flex flex-col gap-8">
+          <div className="lg:hidden flex flex-col gap-5 md:gap-8">
             {designExperiences.map((item, index) => (
               <ExperienceDesignCard
                 key={item.id}

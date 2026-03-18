@@ -24,10 +24,10 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
     <section id="hero" className="relative min-h-screen bg-dev flex items-center dot-grid overflow-hidden">
       <HeroBackground mode="developer" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-24 pb-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-8 md:gap-12 lg:gap-20 pt-16 md:pt-24 pb-12 md:pb-16">
         {/* Left — text */}
         <motion.div
-          className="flex-1 flex flex-col items-start"
+          className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -37,7 +37,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="badge-available-dev mb-6 flex items-center gap-2"
+            className="badge-available-dev mb-4 md:mb-6 flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-ping-slow" />
             <span className="text-white">Open to roles · Bengaluru / Remote</span>
@@ -48,7 +48,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="font-grotesk font-bold text-display-xl text-white tracking-tight leading-tight mb-4"
+            className="font-grotesk font-bold text-display-lg md:text-display-xl text-white tracking-tight leading-tight mb-4"
           >
             Senior Frontend
             <br />
@@ -70,7 +70,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="font-poppins font-light text-lg text-white/60 max-w-md leading-relaxed mb-8"
+            className="font-poppins font-light text-base md:text-lg text-white/60 max-w-md leading-relaxed mb-8"
           >
             Building fast, scalable products with React, Next.js & TypeScript
           </motion.p>
@@ -80,7 +80,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4"
           >
             <button
               type="button"

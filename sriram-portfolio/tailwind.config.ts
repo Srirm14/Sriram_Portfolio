@@ -74,6 +74,7 @@ const config: Config = {
         poppins: ["var(--font-poppins)", "system-ui", "sans-serif"],
         grotesk: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
         syne: ["var(--font-syne)", "system-ui", "sans-serif"],
+        bebas: ["Bebas Neue", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },
 

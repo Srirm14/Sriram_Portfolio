@@ -25,7 +25,7 @@ function CardContent({ item }: { item: ExperienceItem }) {
   return (
     <div className="brutal-card p-6 w-full max-w-lg hover:shadow-brutal-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-150">
       <div className="flex items-start justify-between gap-4">
-        <p className="font-syne font-black text-lg text-white uppercase">
+        <p className="font-bebas text-lg text-white">
           {company}
         </p>
         <span className="px-2 py-0.5 border border-[#39FF14]/50 font-mono text-xs text-[#39FF14] uppercase">

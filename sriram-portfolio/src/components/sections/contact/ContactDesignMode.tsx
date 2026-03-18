@@ -17,7 +17,7 @@ export function ContactDesignMode({
   return (
     <section
       id="contact"
-      className="relative bg-design py-24 px-6 lg:px-12 overflow-hidden"
+      className="relative bg-design py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
     >
       <div className="absolute inset-0 line-grid opacity-50 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]/30" />
@@ -50,7 +50,7 @@ export function ContactDesignMode({
           </p>
         </motion.div>
 
-        <div className="columns-1 md:columns-3 gap-6 max-w-3xl mx-auto space-y-6">
+        <div className="columns-1 md:columns-3 gap-4 md:gap-6 max-w-3xl mx-auto space-y-4 md:space-y-6">
           {contactLinks.map((link, index) => (
             <div key={link.id} className="break-inside-avoid">
               <motion.div

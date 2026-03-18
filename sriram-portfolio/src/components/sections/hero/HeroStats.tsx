@@ -24,16 +24,19 @@ export function HeroStats({ mode }: HeroStatsProps) {
   const stats = isDev ? devStats : designStats;
 
   return (
-    <div className="flex items-center gap-8 mt-12">
+    <div className={cn(
+      "flex items-center justify-center lg:justify-start mt-6 md:mt-12",
+      isDev ? "gap-4 md:gap-8" : "gap-3 md:gap-8"
+    )}>
       {stats.map((stat, i) => (
-        <div key={stat.label} className="flex items-center gap-8">
+        <div key={stat.label} className={cn("flex items-center", isDev ? "gap-4 md:gap-8" : "gap-3 md:gap-8")}>
           <div className="flex flex-col gap-1">
             <span
               className={cn(
-                "font-bold text-2xl",
+                "font-bold",
                 isDev
-                  ? "font-grotesk text-gradient-dev"
-                  : "font-syne font-black text-[#39FF14]"
+                  ? "font-grotesk text-gradient-dev text-2xl"
+                  : "font-bebas text-[#39FF14] text-xl md:text-2xl"
               )}
             >
               {stat.value}

@@ -56,7 +56,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative bg-dev py-24 px-6 lg:px-12 overflow-hidden"
+      className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
     >
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
 
@@ -67,7 +67,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-8 md:mb-12"
         >
           <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
             04 — Skills
@@ -81,9 +81,9 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
         </motion.div>
 
         {/* Two column layout on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Left — terminal */}
-          <div className="w-full" style={{ height: "480px" }}>
+          <div className="w-full h-[340px] md:h-[480px]">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -100,7 +100,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-4 md:gap-6"
           >
             {/* What I focus on card */}
             <div className="glass-card p-6 rounded-xl">
