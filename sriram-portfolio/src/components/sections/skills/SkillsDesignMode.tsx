@@ -1,20 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { designSkills } from "./SkillsData";
 import { SkillOrbit } from "./SkillOrbit";
+import type { SkillCategory } from "./SkillsData";
 
-const orbit1 = designSkills
-  .filter((c) => c.orbit === 1)
-  .flatMap((c) => c.skills);
-const orbit2 = designSkills
-  .filter((c) => c.orbit === 2)
-  .flatMap((c) => c.skills);
-const orbit3 = designSkills
-  .filter((c) => c.orbit === 3)
-  .flatMap((c) => c.skills);
+interface SkillsDesignModeProps {
+  skills: { dev: SkillCategory[]; design: SkillCategory[] };
+}
 
-export function SkillsDesignMode() {
+export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
+  const designSkills = skills.design;
+  const orbit1 = designSkills
+    .filter((c) => c.orbit === 1)
+    .flatMap((c) => c.skills);
+  const orbit2 = designSkills
+    .filter((c) => c.orbit === 2)
+    .flatMap((c) => c.skills);
+  const orbit3 = designSkills
+    .filter((c) => c.orbit === 3)
+    .flatMap((c) => c.skills);
   return (
     <section
       id="skills"

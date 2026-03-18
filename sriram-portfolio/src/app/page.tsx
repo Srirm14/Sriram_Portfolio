@@ -1,3 +1,10 @@
+import {
+  getExperiences,
+  getProjects,
+  getSkills,
+  getContactLinks,
+  getMeta,
+} from "@/lib/data";
 import { ModeThemeSync } from "@/components/mode-theme-sync";
 import { Navbar } from "@/components/navbar";
 import Hero from "@/components/sections/hero";
@@ -6,20 +13,26 @@ import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
 import Contact from "@/components/sections/contact";
 
-const wrapperClass = "min-h-screen";
+export const revalidate = false;
 
 export default function Home() {
+  const meta = getMeta();
+  const experiences = getExperiences();
+  const projects = getProjects();
+  const skills = getSkills();
+  const contactLinks = getContactLinks();
+
   return (
     <>
       <ModeThemeSync />
-      <div className={wrapperClass}>
+      <div className="min-h-screen">
         <Navbar />
-        <main>
-          <Hero />
-          <Experience />
-          <Projects />
-          <Skills />
-          <Contact />
+        <main className="pt-16">
+          <Hero meta={meta} />
+          <Experience experiences={experiences} />
+          <Projects projects={projects} />
+          <Skills skills={skills} />
+          <Contact contactLinks={contactLinks} meta={meta} />
         </main>
       </div>
     </>

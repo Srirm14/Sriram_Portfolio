@@ -2,9 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ContactCard } from "./ContactCard";
-import { contactLinks } from "./ContactData";
+import type { ContactLink } from "./ContactData";
+import type { getMeta } from "@/lib/data";
 
-export function ContactDevMode() {
+interface ContactDevModeProps {
+  contactLinks: ContactLink[];
+  meta: ReturnType<typeof getMeta>;
+}
+
+export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
   return (
     <section
       id="contact"
@@ -60,7 +66,7 @@ export function ContactDevMode() {
           transition={{ delay: 0.5 }}
           className="text-center font-mono text-xs text-white/15 mt-16"
         >
-          Built with Next.js · Designed & developed by Sriram Venkatachalam
+          Built with Next.js · Designed & developed by {meta.name}
         </motion.p>
       </div>
     </section>

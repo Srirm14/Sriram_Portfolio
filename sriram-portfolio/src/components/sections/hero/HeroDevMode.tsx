@@ -15,7 +15,11 @@ const DEV_WORDS = [
   "UI Craftsman",
 ];
 
-export function HeroDevMode() {
+interface HeroDevModeProps {
+  meta: ReturnType<typeof import("@/lib/data").getMeta>;
+}
+
+export function HeroDevMode({ meta }: HeroDevModeProps) {
   return (
     <section id="hero" className="relative min-h-screen bg-dev flex items-center dot-grid overflow-hidden">
       <HeroBackground mode="developer" />
@@ -91,7 +95,7 @@ export function HeroDevMode() {
               View Experience
             </button>
             <Link
-              href="/resume.pdf"
+              href={meta.resume}
               download
               className="dev-btn-outline flex items-center gap-2"
             >

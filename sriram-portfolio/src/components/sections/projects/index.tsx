@@ -4,8 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useModeStore } from "@/store";
 import { ProjectsDevMode } from "./ProjectsDevMode";
 import { ProjectsDesignMode } from "./ProjectsDesignMode";
+import type { ProjectItem } from "./ProjectsData";
 
-export default function Projects() {
+interface ProjectsProps {
+  projects: ProjectItem[];
+}
+
+export default function Projects({ projects }: ProjectsProps) {
   const mode = useModeStore((s) => s.mode);
 
   return (
@@ -18,7 +23,7 @@ export default function Projects() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ProjectsDevMode />
+          <ProjectsDevMode projects={projects} />
         </motion.div>
       ) : (
         <motion.div
@@ -28,7 +33,7 @@ export default function Projects() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ProjectsDesignMode />
+          <ProjectsDesignMode projects={projects} />
         </motion.div>
       )}
     </AnimatePresence>

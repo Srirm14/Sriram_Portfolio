@@ -3,6 +3,11 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { SkillTerminal } from "./SkillTerminal";
+import type { SkillCategory } from "./SkillsData";
+
+interface SkillsDevModeProps {
+  skills: { dev: SkillCategory[]; design: SkillCategory[] };
+}
 
 const FOCUS_ITEMS = [
   {
@@ -27,7 +32,7 @@ const FOCUS_ITEMS = [
   },
 ];
 
-export function SkillsDevMode() {
+export function SkillsDevMode({ skills }: SkillsDevModeProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -39,7 +44,9 @@ export function SkillsDevMode() {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      // Only start when user has scrolled to the section — rootMargin shrinks
+      // the bottom so section must be in the upper ~70% of the viewport
+      { threshold: 0.2, rootMargin: "0px 0px -25% 0px" }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -69,7 +76,7 @@ export function SkillsDevMode() {
             My <span className="text-gradient-dev">Stack</span>
           </h2>
           <p className="font-poppins text-white/30 text-sm mt-2">
-            Scroll down to watch it load
+            Scroll here to watch it load · scroll inside the terminal to see more
           </p>
         </motion.div>
 

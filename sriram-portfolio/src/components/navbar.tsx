@@ -1,23 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { useModeStore } from "@/store";
 import { ModeToggle } from "@/components/mode-toggle";
 import { navLinks } from "@/lib/data/nav";
 import { cn } from "@/lib/utils";
 
-const SCROLL_THRESHOLD = 50;
-
 export function Navbar() {
   const mode = useModeStore((s) => s.mode);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const scrollToSection = useCallback((href: string) => {
     const id = href.startsWith("#") ? href.slice(1) : href;
@@ -32,12 +22,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? isDev
-            ? "backdrop-blur-[16px] bg-[rgba(10,10,15,0.7)] border-b border-white/[0.08]"
-            : "backdrop-blur-[12px] bg-[rgba(10,10,10,0.8)] border-b border-[rgba(57,255,20,0.3)]"
-          : "bg-transparent border-b border-transparent",
+        "fixed top-0 left-0 right-0 z-[9999] isolate h-16",
+        isDev
+          ? "backdrop-blur-[16px] bg-[rgba(10,10,15,0.9)] border-b border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+          : "backdrop-blur-[12px] bg-[rgba(10,10,10,0.95)] border-b border-[rgba(57,255,20,0.3)] shadow-[0_4px_24px_rgba(0,0,0,0.4)]",
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">

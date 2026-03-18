@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sriram Venkatachalam — Portfolio
+
+Personal portfolio website for Sriram Venkatachalam,
+Senior Frontend Engineer & Product Designer.
+
+Live: https://sriramvenkatachalam.in
+
+---
+
+## Stack
+
+| Layer     | Tech                           |
+| --------- | ------------------------------ |
+| Framework | Next.js 14 (App Router, SSG)   |
+| Language  | TypeScript (strict)            |
+| Styling   | Tailwind CSS + shadcn/ui       |
+| Animation | Framer Motion                  |
+| Fonts     | Space Grotesk, Poppins, JetBrains Mono, Syne |
+| Deployment| Vercel                         |
+
+---
+
+## Features
+
+- **Dual mode portfolio** — Developer mode (glassmorphism) and Designer mode (KLX neo-brutalism) with a global toggle
+- **Fully static (SSG)** — All data served at build time, zero runtime fetching
+- **SEO optimised** — OG image, sitemap, robots.txt, web manifest, canonical URLs
+- **Performance first** — Static export, font optimisation, image priority loading
+- **Responsive** — Mobile first, works across all screen sizes
+- **Accessible** — Semantic HTML, aria labels, keyboard navigable
+
+---
+
+## Sections
+
+| # | Section    | Developer Mode              | Designer Mode                  |
+|---|------------|-----------------------------|--------------------------------|
+| 1 | Hero       | Glassmorphism + spinning rings | Glitch photo + brutalist CTAs |
+| 2 | Experience | Alternating timeline, collapsible cards | KLX brutalist timeline |
+| 3 | Projects   | Bento grid flip cards       | Bento grid flip cards          |
+| 4 | Skills     | Live terminal session       | Orbital tag cloud              |
+| 5 | Contact    | Glass hover cards           | Brutalist hover cards          |
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production (static export)
+npm run build
+
+# Preview production build
+npx serve out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/              # Next.js App Router pages + metadata
+├── components/
+│   ├── layout/       # Navbar, Footer
+│   ├── sections/     # Hero, Experience, Projects, Skills, Contact
+│   │   ├── hero/
+│   │   ├── experience/
+│   │   ├── projects/
+│   │   ├── skills/
+│   │   └── contact/
+│   ├── toggle/       # Dev/Designer mode toggle
+│   └── ui/           # Reusable UI primitives
+├── context/          # ModeContext — global dev/designer state
+├── data/             # All static content data
+├── hooks/            # useMode, useTypewriter, useTerminalType
+├── lib/              # utils, data access functions
+└── types/            # TypeScript interfaces
 
-## Learn More
+public/
+├── images/           # Profile photo, project screenshots
+└── resume.pdf        # Downloadable resume
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content Updates
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Portfolio data is centralised via `src/lib/data.ts`, which imports from section data files. To update:
 
-## Deploy on Vercel
+- **Experience** — `src/components/sections/experience/ExperienceData.ts`
+- **Projects** — `src/components/sections/projects/ProjectsData.ts`
+- **Skills** — `src/components/sections/skills/SkillsData.ts`
+- **Contact** — `src/components/sections/contact/ContactData.ts`
+- **Meta** (name, title, links) — `getMeta()` in `src/lib/data.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+No component changes needed.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Deployment
+
+Deployed on Vercel. Push to main triggers automatic deployment.
+
+Build command: `npm run build`
+Output directory: `out`
+
+---
+
+## Author
+
+**Sriram Venkatachalam**
+Senior Frontend Engineer · Bengaluru, India
+
+- Portfolio: https://sriramvenkatachalam.in
+- LinkedIn: https://www.linkedin.com/in/sriram-venkatachalam-976a0016a/
+- GitHub: https://github.com/Srirm14
+- Behance: https://www.behance.net/sriramleo
+- Email: sriramvenkatachalam1406@gmail.com

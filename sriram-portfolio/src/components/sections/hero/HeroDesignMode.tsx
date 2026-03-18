@@ -15,7 +15,11 @@ const DESIGN_WORDS = [
   "Visual Thinker",
 ];
 
-export function HeroDesignMode() {
+interface HeroDesignModeProps {
+  meta: ReturnType<typeof import("@/lib/data").getMeta>;
+}
+
+export function HeroDesignMode({ meta }: HeroDesignModeProps) {
   const springTransition = {
     type: "spring" as const,
     stiffness: 400,
@@ -42,7 +46,7 @@ export function HeroDesignMode() {
             className="badge-available-design mb-6 flex items-center gap-2"
           >
             <span className="text-[#39FF14]">●</span>
-            <span>Open to roles · Bengaluru / Remote</span>
+            <span>{meta.availability}</span>
           </motion.div>
 
           {/* Headline */}
@@ -95,7 +99,7 @@ export function HeroDesignMode() {
               VIEW EXPERIENCE
             </button>
             <Link
-              href="/resume.pdf"
+              href={meta.resume}
               download
               className="brutal-btn-outline flex items-center gap-2"
             >

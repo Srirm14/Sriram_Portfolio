@@ -4,8 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useModeStore } from "@/store";
 import { HeroDevMode } from "./HeroDevMode";
 import { HeroDesignMode } from "./HeroDesignMode";
+import type { getMeta } from "@/lib/data";
 
-export default function Hero() {
+interface HeroProps {
+  meta: ReturnType<typeof getMeta>;
+}
+
+export default function Hero({ meta }: HeroProps) {
   const mode = useModeStore((s) => s.mode);
 
   return (
@@ -18,7 +23,7 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <HeroDevMode />
+          <HeroDevMode meta={meta} />
         </motion.div>
       ) : (
         <motion.div
@@ -28,7 +33,7 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <HeroDesignMode />
+          <HeroDesignMode meta={meta} />
         </motion.div>
       )}
     </AnimatePresence>

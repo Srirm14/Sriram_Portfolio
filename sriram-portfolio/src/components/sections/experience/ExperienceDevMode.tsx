@@ -1,12 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { experiences } from "./ExperienceData";
 import { ExperienceDevCard } from "./ExperienceDevCard";
+import type { ExperienceItem } from "./ExperienceData";
 
-const devExperiences = experiences.filter((exp) => exp.devBullets.length > 0);
+interface ExperienceDevModeProps {
+  experiences: ExperienceItem[];
+}
 
-export function ExperienceDevMode() {
+export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
+  const devExperiences = experiences.filter((exp) => exp.devBullets.length > 0);
   return (
     <section
       id="experience"

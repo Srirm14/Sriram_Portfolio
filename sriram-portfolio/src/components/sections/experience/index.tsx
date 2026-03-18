@@ -4,8 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useModeStore } from "@/store";
 import { ExperienceDevMode } from "./ExperienceDevMode";
 import { ExperienceDesignMode } from "./ExperienceDesignMode";
+import type { ExperienceItem } from "./ExperienceData";
 
-export default function Experience() {
+interface ExperienceProps {
+  experiences: ExperienceItem[];
+}
+
+export default function Experience({ experiences }: ExperienceProps) {
   const mode = useModeStore((s) => s.mode);
 
   return (
@@ -18,7 +23,7 @@ export default function Experience() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ExperienceDevMode />
+          <ExperienceDevMode experiences={experiences} />
         </motion.div>
       ) : (
         <motion.div
@@ -28,7 +33,7 @@ export default function Experience() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ExperienceDesignMode />
+          <ExperienceDesignMode experiences={experiences} />
         </motion.div>
       )}
     </AnimatePresence>

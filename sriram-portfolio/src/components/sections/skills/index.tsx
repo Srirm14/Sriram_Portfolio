@@ -4,8 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useModeStore } from "@/store";
 import { SkillsDevMode } from "./SkillsDevMode";
 import { SkillsDesignMode } from "./SkillsDesignMode";
+import type { SkillCategory } from "./SkillsData";
 
-export default function Skills() {
+interface SkillsProps {
+  skills: { dev: SkillCategory[]; design: SkillCategory[] };
+}
+
+export default function Skills({ skills }: SkillsProps) {
   const mode = useModeStore((s) => s.mode);
 
   return (
@@ -18,7 +23,7 @@ export default function Skills() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <SkillsDevMode />
+          <SkillsDevMode skills={skills} />
         </motion.div>
       ) : (
         <motion.div
@@ -28,7 +33,7 @@ export default function Skills() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <SkillsDesignMode />
+          <SkillsDesignMode skills={skills} />
         </motion.div>
       )}
     </AnimatePresence>

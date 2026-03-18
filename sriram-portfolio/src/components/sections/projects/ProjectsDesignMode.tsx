@@ -2,12 +2,15 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { projects } from "./ProjectsData";
 import { ProjectDesignCard } from "./ProjectDesignCard";
+import type { ProjectItem } from "./ProjectsData";
 
-const designProjects = projects.filter((p) => p.designBullets.length > 0);
+interface ProjectsDesignModeProps {
+  projects: ProjectItem[];
+}
 
-export function ProjectsDesignMode() {
+export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
+  const designProjects = projects.filter((p) => p.designBullets.length > 0);
   return (
     <section
       id="work"
