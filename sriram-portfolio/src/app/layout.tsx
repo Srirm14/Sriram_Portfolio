@@ -57,8 +57,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Sriram Venkatachalam" }],
   openGraph: {
     title: "Sriram Venkatachalam — Senior Frontend Engineer",
-    description:
-      "Building fast, scalable products with React & Next.js",
+    description: "Building fast, scalable products with React & Next.js",
     url: "https://sriramvenkatachalam.in",
     siteName: "Sriram Venkatachalam",
     type: "website",

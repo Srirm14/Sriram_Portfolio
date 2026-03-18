@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 
 const DEV_PHRASES = ["React Engineer", "Next.js Architect", "Frontend Lead"];
 const DESIGN_PHRASES = ["Product Designer", "UI/UX Engineer", "Design Systems"];
 
 export function Typewriter() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const phrases = mode === "developer" ? DEV_PHRASES : DESIGN_PHRASES;
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -32,7 +32,7 @@ export function Typewriter() {
           }
         }
       },
-      isDeleting ? 50 : 100
+      isDeleting ? 50 : 100,
     );
     return () => clearTimeout(timeout);
   }, [phraseIndex, charIndex, isDeleting, phrases]);

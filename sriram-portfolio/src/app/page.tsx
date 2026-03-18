@@ -1,4 +1,4 @@
-import { ModeProvider } from "@/contexts/mode-context";
+import { ModeThemeSync } from "@/components/mode-theme-sync";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/sections/hero";
 import { Experience } from "@/components/sections/experience";
@@ -7,7 +7,8 @@ import { Skills } from "@/components/sections/skills";
 
 export default function Home() {
   return (
-    <ModeProvider>
+    <>
+      <ModeThemeSync />
       <div className="min-h-screen">
         <Navbar />
         <main>
@@ -17,6 +18,6 @@ export default function Home() {
           <Skills />
         </main>
       </div>
-    </ModeProvider>
+    </>
   );
 }

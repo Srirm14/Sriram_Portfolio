@@ -42,27 +42,14 @@ export const designSkills: Skill[] = [
   },
   {
     category: "Process",
-    items: [
-      "Wireframing",
-      "Prototyping",
-      "User Research",
-      "A/B Testing",
-    ],
+    items: ["Wireframing", "Prototyping", "User Research", "A/B Testing"],
   },
   {
     category: "Systems",
-    items: [
-      "Design Tokens",
-      "Component APIs",
-      "Figma Documentation",
-    ],
+    items: ["Design Tokens", "Component APIs", "Figma Documentation"],
   },
   {
     category: "Delivery",
-    items: [
-      "Figma-to-Code Handoff",
-      "Design Systems",
-      "Visual Branding",
-    ],
+    items: ["Figma-to-Code Handoff", "Design Systems", "Visual Branding"],
   },
 ];

@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 import { HeroBackground } from "@/components/animations/hero-background";
 import { Typewriter } from "@/components/animations/typewriter";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
 
   return (
@@ -16,7 +16,7 @@ export function Hero() {
       id="hero"
       className={cn(
         "relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16",
-        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]"
+        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]",
       )}
     >
       <HeroBackground />
@@ -24,17 +24,21 @@ export function Hero() {
         <motion.h1
           className={cn(
             "mb-4 font-grotesk text-display-lg font-bold tracking-tight",
-            "text-[#ffffff]"
+            "text-[#ffffff]",
           )}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {isDev ? "Senior Frontend Engineer" : "Product Designer & Frontend Engineer"}
+          {isDev
+            ? "Senior Frontend Engineer"
+            : "Product Designer & Frontend Engineer"}
         </motion.h1>
         <motion.p
           className="mb-6 text-lg"
-          style={{ color: isDev ? "rgba(255,255,255,0.7)" : "rgba(57,255,20,0.8)" }}
+          style={{
+            color: isDev ? "rgba(255,255,255,0.7)" : "rgba(57,255,20,0.8)",
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -46,7 +50,7 @@ export function Hero() {
         <motion.div
           className={cn(
             "mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-mono",
-            isDev ? "badge-available-dev" : "badge-available-design"
+            isDev ? "badge-available-dev" : "badge-available-design",
           )}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -56,25 +60,25 @@ export function Hero() {
             <span
               className={cn(
                 "absolute inline-flex h-full w-full rounded-full",
-                isDev ? "bg-green-500 animate-ping-slow" : "bg-[#39FF14]"
+                isDev ? "bg-green-500 animate-ping-slow" : "bg-[#39FF14]",
               )}
             />
             <span
               className={cn(
                 "relative inline-flex h-2 w-2 rounded-full",
-                isDev ? "bg-green-500" : "bg-[#39FF14]"
+                isDev ? "bg-green-500" : "bg-[#39FF14]",
               )}
             />
           </span>
-          <span
-            style={{ color: isDev ? "#ffffff" : "#39FF14" }}
-          >
+          <span style={{ color: isDev ? "#ffffff" : "#39FF14" }}>
             Open to roles · Bengaluru / Remote
           </span>
         </motion.div>
         <motion.div
           className="mb-4 flex items-center gap-2 text-sm"
-          style={{ color: isDev ? "rgba(255,255,255,0.6)" : "rgba(57,255,20,0.6)" }}
+          style={{
+            color: isDev ? "rgba(255,255,255,0.6)" : "rgba(57,255,20,0.6)",
+          }}
         >
           <Typewriter />
         </motion.div>
@@ -91,7 +95,7 @@ export function Hero() {
                 className={cn(
                   "rounded-lg border px-6 py-3 font-grotesk font-medium backdrop-blur-sm transition-all",
                   "border-[#06b6d4]/50 bg-white/5 text-[#ffffff]",
-                  "hover:border-[#06b6d4] hover:shadow-glow-cyan"
+                  "hover:border-[#06b6d4] hover:shadow-glow-cyan",
                 )}
               >
                 View Work
@@ -100,7 +104,7 @@ export function Hero() {
                 href="#"
                 className={cn(
                   "rounded-lg border border-white/20 px-6 py-3 font-grotesk font-medium backdrop-blur-sm transition-all",
-                  "bg-transparent text-[#ffffff] hover:border-white/40 hover:bg-white/5"
+                  "bg-transparent text-[#ffffff] hover:border-white/40 hover:bg-white/5",
                 )}
               >
                 Resume
@@ -108,20 +112,10 @@ export function Hero() {
             </>
           ) : (
             <>
-              <Link
-                href="#projects"
-                className={cn(
-                  "brutal-btn"
-                )}
-              >
+              <Link href="#projects" className={cn("brutal-btn")}>
                 View Work
               </Link>
-              <Link
-                href="#"
-                className={cn(
-                  "brutal-btn-outline"
-                )}
-              >
+              <Link href="#" className={cn("brutal-btn-outline")}>
                 Resume
               </Link>
             </>

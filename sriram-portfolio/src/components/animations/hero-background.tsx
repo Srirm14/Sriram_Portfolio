@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 
 export function HeroBackground() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
 
   if (!isDev) {

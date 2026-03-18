@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 import { experiences } from "@/lib/data/experience";
 import { cn } from "@/lib/utils";
 
 export function Experience() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
 
   const filteredExperiences = experiences.filter((exp) =>
-    isDev ? exp.devBullets.length > 0 : exp.designBullets.length > 0
+    isDev ? exp.devBullets.length > 0 : exp.designBullets.length > 0,
   );
 
   return (
@@ -18,14 +18,14 @@ export function Experience() {
       id="experience"
       className={cn(
         "relative px-6 py-20",
-        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]"
+        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]",
       )}
     >
       <div className="mx-auto max-w-3xl">
         <h2
           className={cn(
             "mb-12",
-            isDev ? "section-heading-dev" : "section-heading-design"
+            isDev ? "section-heading-dev" : "section-heading-design",
           )}
         >
           Experience
@@ -34,7 +34,7 @@ export function Experience() {
           <div
             className={cn(
               "absolute left-[11px] top-0 bottom-0 w-0.5",
-              isDev ? "bg-white/20" : "bg-[#39FF14]/50"
+              isDev ? "bg-white/20" : "bg-[#39FF14]/50",
             )}
           />
           <div className="space-y-8">
@@ -54,7 +54,7 @@ export function Experience() {
                   <div
                     className={cn(
                       "absolute left-0 top-2 h-3 w-3 shrink-0 rounded-full",
-                      isDev ? "bg-[#7c3aed]" : "bg-[#39FF14]"
+                      isDev ? "bg-[#7c3aed]" : "bg-[#39FF14]",
                     )}
                   />
                   <div
@@ -62,7 +62,7 @@ export function Experience() {
                       "group ml-8 flex-1 rounded-xl p-6 transition-all",
                       isDev
                         ? "glass-card-hover border border-white/10 bg-white/5"
-                        : "brutal-card-hover border-2 border-[#39FF14] bg-[#0a0a0a] hover:bg-[#39FF14]"
+                        : "brutal-card-hover border-2 border-[#39FF14] bg-[#0a0a0a] hover:bg-[#39FF14]",
                     )}
                   >
                     <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -75,7 +75,11 @@ export function Experience() {
                       {exp.location && (
                         <span
                           className="text-sm"
-                          style={{ color: isDev ? "rgba(255,255,255,0.6)" : "rgba(57,255,20,0.8)" }}
+                          style={{
+                            color: isDev
+                              ? "rgba(255,255,255,0.6)"
+                              : "rgba(57,255,20,0.8)",
+                          }}
                         >
                           · {exp.location}
                         </span>
@@ -89,7 +93,11 @@ export function Experience() {
                     </p>
                     <p
                       className="mb-4 text-sm"
-                      style={{ color: isDev ? "rgba(255,255,255,0.6)" : "rgba(57,255,20,0.7)" }}
+                      style={{
+                        color: isDev
+                          ? "rgba(255,255,255,0.6)"
+                          : "rgba(57,255,20,0.7)",
+                      }}
                     >
                       {exp.duration}
                     </p>
@@ -102,12 +110,16 @@ export function Experience() {
                         >
                           <span
                             className="mt-1.5 h-1 w-1 shrink-0 rounded-full"
-                            style={{ backgroundColor: isDev ? "#06b6d4" : "#39FF14" }}
+                            style={{
+                              backgroundColor: isDev ? "#06b6d4" : "#39FF14",
+                            }}
                           />
                           <span
                             className={cn(
                               "group-hover:transition-colors",
-                              isDev ? "group-hover:text-[#ffffff]" : "group-hover:text-[#0a0a0a]"
+                              isDev
+                                ? "group-hover:text-[#ffffff]"
+                                : "group-hover:text-[#0a0a0a]",
                             )}
                           >
                             {bullet}
@@ -124,7 +136,7 @@ export function Experience() {
                               "rounded px-2 py-0.5 text-xs font-mono",
                               isDev
                                 ? "bg-white/10 text-white/80"
-                                : "border border-[#39FF14]/50 text-[#39FF14]"
+                                : "border border-[#39FF14]/50 text-[#39FF14]",
                             )}
                           >
                             {s}

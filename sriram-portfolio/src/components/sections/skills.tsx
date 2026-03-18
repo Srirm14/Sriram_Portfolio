@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 import { devSkills, designSkills } from "@/lib/data/skills";
 import { cn } from "@/lib/utils";
 
 export function Skills() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
   const skills = isDev ? devSkills : designSkills;
 
@@ -15,14 +15,14 @@ export function Skills() {
       id="skills"
       className={cn(
         "relative px-6 py-20",
-        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]"
+        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]",
       )}
     >
       <div className="mx-auto max-w-4xl">
         <h2
           className={cn(
             "mb-12",
-            isDev ? "section-heading-dev" : "section-heading-design"
+            isDev ? "section-heading-dev" : "section-heading-design",
           )}
         >
           Skills
@@ -49,7 +49,9 @@ export function Skills() {
                     key={item}
                     className={cn(
                       "px-3 py-1.5 text-xs font-mono transition-all",
-                      isDev ? "skill-pill-dev rounded-full" : "skill-pill-design"
+                      isDev
+                        ? "skill-pill-dev rounded-full"
+                        : "skill-pill-design",
                     )}
                   >
                     {item}

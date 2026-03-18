@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 import { ModeToggle } from "@/components/mode-toggle";
 import { navLinks } from "@/lib/data/nav";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const SCROLL_THRESHOLD = 50;
 
 export function Navbar() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export function Navbar() {
           ? isDev
             ? "backdrop-blur-[16px] bg-[rgba(10,10,15,0.7)] border-b border-white/[0.08]"
             : "backdrop-blur-[12px] bg-[rgba(10,10,10,0.8)] border-b border-[rgba(57,255,20,0.3)]"
-          : "bg-transparent border-b border-transparent"
+          : "bg-transparent border-b border-transparent",
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -38,7 +38,9 @@ export function Navbar() {
           href="#hero"
           className={cn(
             "font-grotesk text-sm font-semibold transition-colors",
-            isDev ? "text-white hover:text-[#06b6d4]" : "text-white hover:text-[#39FF14]"
+            isDev
+              ? "text-white hover:text-[#06b6d4]"
+              : "text-white hover:text-[#39FF14]",
           )}
         >
           Sriram V
@@ -53,7 +55,7 @@ export function Navbar() {
                     "text-sm font-medium transition-colors",
                     isDev
                       ? "text-white/80 hover:text-white"
-                      : "text-white/80 hover:text-[#39FF14]"
+                      : "text-white/80 hover:text-[#39FF14]",
                   )}
                 >
                   {link.label}

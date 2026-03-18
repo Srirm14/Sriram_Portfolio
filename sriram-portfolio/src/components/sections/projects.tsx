@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 import { projects } from "@/lib/data/projects";
 import { cn } from "@/lib/utils";
 
 export function Projects() {
-  const { mode } = useMode();
+  const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
 
   const filteredProjects = projects.filter((p) =>
-    isDev ? p.devBullets.length > 0 : p.designBullets.length > 0
+    isDev ? p.devBullets.length > 0 : p.designBullets.length > 0,
   );
 
   return (
@@ -18,14 +18,14 @@ export function Projects() {
       id="projects"
       className={cn(
         "relative px-6 py-20",
-        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]"
+        isDev ? "bg-dev-bg" : "bg-[#0a0a0a]",
       )}
     >
       <div className="mx-auto max-w-4xl">
         <h2
           className={cn(
             "mb-12",
-            isDev ? "section-heading-dev" : "section-heading-design"
+            isDev ? "section-heading-dev" : "section-heading-design",
           )}
         >
           Projects
@@ -47,14 +47,20 @@ export function Projects() {
                   "group rounded-xl p-6 transition-all duration-300",
                   isDev
                     ? "glass-card border border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-glass-purple hover:-translate-y-1"
-                    : "brutal-card border-2 border-[#39FF14] bg-[#0a0a0a] hover:border-[#39FF14] hover:bg-[#39FF14] hover:shadow-brutal-lg hover:-translate-x-0.5 hover:-translate-y-0.5"
+                    : "brutal-card border-2 border-[#39FF14] bg-[#0a0a0a] hover:border-[#39FF14] hover:bg-[#39FF14] hover:shadow-brutal-lg hover:-translate-x-0.5 hover:-translate-y-0.5",
                 )}
               >
                 <h3
                   className="mb-2 font-grotesk font-bold"
                   style={{ color: "#ffffff" }}
                 >
-                  <span className={isDev ? "group-hover:text-[#ffffff]" : "group-hover:text-[#0a0a0a]"}>
+                  <span
+                    className={
+                      isDev
+                        ? "group-hover:text-[#ffffff]"
+                        : "group-hover:text-[#0a0a0a]"
+                    }
+                  >
                     {proj.title}
                   </span>
                 </h3>
@@ -62,7 +68,13 @@ export function Projects() {
                   className="mb-4 text-sm"
                   style={{ color: isDev ? "rgba(255,255,255,0.7)" : "#39FF14" }}
                 >
-                  <span className={isDev ? "group-hover:text-[#ffffff]" : "group-hover:text-[#0a0a0a]"}>
+                  <span
+                    className={
+                      isDev
+                        ? "group-hover:text-[#ffffff]"
+                        : "group-hover:text-[#0a0a0a]"
+                    }
+                  >
                     {meta}
                   </span>
                 </p>
@@ -75,9 +87,17 @@ export function Projects() {
                     >
                       <span
                         className="mt-1.5 h-1 w-1 shrink-0 rounded-full"
-                        style={{ backgroundColor: isDev ? "#06b6d4" : "#39FF14" }}
+                        style={{
+                          backgroundColor: isDev ? "#06b6d4" : "#39FF14",
+                        }}
                       />
-                      <span className={isDev ? "group-hover:text-[#ffffff]" : "group-hover:text-[#0a0a0a]"}>
+                      <span
+                        className={
+                          isDev
+                            ? "group-hover:text-[#ffffff]"
+                            : "group-hover:text-[#0a0a0a]"
+                        }
+                      >
                         {bullet}
                       </span>
                     </li>
@@ -88,7 +108,9 @@ export function Projects() {
                     className="mt-4 text-xs font-mono"
                     style={{ color: "#39FF14" }}
                   >
-                    <span className="group-hover:text-[#0a0a0a]">Tools: {proj.designTools}</span>
+                    <span className="group-hover:text-[#0a0a0a]">
+                      Tools: {proj.designTools}
+                    </span>
                   </p>
                 )}
               </motion.article>

@@ -1,24 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMode } from "@/contexts/mode-context";
+import { useModeStore } from "@/store";
 import type { Mode } from "@/types";
 import { cn } from "@/lib/utils";
 
-const OPTIONS: { value: Mode; label: string; icon: string }[] = [
-  { value: "developer", label: "</> Dev", icon: "" },
-  { value: "designer", label: "✏ Design", icon: "" },
+const OPTIONS: { value: Mode; label: string }[] = [
+  { value: "developer", label: "</> Dev" },
+  { value: "designer", label: "✏ Design" },
 ];
 
 export function ModeToggle() {
-  const { mode, setMode } = useMode();
+  const { mode, setMode } = useModeStore();
 
   return (
     <div
       className={cn(
         "relative flex w-[200px] rounded-full p-0.5",
         "backdrop-blur-glass bg-black/40 border border-white/10",
-        "toggle-border-shimmer"
+        "toggle-border-shimmer",
       )}
     >
       <div className="relative flex w-full">
@@ -34,7 +34,7 @@ export function ModeToggle() {
                 ? "text-white"
                 : opt.value === "developer"
                   ? "text-white/60 hover:text-white hover:drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"
-                  : "text-[#39FF14]/70 hover:text-[#39FF14] hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]"
+                  : "text-[#39FF14]/70 hover:text-[#39FF14] hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]",
             )}
           >
             {opt.label}
