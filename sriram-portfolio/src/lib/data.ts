@@ -36,6 +36,6 @@ export function getMeta() {
     github: "https://github.com/Srirm14",
     behance: "https://www.behance.net/sriramleo",
     portfolio: "https://sriramvenkatachalam.in",
-    resume: "/resume.pdf",
+    resume: "/resume/SRIRAM_VENKATACHALAM.pdf",
   };
 }
