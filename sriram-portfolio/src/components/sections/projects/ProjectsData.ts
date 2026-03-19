@@ -22,6 +22,31 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
+    id: "delta",
+    title: "Delta CRM Platform",
+    shortDesc: "Internal enterprise CRM for sales workflows",
+    featured: true,
+    duration: "Dec 2024 – Present",
+    link: "https://www.deltaelectronicsindia.com/en-IN/index",
+    linkLabel: "View site",
+    devBullets: [
+      "Architected the frontend for an internal enterprise CRM from scratch — modular Next.js codebase replacing third-party CRM tooling for internal sales workflows.",
+      "Reduced page load time with TanStack Query (request deduplication, selective cache invalidation); eliminated redundant API calls and unnecessary re-renders.",
+      "Built a dynamic multi-step form system using Formily with conditional logic and runtime schema validation for distinct business workflows.",
+      "Migrated from scattered React Context to Zustand slices for predictable global state; established code review standards and mentored junior engineers.",
+    ],
+    designBullets: [],
+    devTech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Zustand", "TanStack Query", "Formily", "Material UI", "TipTap"],
+    designTools: [],
+    tags: ["Enterprise", "CRM", "Internal Tooling"],
+    designTags: [],
+    gradient: {
+      from: "#7c3aed",
+      via: "#6d28d9",
+      to: "#4f46e5",
+    },
+  },
+  {
     id: "brandwatch",
     title: "Brandwatch Platform",
     shortDesc: "Social media analytics platform for brand performance",
@@ -101,14 +126,14 @@ export const projects: ProjectItem[] = [
   {
     id: "uniwiz",
     title: "UniWiz",
-    shortDesc: "University management portal",
+    shortDesc: "Next-gen university management portal — dashboards, academic tracking, placements, exams, reporting",
     featured: false,
     duration: "2024",
     devBullets: [],
     designBullets: [
-      "Designed a university management portal covering student records, scheduling, and faculty workflows.",
-      "Built a comprehensive Figma design system with tokens, components, and documentation for consistent UI across modules.",
-      "Created user flows and wireframes for complex multi-role dashboards — student, faculty, and admin views.",
+      "Designed a digital portal to streamline academic records and admin — reducing paperwork and improving efficiency.",
+      "Covered dashboards, academic tracking, placement management, exam handling, and reporting across multi-role views.",
+      "Built a Figma design system with tokens, components, and documentation for consistent UI.",
     ],
     devTech: [],
     designTools: ["Figma", "FigJam", "Design System", "User Flows"],
