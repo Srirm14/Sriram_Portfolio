@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { RotateCw, ExternalLink } from "lucide-react";
+import { useLightDark } from "@/context/LightDarkContext";
 import { cn } from "@/lib/utils";
 import type { ProjectItem } from "./ProjectsData";
 
@@ -11,6 +12,7 @@ export interface ProjectDesignCardProps {
 
 export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
   const [flipped, setFlipped] = useState(false);
+  const { isLight } = useLightDark();
 
   return (
     <div
@@ -47,10 +49,20 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
           </div>
           <div className="p-4 h-[45%] flex flex-col justify-between min-h-0 overflow-y-auto">
             <div>
-              <h3 className="font-bebas text-white">
+              <h3
+                className={cn(
+                  "font-bebas",
+                  isLight ? "text-[#1a1410]" : "text-white",
+                )}
+              >
                 {item.title}
               </h3>
-              <p className="font-mono text-xs text-white/40 mt-1">
+              <p
+                className={cn(
+                  "mt-1 font-mono text-xs",
+                  isLight ? "text-[rgba(42,36,30,0.5)]" : "text-white/40",
+                )}
+              >
                 {item.shortDesc}
               </p>
             </div>
@@ -69,7 +81,12 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
 
         {/* Back face */}
         <div
-          className="absolute inset-0 bg-[#0a0a0a] border-2 border-[#e63946] p-5 flex flex-col overflow-hidden"
+          className={cn(
+            "absolute inset-0 border-2 border-[#e63946] p-5 flex flex-col overflow-hidden",
+            isLight
+              ? "bg-[rgba(255,252,247,0.98)] border-[#e63946]/35"
+              : "bg-[#0a0a0a]",
+          )}
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -78,7 +95,12 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#e63946]" />
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="font-bebas text-white">
+              <h3
+                className={cn(
+                  "font-bebas",
+                  isLight ? "text-[#1a1410]" : "text-white",
+                )}
+              >
                 {item.title}
               </h3>
               <p className="font-mono text-xs text-[#e63946]/50 mt-0.5">
@@ -93,7 +115,12 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
                 <span className="text-[#e63946] font-mono text-xs flex-shrink-0 mt-0.5">
                   →
                 </span>
-                <p className="font-poppins text-xs text-white/60 leading-relaxed">
+                <p
+                  className={cn(
+                    "font-poppins text-xs leading-relaxed",
+                    isLight ? "text-[rgba(42,36,30,0.68)]" : "text-white/60",
+                  )}
+                >
                   {bullet}
                 </p>
               </div>

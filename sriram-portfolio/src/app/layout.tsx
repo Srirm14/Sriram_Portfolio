@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AppShell } from "@/components/layout/AppShell";
 import { getYearsOfExperience } from "@/lib/experience";
 import {
   Inter,
@@ -137,7 +139,24 @@ export default function RootLayout({
           "bg-[#0a0a0b] font-sans antialiased text-neutral-200",
         ].join(" ")}
       >
-        {children}
+        <Script
+          id="light-dark-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  try {
+    var saved = localStorage.getItem('lightDark');
+    var mode = (saved === 'dark') ? 'dark' : 'light';
+    document.documentElement.classList.add('ld-' + mode);
+  } catch (e) {
+    document.documentElement.classList.add('ld-light');
+  }
+})();
+`,
+          }}
+        />
+        <AppShell>{children}</AppShell>
         <Analytics />
         <SpeedInsights />
       </body>

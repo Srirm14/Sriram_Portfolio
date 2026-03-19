@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <ModeThemeSync />
-      <div className="min-h-screen">
+      <div className="page-surface min-h-screen">
         <Navbar />
         <ModeHint />
         <main className="pt-16">

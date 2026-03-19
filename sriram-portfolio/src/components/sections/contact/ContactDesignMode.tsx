@@ -25,9 +25,8 @@ export function ContactDesignMode({
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#e63946]/30" />
 
       <div
-        className="absolute bottom-0 left-0 right-0 h-32
-                    bg-gradient-to-t from-[#0a0a0a] to-transparent
-                    pointer-events-none"
+        className="contact-bottom-fade pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent"
+        aria-hidden
       />
 
       <div className="relative z-10 max-w-5xl mx-auto">

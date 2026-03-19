@@ -21,11 +21,11 @@ export function ProjectsDevMode({ projects }: ProjectsDevModeProps) {
   return (
     <section
       id="work"
-      className="relative bg-dev py-24 px-6 lg:px-12 overflow-hidden"
+      className="ld-section-ambient ld-section-ambient--work relative overflow-hidden bg-dev px-6 py-24 lg:px-12"
     >
-      <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 z-0 dot-grid opacity-20" />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-5xl">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,14 +34,14 @@ export function ProjectsDevMode({ projects }: ProjectsDevModeProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-3">
+          <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest">
             03 — Projects
           </p>
           <h2 className="section-heading-dev">
             Things I&apos;ve{" "}
             <span className="text-gradient-dev">Built</span>
           </h2>
-          <p className="font-poppins text-white/30 text-sm mt-2">
+          <p className="ld-section-lede mt-2 max-w-md text-sm">
             Click any card to explore
           </p>
         </motion.div>

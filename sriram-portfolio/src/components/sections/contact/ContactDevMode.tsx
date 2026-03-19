@@ -15,26 +15,25 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
   return (
     <section
       id="contact"
-      className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
+      className="ld-section-ambient ld-section-ambient--contact relative overflow-hidden bg-dev px-4 py-14 md:px-6 md:py-24 lg:px-12"
       style={{ willChange: "transform" }}
     >
-      <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 z-0 dot-grid opacity-20" />
 
       <div
-        className="absolute bottom-0 left-0 right-0 h-32
-                    bg-gradient-to-t from-[#0a0a0b] to-transparent
-                    pointer-events-none"
+        className="contact-bottom-fade pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-32 bg-gradient-to-t from-[#0a0a0b] to-transparent"
+        aria-hidden
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
-        <ScrollReveal variant="blur-in" className="mb-8 md:mb-12 text-center">
-          <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-3">
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <ScrollReveal variant="blur-in" className="mb-8 text-center md:mb-12">
+          <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest">
             05 — Contact
           </p>
           <h2 className="section-heading-dev">
             Let&apos;s <span className="text-gradient-dev">Connect</span>
           </h2>
-          <p className="font-poppins text-[#f0ece4]/50 text-sm mt-3 max-w-md mx-auto">
+          <p className="ld-section-lede mx-auto mt-3 max-w-md text-sm">
             Open to senior frontend roles in Bengaluru or remote. Hover a card
             to open or copy.
           </p>
@@ -53,7 +52,7 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
         <ScrollReveal
           variant="fade-up"
           delay={0.5}
-          className="text-center font-mono text-xs text-[#f0ece4]/25 mt-16"
+          className="ld-section-footer mt-16 text-center font-mono text-xs"
         >
           Built with Next.js · Designed & developed by {meta.name}
         </ScrollReveal>

@@ -3,6 +3,8 @@
 import { Mail, Globe, ExternalLink, Copy, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useLightDark } from "@/context/LightDarkContext";
+import { cn } from "@/lib/utils";
 import { LinkedInIcon } from "./LinkedInIcon";
 import type { ContactLink } from "./ContactData";
 
@@ -23,6 +25,7 @@ function renderIcon(
 export function ContactCardDev({ link }: ContactCardDevProps) {
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const { isLight } = useLightDark();
   const isExternal = link.href.startsWith("http");
 
   async function handleCopy(e: React.MouseEvent) {
@@ -72,10 +75,20 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
               {renderIcon(link, "w-4 h-4", { color: link.devAccent })}
             </div>
             <div>
-              <p className="font-grotesk font-semibold text-[#f0ece4] text-sm">
+              <p
+                className={cn(
+                  "font-grotesk text-sm font-semibold",
+                  isLight ? "text-[#1c1612]" : "text-[#f0ece4]",
+                )}
+              >
                 {link.label}
               </p>
-              <p className="font-mono text-xs text-[#f0ece4]/40 mt-0.5">
+              <p
+                className={cn(
+                  "mt-0.5 font-mono text-xs",
+                  isLight ? "text-[rgba(42,36,30,0.5)]" : "text-[#f0ece4]/40",
+                )}
+              >
                 {link.sublabel}
               </p>
             </div>
@@ -84,7 +97,11 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
         <p
           className="font-mono text-sm mb-5 truncate transition-colors duration-300"
           style={{
-            color: hovered ? link.devAccent : "rgba(240,236,228,0.55)",
+            color: hovered
+              ? link.devAccent
+              : isLight
+                ? "rgba(42,36,30,0.55)"
+                : "rgba(240,236,228,0.55)",
           }}
         >
           {link.value}
@@ -130,7 +147,11 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
                 border: `1px solid ${
                   copied ? link.devAccent + "50" : "rgba(201,168,76,0.2)"
                 }`,
-                color: copied ? link.devAccent : "rgba(240,236,228,0.45)",
+                color: copied
+                  ? link.devAccent
+                  : isLight
+                    ? "rgba(42,36,30,0.5)"
+                    : "rgba(240,236,228,0.45)",
               }}
             >
               {copied ? (

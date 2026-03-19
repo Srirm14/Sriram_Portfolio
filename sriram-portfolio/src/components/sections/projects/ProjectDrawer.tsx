@@ -6,6 +6,7 @@ import { useEffect, useCallback } from "react";
 import { X, ExternalLink } from "lucide-react";
 import type { ProjectItem } from "./ProjectsData";
 import { getCardGradient } from "./projectGradients";
+import { useLightDark } from "@/context/LightDarkContext";
 import { cn } from "@/lib/utils";
 
 interface ProjectDrawerProps {
@@ -20,6 +21,7 @@ export function ProjectDrawer({
   onClose,
 }: ProjectDrawerProps) {
   const isDev = mode === "developer";
+  const { isLight } = useLightDark();
 
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
@@ -66,10 +68,14 @@ export function ProjectDrawer({
             transition={{ duration: 0.2 }}
             onClick={onClose}
             style={{
-              background: isDev
-                ? "rgba(10,10,11,0.55)"
-                : "rgba(0,0,0,0.7)",
-              backdropFilter: "blur(6px)",
+              background: isLight
+                ? isDev
+                  ? "rgba(247,244,239,0.52)"
+                  : "rgba(253,250,245,0.58)"
+                : isDev
+                  ? "rgba(10,10,11,0.55)"
+                  : "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(8px)",
             }}
           />
 
@@ -85,11 +91,21 @@ export function ProjectDrawer({
                 : "border-l-2 border-[#e63946]"
             )}
             style={{
-              background: isDev ? "rgba(10,10,11,0.98)" : "#0a0a0a",
+              background: isLight
+                ? isDev
+                  ? "rgba(255,252,247,0.99)"
+                  : "rgba(255,252,247,0.99)"
+                : isDev
+                  ? "rgba(10,10,11,0.98)"
+                  : "#0a0a0a",
               backdropFilter: "blur(20px)",
-              boxShadow: isDev
-                ? "-24px 0 64px rgba(0,0,0,0.55), -1px 0 0 rgba(201,168,76,0.12), inset 0 0 0 1px rgba(201,168,76,0.06)"
-                : "-4px 0 0 #e63946",
+              boxShadow: isLight
+                ? isDev
+                  ? "-24px 0 48px rgba(62,48,28,0.08), -1px 0 0 rgba(201,168,76,0.18), inset 0 0 0 1px rgba(201,168,76,0.1)"
+                  : "-16px 0 40px rgba(62,48,28,0.07), -2px 0 0 rgba(230,57,70,0.25)"
+                : isDev
+                  ? "-24px 0 64px rgba(0,0,0,0.55), -1px 0 0 rgba(201,168,76,0.12), inset 0 0 0 1px rgba(201,168,76,0.06)"
+                  : "-4px 0 0 #e63946",
               isolation: "isolate",
             }}
             initial={{ x: "100%" }}
@@ -187,16 +203,35 @@ export function ProjectDrawer({
               </div>
 
               {/* Title block — bottom of banner */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/90 to-transparent">
+              <div
+                className="absolute bottom-0 left-0 right-0 p-4 md:p-6"
+                style={{
+                  background: isLight
+                    ? isDev
+                      ? "linear-gradient(to top, rgba(255,252,247,0.98) 0%, rgba(255,252,247,0.75) 45%, transparent 100%)"
+                      : "linear-gradient(to top, rgba(255,252,247,0.98) 0%, rgba(255,252,247,0.7) 50%, transparent 100%)"
+                    : undefined,
+                }}
+              >
+                {!isLight && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/90 to-transparent pointer-events-none" />
+                )}
                 <motion.h2
                   key={`${item.id}-title`}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15, duration: 0.4 }}
                   className={cn(
-                    "text-xl md:text-3xl",
-                    isDev ? "font-grotesk font-bold text-[#f0ece4]" : "text-white",
-                    !isDev && "font-bebas tracking-widest uppercase"
+                    "relative z-10 text-xl md:text-3xl",
+                    isDev
+                      ? cn(
+                          "font-grotesk font-bold",
+                          isLight ? "text-[#1c1612]" : "text-[#f0ece4]",
+                        )
+                      : cn(
+                          isLight ? "text-[#1a1410]" : "text-white",
+                          !isDev && "font-bebas tracking-widest uppercase",
+                        ),
                   )}
                 >
                   {item.title}
@@ -207,10 +242,16 @@ export function ProjectDrawer({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.35 }}
                   className={cn(
-                    "text-sm mt-1",
+                    "relative z-10 mt-1 text-sm",
                     isDev
-                      ? "font-poppins text-[#f0ece4]/55"
-                      : "font-mono text-[#e63946]/60"
+                      ? cn(
+                          "font-poppins",
+                          isLight ? "text-[rgba(42,36,30,0.58)]" : "text-[#f0ece4]/55",
+                        )
+                      : cn(
+                          "font-mono",
+                          isLight ? "text-[rgba(200,60,70,0.65)]" : "text-[#e63946]/60",
+                        ),
                   )}
                 >
                   {item.shortDesc}
@@ -228,7 +269,13 @@ export function ProjectDrawer({
                 transition={{ delay: 0.25 }}
                 className={cn(
                   "font-mono text-xs",
-                  isDev ? "text-[#f0ece4]/35" : "text-[#e63946]/40"
+                  isDev
+                    ? isLight
+                      ? "text-[rgba(42,36,30,0.4)]"
+                      : "text-[#f0ece4]/35"
+                    : isLight
+                      ? "text-[rgba(200,60,70,0.45)]"
+                      : "text-[#e63946]/40",
                 )}
               >
                 {isDev ? "⏱ " : "// "}
@@ -273,8 +320,16 @@ export function ProjectDrawer({
                       className={cn(
                         "text-sm leading-relaxed",
                         isDev
-                          ? "font-poppins text-[#f0ece4]/72"
-                          : "font-poppins text-white/60"
+                          ? cn(
+                              "font-poppins",
+                              isLight
+                                ? "text-[rgba(42,36,30,0.78)]"
+                                : "text-[#f0ece4]/72",
+                            )
+                          : cn(
+                              "font-poppins",
+                              isLight ? "text-[rgba(42,36,30,0.65)]" : "text-white/60",
+                            ),
                       )}
                     >
                       {bullet}

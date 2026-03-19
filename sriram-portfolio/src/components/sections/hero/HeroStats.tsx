@@ -50,7 +50,9 @@ export function HeroStats({ mode }: HeroStatsProps) {
             <div
               className={cn(
                 "h-8",
-                isDev ? "w-px bg-white/10" : "w-0.5 bg-[#e63946]/30"
+                isDev
+                  ? "hero-stat-rule-dev w-px bg-white/10"
+                  : "w-0.5 bg-[#e63946]/30",
               )}
             />
           )}

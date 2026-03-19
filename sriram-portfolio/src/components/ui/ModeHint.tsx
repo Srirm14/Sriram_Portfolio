@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles } from "lucide-react";
+import { useLightDark } from "@/context/LightDarkContext";
 import { useModeStore } from "@/store";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +12,7 @@ export function ModeHint() {
   const [dismissed, setDismissed] = useState(false);
   const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
+  const { isLight } = useLightDark();
 
   const handleDismiss = useCallback(() => {
     setVisible(false);
@@ -71,8 +73,15 @@ export function ModeHint() {
             className={cn(
               "relative flex flex-col gap-3 p-4 max-w-[220px]",
               isDev
-                ? "rounded-xl backdrop-blur-[20px] bg-[rgba(10,10,11,0.96)] border border-[rgba(201,168,76,0.28)] shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(201,168,76,0.12)]"
-                : "border-2 border-[#e63946] bg-[#0a0a0a] shadow-[4px_4px_0px_#e63946]",
+                ? cn(
+                    "mode-hint-surface rounded-xl border backdrop-blur-[20px]",
+                    isLight
+                      ? "border-[rgba(201,168,76,0.28)] bg-[rgba(255,252,247,0.97)] shadow-[0_10px_36px_rgba(62,48,28,0.08)]"
+                      : "border-[rgba(201,168,76,0.28)] bg-[rgba(10,10,11,0.96)] shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(201,168,76,0.12)]",
+                  )
+                : isLight
+                  ? "mode-hint-surface rounded-xl border-2 border-[#e63946]/35 bg-[rgba(255,252,247,0.98)] shadow-[0_8px_28px_rgba(62,48,28,0.08)]"
+                  : "border-2 border-[#e63946] bg-[#0a0a0a] shadow-[4px_4px_0px_#e63946]",
             )}
           >
             {/* Close button */}
@@ -85,7 +94,9 @@ export function ModeHint() {
                 "flex items-center justify-center",
                 "transition-all duration-150",
                 isDev
-                  ? "text-[#f0ece4]/30 hover:text-[#f0ece4]/70 rounded-full hover:bg-white/5"
+                  ? isLight
+                    ? "rounded-full text-[rgba(42,36,30,0.35)] hover:bg-[rgba(201,168,76,0.08)] hover:text-[rgba(28,22,18,0.75)]"
+                    : "text-[#f0ece4]/30 hover:text-[#f0ece4]/70 rounded-full hover:bg-white/5"
                   : "text-[#e63946]/40 hover:text-[#e63946]",
               )}
             >
@@ -132,15 +143,23 @@ export function ModeHint() {
                 <p
                   className={cn(
                     "font-mono text-xs font-semibold leading-tight",
-                    isDev ? "text-[#f0ece4]" : "text-[#e63946] uppercase tracking-wide",
+                    isDev
+                      ? isLight
+                        ? "text-[#1c1612]"
+                        : "text-[#f0ece4]"
+                      : "text-[#e63946] uppercase tracking-wide",
                   )}
                 >
                   {isDev ? "Try designer mode" : "TRY DESIGNER MODE"}
                 </p>
                 <p
                   className={cn(
-                    "font-mono text-[10px] mt-0.5 leading-relaxed",
-                    isDev ? "text-[#f0ece4]/40" : "text-white/30",
+                    "mt-0.5 font-mono text-[10px] leading-relaxed",
+                    isDev
+                      ? isLight
+                        ? "text-[rgba(42,36,30,0.5)]"
+                        : "text-[#f0ece4]/40"
+                      : "text-white/30",
                   )}
                 >
                   {isDev
@@ -158,7 +177,9 @@ export function ModeHint() {
               )}
               style={{
                 background: isDev
-                  ? "rgba(255,255,255,0.06)"
+                  ? isLight
+                    ? "rgba(201,168,76,0.15)"
+                    : "rgba(255,255,255,0.06)"
                   : "rgba(230,57,70,0.15)",
               }}
             >

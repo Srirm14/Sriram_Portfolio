@@ -1,5 +1,6 @@
 "use client";
 
+import { useLightDark } from "@/context/LightDarkContext";
 import { SkillOrbit } from "./SkillOrbit";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { SkillCategory } from "./SkillsData";
@@ -9,6 +10,7 @@ interface SkillsDesignModeProps {
 }
 
 export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
+  const { isLight } = useLightDark();
   const designSkills = skills.design;
   const orbit1 = designSkills
     .filter((c) => c.orbit === 1)
@@ -263,7 +265,12 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div
               className="border-2 border-design-red px-5 py-3 shadow-brutal relative z-10"
-              style={{ background: "#0d0d14" }}
+              style={{
+                background: isLight ? "rgba(255,252,247,0.98)" : "#0d0d14",
+                boxShadow: isLight
+                  ? "0 4px 20px rgba(62,48,28,0.07)"
+                  : undefined,
+              }}
             >
               <span className="font-bebas text-sm text-design-red whitespace-nowrap">
                 Design

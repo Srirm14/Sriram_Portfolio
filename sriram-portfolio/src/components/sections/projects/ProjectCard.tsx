@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import type { ProjectItem } from "./ProjectsData";
 import { getCardGradient } from "./projectGradients";
+import { useLightDark } from "@/context/LightDarkContext";
 import { cn } from "@/lib/utils";
 
 function getDomain(url: string): string {
@@ -28,6 +29,15 @@ function getIllustrationHeight(id: string, index: number): number {
   return heights[id] ?? fallbacks[index % fallbacks.length];
 }
 
+/** Up to two preview lines for dev cards — substance over empty containers */
+function getDevPreviewLines(item: ProjectItem): string[] {
+  const a = item.devBullets[0]?.trim();
+  const b = item.devBullets[1]?.trim();
+  if (a && b) return [a, b];
+  if (a) return [a, item.shortDesc];
+  return [item.shortDesc];
+}
+
 interface ProjectCardProps {
   item: ProjectItem;
   mode: "developer" | "designer";
@@ -40,9 +50,11 @@ interface ProjectCardProps {
 function AbstractIllustration({
   item,
   isDev,
+  isLight,
 }: {
   item: ProjectItem;
   isDev: boolean;
+  isLight: boolean;
 }) {
   const id = item.id;
   const g = getCardGradient(item, isDev);
@@ -244,14 +256,38 @@ function AbstractIllustration({
   );
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0"
-        style={{
-          background: `linear-gradient(135deg,
+    <div
+      className={cn(
+        "absolute inset-0 overflow-hidden",
+        isLight && isDev && "project-card-abstract-wrap",
+      )}
+    >
+      {isLight && isDev ? (
+        <>
+          <div
+            className="project-card-abstract-base absolute inset-0"
+            aria-hidden
+          />
+          <div
+            className="project-card-abstract-layers absolute inset-0"
+            aria-hidden
+          />
+        </>
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg,
             ${cardFrom}18 0%, ${cardVia}10 50%, ${cardTo}08 100%)`,
-        }}
-      />
-      <div className="absolute inset-0">
+          }}
+        />
+      )}
+      <div
+        className={cn(
+          "absolute inset-0",
+          isLight && isDev && "project-card-abstract-svg-wrap",
+        )}
+      >
         {patterns[id] ?? fallback}
       </div>
       {/* Designer mode — web overlay on card illustration */}
@@ -326,18 +362,33 @@ function AbstractIllustration({
           />
         </svg>
       )}
-      <div className="absolute inset-0 pointer-events-none"
+      <div
+        className={cn(
+          "absolute inset-0 z-[3] pointer-events-none",
+          isLight && isDev
+            ? "project-card-abstract-vignette-dev"
+            : "project-card-abstract-vignette",
+        )}
         style={{
-          background: isDev
-            ? "radial-gradient(ellipse at center, transparent 40%, rgba(10,10,11,0.65) 100%)"
-            : "radial-gradient(ellipse at center, transparent 40%, rgba(13,13,20,0.75) 100%)",
+          background: isLight
+            ? isDev
+              ? "radial-gradient(ellipse 88% 78% at 50% 42%, transparent 40%, rgba(218, 205, 182, 0.38) 100%)"
+              : "radial-gradient(ellipse at center, transparent 42%, rgba(255,252,248,0.75) 100%)"
+            : isDev
+              ? "radial-gradient(ellipse at center, transparent 40%, rgba(10,10,11,0.65) 100%)"
+              : "radial-gradient(ellipse at center, transparent 40%, rgba(13,13,20,0.75) 100%)",
         }}
       />
-      <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
+      <div
+        className="project-card-abstract-fade-bottom absolute bottom-0 left-0 right-0 h-10 pointer-events-none z-[3]"
         style={{
-          background: isDev
-            ? "linear-gradient(to bottom, transparent, rgba(10,10,11,0.96))"
-            : "linear-gradient(to bottom, transparent, rgba(13,13,20,0.97))",
+          background: isLight
+            ? isDev
+              ? "linear-gradient(to bottom, transparent, rgba(241,232,220,0.97))"
+              : "linear-gradient(to bottom, transparent, rgba(255,252,247,0.96))"
+            : isDev
+              ? "linear-gradient(to bottom, transparent, rgba(10,10,11,0.96))"
+              : "linear-gradient(to bottom, transparent, rgba(13,13,20,0.97))",
         }}
       />
     </div>
@@ -351,92 +402,133 @@ export function ProjectCard({
   index,
 }: ProjectCardProps) {
   const isDev = mode === "developer";
+  const { isLight } = useLightDark();
   const grad = getCardGradient(item, isDev);
+
+  const cardSurface = !isDev
+    ? isLight
+      ? {
+          background: "rgba(255,252,247,0.98)",
+          boxShadow:
+            "0 2px 20px rgba(62,48,28,0.06), inset 0 0 0 1px rgba(230,57,70,0.12)",
+        }
+      : {
+          background: "#0a0a0a",
+          boxShadow: "4px 4px 0px rgba(230,57,70,0.25)",
+        }
+    : undefined;
+
+  const previewLines = isDev ? getDevPreviewLines(item) : [];
 
   return (
     <motion.div
       className={cn(
-        "relative cursor-pointer overflow-hidden group w-full",
+        "relative w-full cursor-pointer overflow-hidden",
         isDev
-          ? "rounded-xl border border-[rgba(201,168,76,0.22)]"
-          : "border-2 border-[#e63946]/30",
+          ? "vintage-dev-card group rounded-xl"
+          : "group rounded-xl border-2 border-[#e63946]/30",
       )}
       onClick={() => onClick(item)}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-      whileHover={isDev ? { y: -4 } : { x: -3, y: -3 }}
-      style={
-        isDev
-          ? { background: "rgba(17,17,20,0.92)" }
-          : {
-              background: "#0a0a0a",
-              boxShadow: "4px 4px 0px rgba(230,57,70,0.25)",
-            }
-      }
+      whileHover={isDev ? undefined : { x: -3, y: -3 }}
+      style={cardSurface}
     >
+      {isDev && (
+        <div className="vintage-dev-card__shimmer" aria-hidden />
+      )}
+      <div className="vintage-dev-card__inner flex flex-col">
       {/* ── Abstract illustration — fixed short height ── */}
       <div
         className="relative w-full"
-        style={{ height: `${getIllustrationHeight(item.id, index)}px` }}
+        style={{
+          height: `${isDev ? Math.max(96, getIllustrationHeight(item.id, index) - 28) : getIllustrationHeight(item.id, index)}px`,
+        }}
       >
-        <AbstractIllustration item={item} isDev={isDev} />
+        <AbstractIllustration item={item} isDev={isDev} isLight={isLight} />
 
-        {/* Hover glow overlay */}
+        {/* Hover glow — soft gold wash (stronger in light for depth) */}
         <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            background: `radial-gradient(ellipse at 50% 100%,
+          className="absolute inset-0 z-[2] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={
+            isLight && isDev
+              ? {
+                  background:
+                    "radial-gradient(ellipse 90% 65% at 50% 100%, rgba(201,168,76,0.14) 0%, rgba(232,213,163,0.06) 45%, transparent 72%)",
+                }
+              : {
+                  background: `radial-gradient(ellipse at 50% 100%,
               ${grad.from}14 0%, transparent 70%)`,
-          }}
+                }
+          }
         />
 
-        {/* Domain badge — top right (when link exists) */}
-        {item.link && (
-          <a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className={cn(
-              "absolute top-2.5 right-3 flex items-center gap-1 font-mono text-[10px] px-2 py-1 rounded-full backdrop-blur-sm z-10 transition-all duration-200",
-              isDev
-                ? "bg-[rgba(201,168,76,0.06)] border border-[rgba(201,168,76,0.2)] text-[#f0ece4]/75 hover:bg-[rgba(201,168,76,0.12)] hover:text-[#f0ece4]"
-                : "border border-[#e63946]/40 text-[#e63946]/80 hover:bg-[#e63946]/20 hover:text-[#e63946]",
-            )}
-          >
-            {getDomain(item.link)}
-            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
-          </a>
-        )}
-
-        {/* Tags top left */}
-        <div className="absolute top-2.5 left-3 flex flex-wrap gap-1.5 z-10">
-          {(isDev ? item.tags : item.designTags)
-            .slice(0, 2)
-            .map((tag) => (
-              <span
-                key={tag}
-                className="font-mono text-xs px-2 py-0.5 backdrop-blur-sm"
-                style={
-                  isDev
-                    ? {
-                        background: `${grad.from}22`,
-                        border: `1px solid ${grad.from}40`,
-                        color: grad.from,
-                        borderRadius: "999px",
-                      }
-                    : {
-                        border: "1px solid rgba(230,57,70,0.4)",
-                        color: "#e63946",
-                        background: "rgba(0,0,0,0.4)",
-                      }
-                }
-              >
-                {tag}
+        {/* Tags (left) + domain (right) — flex row avoids overlap on long names */}
+        <div className="absolute top-0 left-0 right-0 z-10 flex items-start justify-between gap-2 px-3 pt-2.5 pointer-events-none">
+          <div className="pointer-events-auto flex min-w-0 flex-1 flex-wrap content-start gap-1.5 pr-1">
+            {(isDev ? item.tags : item.designTags)
+              .slice(0, 2)
+              .map((tag) => (
+                <span
+                  key={tag}
+                  className={cn(
+                    "font-mono px-2 py-0.5 backdrop-blur-sm",
+                    isDev && isLight && "skill-pill-dev project-card-hero-tag rounded-full text-[10px]",
+                    !(isDev && isLight) && "text-xs",
+                  )}
+                  style={
+                    isDev
+                      ? isLight
+                        ? undefined
+                        : {
+                            background: `${grad.from}22`,
+                            border: `1px solid ${grad.from}40`,
+                            color: grad.from,
+                            borderRadius: "999px",
+                          }
+                      : isLight
+                        ? {
+                            border: "1px solid rgba(230,57,70,0.35)",
+                            color: "#c41e3a",
+                            background: "rgba(255,252,247,0.95)",
+                          }
+                        : {
+                            border: "1px solid rgba(230,57,70,0.4)",
+                            color: "#e63946",
+                            background: "rgba(0,0,0,0.4)",
+                          }
+                  }
+                >
+                  {tag}
+                </span>
+              ))}
+          </div>
+          {item.link ? (
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              title={getDomain(item.link)}
+              className={cn(
+                "project-card-domain pointer-events-auto inline-flex min-w-0 max-w-[min(52%,11rem)] shrink-0 items-center justify-end gap-1 rounded-full px-2 py-1 font-mono text-[10px] backdrop-blur-sm transition-all duration-200",
+                isDev
+                  ? isLight
+                    ? "skill-pill-dev project-card-hero-tag"
+                    : "border border-[rgba(201,168,76,0.2)] bg-[rgba(201,168,76,0.06)] text-[#f0ece4]/75 hover:bg-[rgba(201,168,76,0.12)] hover:text-[#f0ece4]"
+                  : isLight
+                    ? "border border-[#e63946]/35 bg-[rgba(255,252,247,0.95)] text-[#b91c2c] hover:bg-[rgba(230,57,70,0.08)]"
+                    : "border border-[#e63946]/40 text-[#e63946]/80 hover:bg-[#e63946]/20 hover:text-[#e63946]",
+              )}
+            >
+              <span className="min-w-0 truncate text-right leading-tight">
+                {getDomain(item.link)}
               </span>
-            ))}
+              <ExternalLink className="h-2.5 w-2.5 shrink-0 opacity-70" />
+            </a>
+          ) : null}
         </div>
 
         {/* Arrow hint bottom right */}
@@ -462,70 +554,119 @@ export function ProjectCard({
         </div>
       </div>
 
-      {/* ── Card body — tight and dense ─────────────── */}
-      <div
-        className="px-4 pt-3 flex flex-col gap-2"
-        style={{ paddingBottom: index % 2 === 0 ? "16px" : "12px" }}
-      >
-        <div className="flex items-baseline justify-between gap-2">
-          <h3
-            className={cn(
-              "text-sm leading-tight",
-              isDev ? "font-grotesk font-bold text-[#f0ece4]" : "text-white font-bebas tracking-wider uppercase text-base",
-            )}
-          >
-            {item.title}
-          </h3>
-          <span
-            className={cn(
-              "font-mono text-xs flex-shrink-0",
-              isDev ? "text-[#f0ece4]/30" : "text-[#e63946]/25",
-            )}
-          >
-            {item.duration.split("–")[1]?.trim() ?? item.duration}
-          </span>
-        </div>
-
-        <p
+      {/* ── Card body ── */}
+      {isDev ? (
+        <div
           className={cn(
-            "text-xs leading-relaxed",
-            index % 3 === 0 ? "line-clamp-2" : "line-clamp-1",
-            isDev ? "font-poppins text-[#f0ece4]/50" : "font-mono text-white/35",
+            "project-card-dev-body flex flex-col gap-0 px-4 pb-5 pt-3",
+            index % 2 === 0 ? "pb-5" : "pb-4",
           )}
         >
-          {item.shortDesc}
-        </p>
-
-        <div className="flex flex-wrap gap-1 pt-0.5">
-          {(isDev ? item.devTech : item.designTools)
-            .slice(0, 3)
-            .map((tech) => (
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="vintage-dev-card__title font-grotesk pr-1 text-[1rem] leading-snug sm:text-[1.05rem]">
+              {item.title}
+            </h3>
+          </div>
+          <div className="vintage-dev-card__hairline my-3.5" aria-hidden />
+          <p className="vintage-dev-card__meta project-card-dev-meta font-mono">
+            {item.duration}
+            {item.tags.length > 0
+              ? ` · ${item.tags.slice(0, 2).join(" · ")}`
+              : ""}
+          </p>
+          <ul className="mt-3.5 list-none space-y-2.5">
+            {previewLines.map((line, i) => (
+              <li
+                key={`${item.id}-preview-${i}`}
+                className="vintage-dev-card__bullet font-poppins line-clamp-2"
+              >
+                {line}
+              </li>
+            ))}
+          </ul>
+          <div className="project-card-tech-row mt-4 flex flex-wrap gap-1.5 border-t border-[rgba(201,168,76,0.14)] pt-3.5">
+            {item.devTech.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className={cn(
-                  "font-mono px-2 py-0.5 transition-all duration-200 text-[10px]",
-                  isDev ? "skill-pill-dev" : "skill-pill-design",
-                )}
+                className="skill-pill-dev font-mono px-2 py-0.5 text-[10px] transition-all duration-200"
               >
                 {tech}
               </span>
             ))}
-          {(isDev ? item.devTech : item.designTools).length > 3 && (
-            <span
+            {item.devTech.length > 4 && (
+              <span className="vintage-dev-card__meta font-mono px-2 py-0.5 text-[10px]">
+                +{item.devTech.length - 4}
+              </span>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div
+          className="flex flex-col gap-2 px-4 pt-3"
+          style={{ paddingBottom: index % 2 === 0 ? "16px" : "12px" }}
+        >
+          <div className="flex items-baseline justify-between gap-2">
+            <h3
               className={cn(
-                "font-mono px-2 py-0.5 text-[10px]",
-                isDev ? "text-[#f0ece4]/35" : "text-[#e63946]/30",
+                "text-sm leading-tight",
+                "font-bebas text-base uppercase tracking-wider",
+                isLight ? "text-[#1a1410]" : "text-white",
               )}
             >
-              +{(isDev ? item.devTech : item.designTools).length - 3}
+              {item.title}
+            </h3>
+            <span
+              className={cn(
+                "flex-shrink-0 font-mono text-xs",
+                isLight
+                  ? "text-[rgba(180,60,70,0.45)]"
+                  : "text-[#e63946]/25",
+              )}
+            >
+              {item.duration.split("–")[1]?.trim() ?? item.duration}
             </span>
-          )}
+          </div>
+
+          <p
+            className={cn(
+              "font-mono text-xs leading-relaxed",
+              index % 3 === 0 ? "line-clamp-2" : "line-clamp-1",
+              isLight ? "text-[rgba(42,36,30,0.5)]" : "text-white/35",
+            )}
+          >
+            {item.shortDesc}
+          </p>
+
+          <div className="flex flex-wrap gap-1 pt-0.5">
+            {item.designTools.slice(0, 3).map((tech) => (
+              <span
+                key={tech}
+                className="skill-pill-design font-mono px-2 py-0.5 text-[10px] transition-all duration-200"
+              >
+                {tech}
+              </span>
+            ))}
+            {item.designTools.length > 3 && (
+              <span
+                className={cn(
+                  "font-mono px-2 py-0.5 text-[10px]",
+                  isLight
+                    ? "text-[rgba(200,70,80,0.45)]"
+                    : "text-[#e63946]/30",
+                )}
+              >
+                +{item.designTools.length - 3}
+              </span>
+            )}
+          </div>
         </div>
+      )}
+
       </div>
 
       {/* Bottom accent line on hover */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute bottom-0 left-0 right-0 z-[4] h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background: isDev
             ? `linear-gradient(90deg, ${grad.from}90, ${grad.to}45, transparent)`

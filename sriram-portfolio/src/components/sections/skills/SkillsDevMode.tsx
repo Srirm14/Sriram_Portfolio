@@ -10,6 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { cn } from "@/lib/utils";
 import { SkillTerminal } from "./SkillTerminal";
 import type { SkillCategory } from "./SkillsData";
 
@@ -68,21 +69,21 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
+      className="ld-section-ambient ld-section-ambient--skills relative overflow-hidden bg-dev px-4 py-14 md:px-6 md:py-24 lg:px-12"
       style={{ willChange: "transform" }}
     >
-      <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 z-0 dot-grid opacity-20" />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-5xl">
         {/* Section header */}
         <ScrollReveal variant="fade-left" className="mb-8 md:mb-12">
-          <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-3">
+          <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest">
             04 — Skills
           </p>
           <h2 className="section-heading-dev">
             My <span className="text-gradient-dev">Stack</span>
           </h2>
-          <p className="font-poppins text-[#f0ece4]/35 text-sm mt-2">
+          <p className="ld-section-lede mt-2 max-w-lg text-sm">
             Scroll here to watch it load · scroll inside the terminal to see more
           </p>
         </ScrollReveal>
@@ -108,7 +109,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
           >
             {/* What I focus on card */}
             <ScrollReveal variant="fade-up" delay={0.1} className="glass-card p-6 rounded-xl">
-              <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-4">
+              <p className="ld-section-eyebrow mb-4 font-mono text-xs uppercase tracking-widest">
                 What I focus on
               </p>
               <div className="flex flex-col gap-3">
@@ -123,10 +124,10 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                       <Icon className="h-4 w-4" strokeWidth={2} />
                     </span>
                     <div>
-                      <p className="font-grotesk font-semibold text-sm text-[#f0ece4]">
+                      <p className="ld-focus-title font-grotesk text-sm font-semibold text-[#f0ece4]">
                         {title}
                       </p>
-                      <p className="font-poppins text-xs text-[#f0ece4]/45 mt-0.5">
+                      <p className="ld-focus-desc font-poppins mt-0.5 text-xs text-[#f0ece4]/45">
                         {desc}
                       </p>
                     </div>
@@ -136,11 +137,11 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
             </ScrollReveal>
 
             {/* Currently exploring card */}
-            <ScrollReveal variant="fade-up" delay={0.2} className="glass-card p-5 rounded-xl border border-[#c9a84c]/25 flex-1">
-              <p className="font-mono text-xs text-[#e8d5a3] uppercase tracking-widest mb-3">
+            <ScrollReveal variant="fade-up" delay={0.2} className="glass-card flex-1 rounded-xl border border-[#c9a84c]/25 p-5">
+              <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest text-[#b8956a]">
                 Currently exploring
               </p>
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="mb-4 flex flex-wrap gap-2">
                 {[
                   "AI-powered UIs",
                   "React Server Components",
@@ -150,31 +151,33 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                 ].map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1 rounded-full font-mono text-xs bg-[#c9a84c]/12 border border-[#c9a84c]/25 text-[#e8d5a3]"
+                    className={cn(
+                      "ld-explore-pill rounded-full border border-[#c9a84c]/25 bg-[#c9a84c]/12 px-3 py-1 font-mono text-xs text-[#e8d5a3]",
+                    )}
                   >
                     {item}
                   </span>
                 ))}
               </div>
-              <div className="border-t border-[rgba(201,168,76,0.12)] pt-4 flex gap-3">
+              <div className="flex gap-3 border-t border-[rgba(201,168,76,0.12)] pt-4">
                 <span
                   className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg
                              border border-[rgba(201,168,76,0.22)] bg-[rgba(201,168,76,0.07)]
-                             text-[#e8d5a3]"
+                             text-[#c9a84c]"
                   aria-hidden
                 >
                   <Bot className="h-4 w-4" strokeWidth={2} />
                 </span>
                 <div>
-                  <p className="font-grotesk font-semibold text-sm text-[#f0ece4]">
+                  <p className="ld-focus-title font-grotesk text-sm font-semibold text-[#f0ece4]">
                     Vibe coding — among other things
                   </p>
-                  <p className="font-poppins text-xs text-[#f0ece4]/45 mt-0.5 leading-relaxed">
+                  <p className="ld-focus-desc font-poppins mt-0.5 text-xs leading-relaxed text-[#f0ece4]/55">
                     I also connect with AI agents to design, build, and ship full
                     features fast — from prompt to production. Orchestrating
                     agents is just another tool in the belt.
                   </p>
-                  <p className="font-mono text-xs text-[#c9a84c]/70 mt-2 italic">
+                  <p className="mt-2 font-mono text-xs italic text-[#c9a84c]/75">
                     {`// not my only trick, but a sharp one.`}
                   </p>
                 </div>

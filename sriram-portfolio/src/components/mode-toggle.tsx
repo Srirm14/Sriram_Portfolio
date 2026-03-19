@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code2, Pencil } from "lucide-react";
+import { useLightDark } from "@/context/LightDarkContext";
 import { useModeStore } from "@/store";
 import type { Mode } from "@/types";
 import { cn } from "@/lib/utils";
@@ -13,12 +14,16 @@ const OPTIONS: { value: Mode; label: string; Icon: typeof Code2 }[] = [
 
 export function ModeToggle() {
   const { mode, setMode } = useModeStore();
+  const { isLight } = useLightDark();
 
   return (
     <div
       className={cn(
-        "relative flex w-[180px] rounded-full p-0.5",
-        "backdrop-blur-glass bg-black/40 border border-white/10",
+        "mode-toggle-shell relative flex w-[180px] rounded-full p-0.5",
+        "backdrop-blur-glass border",
+        isLight
+          ? "border-[rgba(201,168,76,0.22)] bg-[rgba(255,252,247,0.88)]"
+          : "border-white/10 bg-black/40",
         "toggle-border-shimmer",
       )}
     >
@@ -38,8 +43,12 @@ export function ModeToggle() {
                     ? "text-black"
                     : "text-[#0a0a0b]"
                   : opt.value === "developer"
-                    ? "text-[#f0ece4]/45 hover:text-[#f0ece4]/80"
-                    : "text-white hover:drop-shadow-[0_0_8px_rgba(230,57,70,0.5)]",
+                    ? isLight
+                      ? "text-[rgba(42,36,30,0.42)] hover:text-[rgba(28,22,18,0.88)]"
+                      : "text-[#f0ece4]/45 hover:text-[#f0ece4]/80"
+                    : isLight
+                      ? "text-[rgba(42,36,30,0.42)] hover:text-[rgba(200,60,70,0.85)]"
+                      : "text-white hover:drop-shadow-[0_0_8px_rgba(230,57,70,0.5)]",
               )}
             >
               <Icon className="size-3.5 shrink-0" strokeWidth={2.5} />

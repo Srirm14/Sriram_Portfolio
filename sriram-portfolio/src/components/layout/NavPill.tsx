@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { useModeStore } from "@/store";
 import { ModeToggle } from "@/components/mode-toggle";
 import { navLinks } from "@/lib/data/nav";
+import { BulbToggle } from "@/components/ui/BulbToggle";
 import { cn } from "@/lib/utils";
 
 const scrollToSection = (href: string) => {
@@ -38,7 +39,9 @@ function MobileNavLink({
       onClick={() => onNavigate(link.href)}
       className={cn(
         "font-grotesk text-2xl font-semibold transition-colors",
-        isDev ? "text-[#f0ece4] hover:text-[#e8d5a3]" : "text-white hover:text-[#e63946]",
+        isDev
+          ? "dev-nav-link-mobile text-[#f0ece4] hover:text-[#e8d5a3]"
+          : "text-white hover:text-[#e63946]",
       )}
     >
       {link.label}
@@ -49,20 +52,25 @@ function MobileNavLink({
 function AnchoredNavLink({
   link,
   isDev,
+  isActive,
   onNavigate,
 }: Readonly<{
   link: { href: string; label: string };
   isDev: boolean;
+  isActive: boolean;
   onNavigate: (href: string) => void;
 }>) {
   return (
     <li key={link.href}>
       <button
         type="button"
+        data-active={isActive}
         onClick={() => onNavigate(link.href)}
         className={cn(
           "text-sm font-medium transition-colors",
-          isDev ? "text-[#f0ece4]/85 hover:text-[#f0ece4]" : "text-white/80 hover:text-[#e63946]",
+          isDev
+            ? "dev-nav-link text-[#f0ece4]/85 hover:text-[#f0ece4]"
+            : "text-white/80 hover:text-[#e63946]",
         )}
       >
         {link.label}
@@ -75,9 +83,10 @@ function NavLinkPill({ link, isActive, isDev, onNavigate }: NavLinkPillProps) {
   return isDev ? (
     <button
       type="button"
+      data-active={isActive}
       onClick={() => onNavigate(link.href)}
       className={cn(
-        "relative px-3 py-1 rounded-full font-mono text-xs transition-all duration-200",
+        "dev-nav-link relative rounded-full px-3 py-1 font-mono text-xs transition-all duration-200",
         isActive ? "text-[#f0ece4]" : "text-[#f0ece4]/40 hover:text-[#f0ece4]/85",
       )}
     >
@@ -185,7 +194,7 @@ export function NavPill() {
           "flex h-16 w-full items-center justify-between px-6 md:px-12",
           "transition-all duration-300",
           isDev
-            ? "backdrop-blur-[16px] bg-[rgba(10,10,11,0.92)] border-b border-[rgba(201,168,76,0.14)] shadow-[0_4px_28px_rgba(0,0,0,0.45),0_0_0_1px_rgba(201,168,76,0.06),inset_0_1px_0_rgba(240,236,228,0.04)]"
+            ? "nav-surface-anchored-dev backdrop-blur-[16px] bg-[rgba(10,10,11,0.92)] border-b border-[rgba(201,168,76,0.14)] shadow-[0_4px_28px_rgba(0,0,0,0.45),0_0_0_1px_rgba(201,168,76,0.06),inset_0_1px_0_rgba(240,236,228,0.04)]"
             : "backdrop-blur-[12px] bg-[rgba(13,13,20,0.9)] border-b border-[rgba(230,57,70,0.2)]",
         )}
       >
@@ -236,7 +245,7 @@ export function NavPill() {
             className={cn(
               "md:hidden p-2 transition-colors",
               isDev
-                ? "text-[#f0ece4]/55 hover:text-[#f0ece4]"
+                ? "nav-pill-icon-dev text-[#f0ece4]/55 hover:text-[#f0ece4]"
                 : "text-white/60 hover:text-white",
             )}
             aria-label="Open menu"
@@ -249,6 +258,7 @@ export function NavPill() {
                 key={link.href}
                 link={link}
                 isDev={isDev}
+                isActive={activeSection === link.href.replace("#", "")}
                 onNavigate={scrollToSection}
               />
             ))}
@@ -272,13 +282,13 @@ export function NavPill() {
         className={cn(
           "relative flex items-center gap-1 px-2 py-2",
           isDev
-            ? "rounded-full backdrop-blur-[20px] bg-[rgba(10,10,11,0.9)] border border-[rgba(201,168,76,0.16)] shadow-[0_12px_40px_rgba(0,0,0,0.55),0_0_0_1px_rgba(201,168,76,0.14),0_0_32px_rgba(201,168,76,0.07)]"
+            ? "nav-surface-dev rounded-full backdrop-blur-[20px] bg-[rgba(10,10,11,0.9)] border border-[rgba(201,168,76,0.16)] shadow-[0_12px_40px_rgba(0,0,0,0.55),0_0_0_1px_rgba(201,168,76,0.14),0_0_32px_rgba(201,168,76,0.07)]"
             : "rounded-none backdrop-blur-[16px] bg-[rgba(13,13,20,0.9)] border-2 border-[rgba(230,57,70,0.35)] shadow-[0_8px_32px_rgba(0,0,0,0.5),4px_4px_0px_#1d3557]",
         )}
       >
         {isDev && (
           <div
-            className="absolute inset-0 rounded-full pointer-events-none animate-glow-pulse"
+            className="nav-dev-glow-layer pointer-events-none absolute inset-0 animate-glow-pulse rounded-full"
             style={{
               boxShadow:
                 "0 0 0 1px rgba(201,168,76,0.25), 0 0 20px rgba(201,168,76,0.08)",
@@ -327,7 +337,7 @@ export function NavPill() {
           className={cn(
             "md:hidden p-1.5 transition-colors",
             isDev
-              ? "text-[#f0ece4]/55 hover:text-[#f0ece4]"
+              ? "nav-pill-icon-dev text-[#f0ece4]/55 hover:text-[#f0ece4]"
               : "text-white/60 hover:text-white",
           )}
           aria-label="Open menu"
@@ -337,6 +347,12 @@ export function NavPill() {
         <div className="scale-90 origin-center flex-shrink-0">
           <ModeToggle />
         </div>
+      </div>
+      <div
+        className="absolute"
+        style={{ right: "-4px", top: "100%", marginTop: "0px" }}
+      >
+        <BulbToggle />
       </div>
     </motion.div>
   );
@@ -355,13 +371,13 @@ export function NavPill() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[9998] bg-[#0a0a0b]/96 backdrop-blur-xl"
+            className="mobile-nav-overlay fixed inset-0 z-[9998] bg-[#0a0a0b]/96 backdrop-blur-xl"
           >
             <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-6">
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="absolute top-6 right-6 p-2 text-white/60 hover:text-white transition-colors"
+                className="mobile-nav-close text-white/60 hover:text-white absolute top-6 right-6 p-2 transition-colors"
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />

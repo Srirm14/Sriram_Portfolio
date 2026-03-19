@@ -4,9 +4,76 @@ import type { Mode } from "@/types";
 
 export interface HeroBackgroundProps {
   mode: Mode;
+  /** Premium pearl–gold ambient when developer + light mode */
+  appearance?: "dark" | "light";
 }
 
-export function HeroBackground({ mode }: HeroBackgroundProps) {
+export function HeroBackground({ mode, appearance = "dark" }: HeroBackgroundProps) {
+  if (mode === "developer" && appearance === "light") {
+    return (
+      <div
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        aria-hidden
+      >
+        {/* Base wash — white → warm gold */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              linear-gradient(165deg,
+                rgba(255, 253, 250, 0) 0%,
+                rgba(248, 238, 220, 0.45) 45%,
+                rgba(255, 252, 247, 0) 100%),
+              radial-gradient(ellipse 80% 55% at 15% 20%,
+                rgba(255, 248, 235, 0.9) 0%,
+                transparent 55%),
+              radial-gradient(ellipse 70% 50% at 85% 75%,
+                rgba(232, 213, 180, 0.35) 0%,
+                transparent 50%)
+            `,
+          }}
+        />
+        {/* Soft gold blooms */}
+        <div
+          className="absolute -top-10 -right-10 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-90"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(201,168,76,0.16) 0%, transparent 68%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-0 h-[22rem] w-[22rem] rounded-full blur-3xl opacity-80"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(184,149,106,0.12) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute top-1/3 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full blur-2xl opacity-70"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(232,213,163,0.14) 0%, transparent 72%)",
+          }}
+        />
+        {/* Diagonal reflection */}
+        <div
+          className="absolute -left-[20%] top-0 h-[120%] w-[55%] rotate-[12deg] opacity-[0.07]"
+          style={{
+            background:
+              "linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.95) 48%, transparent 52%)",
+          }}
+        />
+        <div
+          className="absolute -right-[10%] bottom-0 h-[90%] w-[40%] -rotate-[8deg] opacity-[0.05]"
+          style={{
+            background:
+              "linear-gradient(-75deg, transparent 40%, rgba(201,168,76,0.25) 50%, transparent 60%)",
+          }}
+        />
+      </div>
+    );
+  }
+
   if (mode === "developer") {
     return (
       <div
