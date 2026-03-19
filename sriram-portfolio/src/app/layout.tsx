@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { getYearsOfExperience } from "@/lib/experience";
 import {
   Inter,
   Poppins,
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     template: "%s | Sriram Venkatachalam",
   },
   description:
-    "Senior Frontend Engineer with 4+ years building large-scale React and Next.js applications. Open to roles in Bengaluru and Remote. Expert in TypeScript, Next.js, React, TanStack Query, and Design Systems.",
+    `Senior Frontend Engineer with ${getYearsOfExperience()} years building large-scale React and Next.js applications. Open to roles in Bengaluru and Remote. Expert in TypeScript, Next.js, React, TanStack Query, and Design Systems.`,
   keywords: [
     "Senior Frontend Engineer",
     "React Developer",
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
     siteName: "Sriram Venkatachalam",
     title: "Sriram Venkatachalam — Senior Frontend Engineer",
     description:
-      "Senior Frontend Engineer with 4+ years building scalable products with React & Next.js. Open to roles in Bengaluru / Remote.",
+      `Senior Frontend Engineer with ${getYearsOfExperience()} years building scalable products with React & Next.js. Open to roles in Bengaluru / Remote.`,
     images: [
       {
         url: "/opengraph-image",

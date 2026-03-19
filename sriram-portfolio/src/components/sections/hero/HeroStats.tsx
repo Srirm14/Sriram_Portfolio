@@ -1,5 +1,6 @@
 "use client";
 
+import { getYearsOfExperience } from "@/lib/experience";
 import { cn } from "@/lib/utils";
 import type { Mode } from "@/types";
 
@@ -8,14 +9,14 @@ export interface HeroStatsProps {
 }
 
 const devStats = [
-  { value: "4+",  label: "Years Exp"          },
-  { value: "2",   label: "Product Companies"   },
-  { value: "98%", label: "Positive Feedback"   },
+  { value: () => getYearsOfExperience(), label: "Years Exp" },
+  { value: "2", label: "Product Companies" },
+  { value: "98%", label: "Positive Feedback" },
 ];
 
 const designStats = [
-  { value: "4+",  label: "Years Exp"         },
-  { value: "98%", label: "Positive Feedback"  },
+  { value: () => getYearsOfExperience(), label: "Years Exp" },
+  { value: "98%", label: "Positive Feedback" },
   { value: "10+", label: "Projects Shipped"   },
 ];
 
@@ -39,7 +40,7 @@ export function HeroStats({ mode }: HeroStatsProps) {
                   : "font-bebas text-[#39FF14] text-xl md:text-2xl"
               )}
             >
-              {stat.value}
+              {typeof stat.value === "function" ? stat.value() : stat.value}
             </span>
             <span className="font-mono text-xs text-white/40 uppercase tracking-widest">
               {stat.label}

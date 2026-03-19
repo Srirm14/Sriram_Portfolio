@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { getYearsOfExperience } from "@/lib/experience";
 
 export const dynamic = "force-static";
 export const revalidate = false;
@@ -89,7 +90,7 @@ export default async function Image() {
 
         {/* Stack pills */}
         <div style={{ display: "flex", gap: "12px" }}>
-          {["React", "Next.js", "TypeScript", "4+ Years"].map((tag) => (
+          {["React", "Next.js", "TypeScript", `${getYearsOfExperience()} Years`].map((tag) => (
             <div
               key={tag}
               style={{

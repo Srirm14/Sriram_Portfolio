@@ -1,3 +1,4 @@
+import { getYearsOfExperience } from "@/lib/experience";
 import { experiences } from "@/components/sections/experience/ExperienceData";
 import type { ExperienceItem } from "@/components/sections/experience/ExperienceData";
 import { projects } from "@/components/sections/projects/ProjectsData";
@@ -27,7 +28,7 @@ export function getMeta() {
   return {
     name: "Sriram Venkatachalam",
     title: "Senior Frontend Engineer",
-    subtitle: "4+ Years · React · Next.js · TypeScript",
+    subtitle: `${getYearsOfExperience()} Years · React · Next.js · TypeScript`,
     location: "Bengaluru, India",
     availability: "Open to roles · Bengaluru / Remote",
     email: "sriramvenkatachalam1406@gmail.com",

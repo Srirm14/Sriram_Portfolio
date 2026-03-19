@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { RotateCw } from "lucide-react";
 import { useTerminalType, type TerminalLine } from "@/hooks/useTerminalType";
+import { getYearsOfExperience } from "@/lib/experience";
 
 export interface SkillTerminalProps {
   onComplete?: () => void;
@@ -82,7 +83,12 @@ const TERMINAL_LINES: TerminalLine[] = [
     content: 'echo "years of experience"',
     delay: 160,
   },
-  { type: "output", content: "4+", delay: 50, color: "#06b6d4" },
+  {
+    type: "output",
+    content: getYearsOfExperience(),
+    delay: 50,
+    color: "#06b6d4",
+  },
   { type: "blank", content: "", delay: 60 },
   {
     type: "command",
