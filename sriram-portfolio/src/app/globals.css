@@ -1561,6 +1561,33 @@ html.ld-light main {
   );
 }
 
+/* Experience cards only — calm bullets (dot, no vertical bar), hairline/rail removed in markup */
+.ld-light .experience-dev-card .experience-dev-card__bullet,
+.ld-dark .experience-dev-card .experience-dev-card__bullet {
+  border-left: none !important;
+  padding-left: 0 !important;
+}
+
+.experience-dev-card .experience-dev-card__bullet {
+  position: relative;
+  padding-left: 0.9rem !important;
+}
+
+.experience-dev-card .experience-dev-card__bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: rgba(201, 168, 76, 0.42);
+}
+
+.ld-light .experience-dev-card .experience-dev-card__bullet::before {
+  background: rgba(139, 112, 64, 0.45);
+}
+
 /* Projects — illustration: pearl base + soft gold abstract (light dev only) */
 .ld-light .project-card-abstract-wrap {
   border-radius: inherit;

@@ -6,6 +6,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { ExperienceItem } from "./ExperienceData";
 
+/** True for active role (e.g. "Dec 2024 – Present") — timeline dot glows */
+function isCurrentExperience(item: ExperienceItem): boolean {
+  const d = item.duration.toLowerCase();
+  return /\b(present|current)\b/.test(d) || /\bnow\b/.test(d);
+}
+
 export interface ExperienceDevCardProps {
   item: ExperienceItem;
   index: number;
@@ -27,18 +33,12 @@ function CardContent({
 
   return (
     <div
-      className="vintage-dev-card group relative w-full max-w-lg cursor-pointer overflow-hidden rounded-xl"
+      className="experience-dev-card vintage-dev-card group relative w-full max-w-lg cursor-pointer overflow-hidden rounded-xl"
       onClick={onToggle}
     >
       <div className="vintage-dev-card__shimmer" aria-hidden />
-      <div className="vintage-dev-card__inner relative p-6 pl-7 sm:pl-8">
-        {/* Signature rail — collectible feel */}
-        <div
-          className="absolute bottom-7 left-4 top-7 w-[3px] rounded-full bg-gradient-to-b from-[#c9a84c]/75 via-[#c9a84c]/35 to-[#c9a84c]/12"
-          aria-hidden
-        />
-
-        <div className="relative pl-1">
+      <div className="vintage-dev-card__inner relative p-6 sm:p-7">
+        <div className="relative">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1">
               <p className="vintage-dev-card__title font-grotesk text-lg leading-tight">
@@ -59,24 +59,22 @@ function CardContent({
             />
           </div>
 
-          <div className="vintage-dev-card__hairline my-3.5" aria-hidden />
-
-          <div className="vintage-dev-card__meta flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] sm:text-xs">
+          <div className="vintage-dev-card__meta mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] sm:text-xs">
             <span>{duration}</span>
             <span className="opacity-40" aria-hidden>
               ·
             </span>
             <span>{location}</span>
-            <span className="ml-auto rounded-full border border-[#c9a84c]/28 bg-[#c9a84c]/10 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wide text-[#c9a84c]">
+            <span className="ml-auto rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/10 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wide text-[#c9a84c]">
               {type}
             </span>
           </div>
 
-          <ul className="mt-4 list-none space-y-2.5">
+          <ul className="mt-5 list-none space-y-3">
             {devBullets.slice(0, 2).map((bullet, i) => (
               <li
                 key={i}
-                className="vintage-dev-card__bullet font-poppins text-sm leading-relaxed"
+                className="experience-dev-card__bullet vintage-dev-card__bullet font-poppins text-sm leading-relaxed"
               >
                 {bullet}
               </li>
@@ -98,25 +96,27 @@ function CardContent({
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden"
               >
-                <ul className="mt-3 list-none space-y-2.5 border-t border-[rgba(201,168,76,0.14)] pt-3">
-                  {devBullets.slice(2).map((bullet, i) => (
-                    <li
-                      key={i}
-                      className="vintage-dev-card__bullet font-poppins text-sm leading-relaxed"
-                    >
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-                {devStack.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-2 border-t border-[rgba(201,168,76,0.14)] pt-4">
-                    {devStack.map((tech) => (
-                      <span key={tech} className="skill-pill-dev">
-                        {tech}
-                      </span>
+                <div className="mt-4 border-t border-[rgba(201,168,76,0.09)] pt-4">
+                  <ul className="list-none space-y-3">
+                    {devBullets.slice(2).map((bullet, i) => (
+                      <li
+                        key={i}
+                        className="experience-dev-card__bullet vintage-dev-card__bullet font-poppins text-sm leading-relaxed"
+                      >
+                        {bullet}
+                      </li>
                     ))}
-                  </div>
-                )}
+                  </ul>
+                  {devStack.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {devStack.map((tech) => (
+                        <span key={tech} className="skill-pill-dev">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -133,6 +133,7 @@ export function ExperienceDevCard({
   compact = false,
 }: ExperienceDevCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const current = isCurrentExperience(item);
 
   if (compact) {
     return (
@@ -141,7 +142,12 @@ export function ExperienceDevCard({
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.12 }}
-        className="border-l-2 border-[#c9a84c]/35 pl-5 sm:pl-6"
+        className={cn(
+          "pl-4 sm:pl-5",
+          current
+            ? "border-l-2 border-[#c9a84c]/60 shadow-[inset_4px_0_12px_-4px_rgba(201,168,76,0.35)]"
+            : "border-l border-[#c9a84c]/22",
+        )}
       >
         <CardContent
           item={item}
@@ -171,7 +177,15 @@ export function ExperienceDevCard({
       </div>
 
       <div className="flex flex-col items-center">
-        <div className="z-10 mt-6 h-3 w-3 rounded-full border-2 border-[#c9a84c]/50 bg-[#c9a84c] shadow-[0_0_20px_rgba(201,168,76,0.35)]" />
+        <div
+          className={cn(
+            "z-10 mt-6 rounded-full border-2",
+            current
+              ? "h-[14px] w-[14px] border-[#e8d5a3] bg-gradient-to-br from-[#f2e6c0] to-[#c9a84c] shadow-[0_0_0_4px_rgba(201,168,76,0.2),0_0_28px_rgba(201,168,76,0.5),0_0_48px_rgba(201,168,76,0.2)]"
+              : "h-3 w-3 border-[#c9a84c]/40 bg-[#c9a84c]/50 shadow-[0_0_14px_rgba(201,168,76,0.18)]",
+          )}
+          aria-hidden
+        />
       </div>
 
       <div className={cn(!isLeft ? "flex justify-start" : "")}>
