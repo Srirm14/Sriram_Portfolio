@@ -10,6 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { HoneycombBg } from "@/components/ui/backgrounds/HoneycombBg";
 import { cn } from "@/lib/utils";
 import { SkillTerminal } from "./SkillTerminal";
 import type { SkillCategory } from "./SkillsData";
@@ -72,7 +73,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
       className="ld-section-ambient ld-section-ambient--skills relative overflow-hidden bg-dev px-4 py-14 md:px-6 md:py-24 lg:px-12"
       style={{ willChange: "transform" }}
     >
-      <div className="pointer-events-none absolute inset-0 z-0 dot-grid opacity-20" />
+      <HoneycombBg accentColor="var(--theme-primary, #c9a84c)" />
 
       <div className="relative z-10 mx-auto max-w-5xl">
         {/* Section header */}

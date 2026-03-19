@@ -2,6 +2,7 @@
 
 import { ContactCard } from "./ContactCard";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { HoneycombBg } from "@/components/ui/backgrounds/HoneycombBg";
 import { StaggerChildren } from "@/components/ui/StaggerChildren";
 import type { ContactLink } from "./ContactData";
 import type { getMeta } from "@/lib/data";
@@ -18,11 +19,9 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
       className="ld-section-ambient ld-section-ambient--contact relative overflow-hidden bg-dev px-4 py-14 md:px-6 md:py-24 lg:px-12"
       style={{ willChange: "transform" }}
     >
-      <div className="pointer-events-none absolute inset-0 z-0 dot-grid opacity-20" />
-
-      <div
-        className="contact-bottom-fade pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-32 bg-gradient-to-t from-[#0a0a0b] to-transparent"
-        aria-hidden
+      <HoneycombBg
+        accentColor="var(--theme-primary, #c9a84c)"
+        opacity={0.7}
       />
 
       <div className="relative z-10 mx-auto max-w-5xl">

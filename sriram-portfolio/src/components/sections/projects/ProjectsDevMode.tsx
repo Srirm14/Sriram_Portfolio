@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import type { ProjectItem } from "./ProjectsData";
+import { CompassBg } from "@/components/ui/backgrounds/CompassBg";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectDrawer } from "./ProjectDrawer";
 
@@ -23,7 +24,15 @@ export function ProjectsDevMode({ projects }: ProjectsDevModeProps) {
       id="work"
       className="ld-section-ambient ld-section-ambient--work relative overflow-hidden bg-dev px-6 py-24 lg:px-12"
     >
-      <div className="pointer-events-none absolute inset-0 z-0 dot-grid opacity-20" />
+      <CompassBg accentColor="var(--theme-primary, #c9a84c)" />
+      <div
+        className="pointer-events-none absolute top-0 left-0 right-0 z-[1] h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, color-mix(in srgb, var(--theme-primary, #c9a84c) 30%, transparent), transparent)",
+        }}
+        aria-hidden
+      />
 
       <div className="relative z-10 mx-auto max-w-5xl">
         {/* Section header */}

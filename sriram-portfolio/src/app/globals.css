@@ -1279,16 +1279,17 @@ html.ld-light main {
   opacity: 1;
 }
 
+/* Light: ambient glows + SVG abstracts stack — slightly richer so geometry + gradients read together */
 .ld-light .ld-section-ambient--experience::before {
   background:
     radial-gradient(
       ellipse 75% 55% at 12% 18%,
-      rgba(232, 213, 163, 0.38) 0%,
+      rgba(232, 213, 163, 0.46) 0%,
       transparent 58%
     ),
     radial-gradient(
       ellipse 60% 50% at 92% 88%,
-      rgba(201, 168, 76, 0.1) 0%,
+      rgba(201, 168, 76, 0.14) 0%,
       transparent 55%
     );
 }
@@ -1297,12 +1298,12 @@ html.ld-light main {
   background:
     radial-gradient(
       ellipse 70% 50% at 88% 12%,
-      rgba(232, 213, 180, 0.32) 0%,
+      rgba(232, 213, 180, 0.4) 0%,
       transparent 58%
     ),
     radial-gradient(
       ellipse 55% 45% at 10% 75%,
-      rgba(201, 168, 76, 0.09) 0%,
+      rgba(201, 168, 76, 0.12) 0%,
       transparent 52%
     );
 }
@@ -1311,12 +1312,12 @@ html.ld-light main {
   background:
     radial-gradient(
       ellipse 65% 48% at 50% 0%,
-      rgba(232, 213, 163, 0.28) 0%,
+      rgba(232, 213, 163, 0.36) 0%,
       transparent 55%
     ),
     radial-gradient(
       ellipse 50% 40% at 0% 60%,
-      rgba(201, 168, 76, 0.08) 0%,
+      rgba(201, 168, 76, 0.11) 0%,
       transparent 50%
     );
 }
@@ -1325,12 +1326,12 @@ html.ld-light main {
   background:
     radial-gradient(
       ellipse 70% 50% at 50% 100%,
-      rgba(232, 213, 163, 0.26) 0%,
+      rgba(232, 213, 163, 0.34) 0%,
       transparent 58%
     ),
     radial-gradient(
       ellipse 45% 40% at 15% 20%,
-      rgba(201, 168, 76, 0.07) 0%,
+      rgba(201, 168, 76, 0.1) 0%,
       transparent 50%
     );
 }
@@ -1666,6 +1667,59 @@ html.ld-light main {
   background-color: #f7f4ef !important;
 }
 
+html.ld-light {
+  --dev-section-fade: #f7f4ef;
+}
+.ld-light.theme-matrix {
+  --dev-section-fade: #f4f7f4;
+}
+.ld-light.theme-crimson {
+  --dev-section-fade: #faf5f3;
+}
+
+/* Honeycomb / abstract inner vignette — dark: depth; light: warm gold wash (not obsidian smear) */
+html.ld-dark {
+  --dev-abstract-vignette: radial-gradient(
+    ellipse 78% 62% at 50% 50%,
+    transparent 30%,
+    rgba(10, 10, 15, 0.42) 100%
+  );
+}
+html.ld-light {
+  --dev-abstract-vignette: radial-gradient(
+    ellipse 90% 74% at 50% 48%,
+    transparent 34%,
+    rgba(232, 213, 163, 0.12) 62%,
+    rgba(201, 168, 76, 0.07) 82%,
+    rgba(62, 48, 28, 0.06) 100%
+  );
+}
+.ld-light.theme-matrix {
+  --dev-abstract-vignette: radial-gradient(
+    ellipse 90% 74% at 50% 48%,
+    transparent 34%,
+    rgba(180, 255, 200, 0.1) 62%,
+    rgba(0, 160, 80, 0.06) 82%,
+    rgba(0, 50, 28, 0.05) 100%
+  );
+}
+.ld-light.theme-crimson {
+  --dev-abstract-vignette: radial-gradient(
+    ellipse 90% 74% at 50% 48%,
+    transparent 34%,
+    rgba(255, 200, 200, 0.1) 62%,
+    rgba(220, 80, 80, 0.06) 82%,
+    rgba(90, 30, 30, 0.05) 100%
+  );
+}
+
+.dev-abstract-vignette {
+  background: var(
+    --dev-abstract-vignette,
+    radial-gradient(ellipse 78% 62% at 50% 50%, transparent 30%, rgba(10, 10, 15, 0.42) 100%)
+  );
+}
+
 /* Tailwind text-white/* → strong readable neutrals (premium ≠ faint) */
 .ld-light .text-white {
   color: var(--ld-ink-strong) !important;
@@ -1903,6 +1957,84 @@ html.ld-light main {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
+/*
+  Dev section SVG backgrounds — light mode:
+  Strokes are drawn at ~0.07–0.12 opacity in SVG; multiplying by ~0.5 wrapper opacity
+  made them nearly invisible on pearl. Use full layer opacity + scoped darker --theme-primary
+  so var(--theme-primary) strokes read on #f7f4ef (does not affect the rest of the UI).
+*/
+.ld-light [data-bg="circuit"],
+.ld-light [data-bg="compass"],
+.ld-light [data-bg="honeycomb"] {
+  opacity: 1 !important;
+  --theme-primary: #6a5420;
+}
+
+.ld-light.theme-matrix [data-bg="circuit"],
+.ld-light.theme-matrix [data-bg="compass"],
+.ld-light.theme-matrix [data-bg="honeycomb"] {
+  --theme-primary: #00722a;
+}
+
+.ld-light.theme-crimson [data-bg="circuit"],
+.ld-light.theme-crimson [data-bg="compass"],
+.ld-light.theme-crimson [data-bg="honeycomb"] {
+  --theme-primary: #9f1818;
+}
+
+/* Hero name — full width, soft gold halo + slow shimmer (light) */
+.ld-light .hero-dev-name-glow-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  width: min(100%, 32rem);
+  height: clamp(4.25rem, 22vw, 9rem);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(232, 213, 163, 0.45) 0%,
+    rgba(201, 168, 76, 0.12) 42%,
+    transparent 70%
+  );
+  filter: blur(44px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ld-light .hero-name-shimmer {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  background: linear-gradient(
+    102deg,
+    #14110e 0%,
+    #1c1814 36%,
+    #2c241c 46%,
+    #9a7a42 49%,
+    #d4b878 50%,
+    #9a7a42 51%,
+    #252018 54%,
+    #1a1612 100%
+  );
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-name-shimmer-shift 28s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ld-light .hero-name-shimmer {
+    animation: none;
+    background: linear-gradient(180deg, #1c1612 0%, #2a2218 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
 .ld-light .hero-stat-rule-dev {
   background: rgba(90, 70, 45, 0.12) !important;
 }
@@ -2064,6 +2196,105 @@ html.ld-light main {
 /* ── DARK MODE (restores originals) ── */
 .ld-dark .bg-dev {
   background-color: #0a0a0f !important;
+}
+
+/* Developer dark hero — charcoal cinematic, gold ambient (typographic intro) */
+.ld-dark section#hero.hero-dev-dark.bg-dev {
+  background-color: #0b0b0e !important;
+  background-image:
+    radial-gradient(
+      ellipse 95% 70% at 50% 0%,
+      rgba(38, 30, 22, 0.42) 0%,
+      transparent 56%
+    ),
+    radial-gradient(
+      ellipse 92% 58% at 48% 36%,
+      rgba(201, 168, 76, 0.07) 0%,
+      transparent 58%
+    ),
+    linear-gradient(168deg, #09090e 0%, #0c0a09 46%, #141110 100%),
+    radial-gradient(rgba(201, 168, 76, 0.058) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+}
+.ld-dark .hero-dark-grain {
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+.ld-dark .hero-dev-dark-name-aura {
+  background: radial-gradient(
+    ellipse 88% 62% at 50% 30%,
+    rgba(201, 168, 76, 0.05) 0%,
+    transparent 64%
+  );
+}
+.ld-dark .hero-dev-name-glow-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  width: min(100%, 34rem);
+  height: clamp(4rem, 20vw, 9rem);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 168, 76, 0.11) 0%,
+    rgba(100, 82, 55, 0.05) 42%,
+    transparent 72%
+  );
+  filter: blur(38px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ld-dark .hero-name-shimmer-dark {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  background: linear-gradient(
+    102deg,
+    #e6e2da 0%,
+    #efebe4 34%,
+    #c4bbb0 47%,
+    #c9a86a 49.4%,
+    #e8d5a3 50%,
+    #b8956a 50.6%,
+    #e8e4dc 53%,
+    #d8d3c8 100%
+  );
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-name-shimmer-shift 32s ease-in-out infinite;
+}
+@keyframes hero-name-shimmer-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ld-dark .hero-name-shimmer-dark {
+    animation: none;
+    background: linear-gradient(
+      180deg,
+      #ebe7df 0%,
+      #ddd8cf 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+.ld-dark .hero-dev-dark-subtitle {
+  max-width: 36rem;
+  line-height: 1.5;
 }
 .ld-dark .bg-design {
   background-color: #0d0d14 !important;

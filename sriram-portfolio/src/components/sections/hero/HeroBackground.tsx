@@ -80,25 +80,35 @@ export function HeroBackground({ mode, appearance = "dark" }: HeroBackgroundProp
         className="absolute inset-0 overflow-hidden pointer-events-none"
         aria-hidden
       >
+        {/* Primary ambient — soft gold behind headline zone (base wash lives on section.hero-dev-dark) */}
         <div
-          className="absolute top-20 left-10 w-96 h-96 rounded-full pointer-events-none animate-float"
+          className="absolute left-1/2 top-[28%] h-[min(52vh,28rem)] w-[min(92vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] opacity-90"
           style={{
             background:
-              "radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(201,168,76,0.11) 0%, rgba(139,115,85,0.04) 42%, transparent 68%)",
+          }}
+        />
+        {/* Secondary blooms — diffused, low contrast */}
+        <div
+          className="absolute -left-24 top-[18%] h-[22rem] w-[22rem] rounded-full blur-[64px] opacity-70"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(232,213,163,0.06) 0%, transparent 70%)",
           }}
         />
         <div
-          className="absolute bottom-20 right-20 w-64 h-64 rounded-full pointer-events-none animate-float-delayed"
+          className="absolute -right-16 bottom-[12%] h-[18rem] w-[18rem] rounded-full blur-[56px] opacity-60"
           style={{
             background:
-              "radial-gradient(circle, rgba(232,213,163,0.08) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(201,168,76,0.055) 0%, transparent 72%)",
           }}
         />
+        {/* Hairline horizon — depth without noise */}
         <div
-          className="absolute top-1/2 right-1/3 w-48 h-48 rounded-full pointer-events-none"
+          className="absolute inset-x-0 bottom-0 h-px opacity-[0.12]"
           style={{
             background:
-              "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
+              "linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)",
           }}
         />
       </div>
