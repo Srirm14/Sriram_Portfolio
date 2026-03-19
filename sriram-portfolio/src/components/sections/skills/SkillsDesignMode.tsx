@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { SkillOrbit } from "./SkillOrbit";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { SkillCategory } from "./SkillsData";
 
 interface SkillsDesignModeProps {
@@ -23,18 +23,13 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
     <section
       id="skills"
       className="relative bg-design py-14 md:py-24 px-4 md:px-6 overflow-hidden"
+      style={{ willChange: "transform" }}
     >
       <div className="absolute inset-0 line-grid opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]/20" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="text-center mb-10 md:mb-16"
-        >
+        <ScrollReveal variant="fade-up" className="text-center mb-10 md:mb-16">
           <p className="font-mono text-xs text-[#39FF14]/60 uppercase tracking-widest mb-3">
             04 — Skills
           </p>
@@ -45,10 +40,12 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
           <p className="font-mono text-xs text-white/30 mt-2">
             Hover to pause · Hover skills to highlight
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Orbital canvas — hidden on mobile */}
-        <div
+        <ScrollReveal
+          variant="scale-up"
+          delay={0.3}
           className="orbital-canvas hidden lg:block relative mx-auto"
           style={{ width: 680, height: 680 }}
         >
@@ -97,7 +94,7 @@ export function SkillsDesignMode({ skills }: SkillsDesignModeProps) {
               </span>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Mobile fallback — simple pill grid */}
         <div className="lg:hidden mt-8 flex flex-wrap gap-2 justify-center">

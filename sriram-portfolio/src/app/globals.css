@@ -52,6 +52,7 @@
 @layer base {
   * {
     @apply border-border;
+    will-change: auto;
   }
 
   html {
@@ -59,6 +60,13 @@
     scroll-padding-top: 5rem; /* account for fixed navbar when scrolling to anchors */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .motion-safe {
+    @media (prefers-reduced-motion: reduce) {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 
   body {

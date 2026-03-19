@@ -113,7 +113,7 @@ export function ExperienceDevCard({
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
+        transition={{ duration: 0.5, delay: index * 0.12 }}
         className="border-l-2 border-[#7c3aed]/30 pl-6"
       >
         <CardContent
@@ -129,8 +129,8 @@ export function ExperienceDevCard({
     <motion.div
       initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.12 }}
       className="relative grid grid-cols-[1fr_auto_1fr] gap-8 items-start"
     >
       <div className={cn(isLeft ? "flex justify-end" : "")}>

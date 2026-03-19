@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { RotateCw, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ProjectGradient } from "./ProjectGradient";
 import type { ProjectItem } from "./ProjectsData";
 
 export interface ProjectDesignCardProps {
@@ -35,11 +34,11 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="relative h-[55%]">
-            <ProjectGradient
-              from={item.gradient.from}
-              via={item.gradient.via}
-              to={item.gradient.to}
-              mode="designer"
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(135deg, ${item.gradient.from}, ${item.gradient.via}, ${item.gradient.to})`,
+              }}
             />
             <div className="absolute bottom-2 right-3 font-mono text-xs text-[#39FF14]/40 flex items-center gap-1">
               <RotateCw className="w-3 h-3" />

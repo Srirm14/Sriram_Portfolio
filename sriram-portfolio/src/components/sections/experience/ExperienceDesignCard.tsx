@@ -76,12 +76,12 @@ export function ExperienceDesignCard({
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{
           type: "spring",
           stiffness: 300,
           damping: 25,
-          delay: index * 0.1,
+          delay: index * 0.12,
         }}
         className="border-l-2 border-[#39FF14]/30 pl-6"
       >
@@ -94,12 +94,12 @@ export function ExperienceDesignCard({
     <motion.div
       initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{
         type: "spring",
         stiffness: 300,
         damping: 25,
-        delay: index * 0.1,
+        delay: index * 0.12,
       }}
       className="relative grid grid-cols-[1fr_auto_1fr] gap-8 items-start"
     >

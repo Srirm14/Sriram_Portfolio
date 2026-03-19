@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ExperienceDevCard } from "./ExperienceDevCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { ExperienceItem } from "./ExperienceData";
 
 interface ExperienceDevModeProps {
@@ -10,21 +12,19 @@ interface ExperienceDevModeProps {
 
 export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
   const devExperiences = experiences.filter((exp) => exp.devBullets.length > 0);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const lineInView = useInView(lineRef, { once: true });
+
   return (
     <section
       id="experience"
       className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
+      style={{ willChange: "transform" }}
     >
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 md:mb-16 text-center"
-        >
+        <ScrollReveal variant="fade-up" className="mb-10 md:mb-16 text-center">
           <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
             02 — Experience
           </p>
@@ -34,10 +34,19 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
           <p className="font-poppins text-white/40 mt-3 text-sm">
             Click any card to expand
           </p>
-        </motion.div>
+        </ScrollReveal>
 
-        <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#7c3aed]/30 to-transparent -translate-x-1/2 hidden lg:block" />
+        <div ref={lineRef} className="relative">
+          <motion.div
+            className="absolute left-1/2 top-0 w-px -translate-x-1/2 hidden lg:block"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent, rgba(124,58,237,0.3), transparent)",
+            }}
+            initial={{ height: 0 }}
+            animate={{ height: lineInView ? "100%" : 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          />
 
           {/* Desktop: alternating timeline */}
           <div className="hidden lg:flex flex-col gap-8 md:gap-12">

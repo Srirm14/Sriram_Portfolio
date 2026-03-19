@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SkillTerminal } from "./SkillTerminal";
 import type { SkillCategory } from "./SkillsData";
 
@@ -57,18 +57,13 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
       id="skills"
       ref={sectionRef}
       className="relative bg-dev py-14 md:py-24 px-4 md:px-6 lg:px-12 overflow-hidden"
+      style={{ willChange: "transform" }}
     >
       <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 md:mb-12"
-        >
+        <ScrollReveal variant="fade-left" className="mb-8 md:mb-12">
           <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
             04 — Skills
           </p>
@@ -78,32 +73,29 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
           <p className="font-poppins text-white/30 text-sm mt-2">
             Scroll here to watch it load · scroll inside the terminal to see more
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Two column layout on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
-          {/* Left — terminal */}
-          <div className="w-full h-[340px] md:h-[480px]">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
+          {/* Left — terminal: flexible height, matches right column on desktop */}
+          <div className="w-full min-h-[320px] sm:min-h-[380px] lg:min-h-0 flex flex-col">
+            <ScrollReveal
+              variant="fade-left"
+              delay={0}
+              className="flex-1 min-h-0 flex flex-col"
             >
               {inView && <SkillTerminal />}
-            </motion.div>
+            </ScrollReveal>
           </div>
 
           {/* Right — supporting context */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          <ScrollReveal
+            variant="fade-right"
+            delay={0.2}
             className="flex flex-col gap-4 md:gap-6"
           >
             {/* What I focus on card */}
-            <div className="glass-card p-6 rounded-xl">
+            <ScrollReveal variant="fade-up" delay={0.1} className="glass-card p-6 rounded-xl">
               <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-4">
                 What I focus on
               </p>
@@ -122,10 +114,10 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                   </div>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Currently exploring card */}
-            <div className="glass-card p-5 rounded-xl border border-[#7c3aed]/20">
+            <ScrollReveal variant="fade-up" delay={0.2} className="glass-card p-5 rounded-xl border border-[#7c3aed]/20 flex-1">
               <p className="font-mono text-xs text-[#06b6d4] uppercase tracking-widest mb-3">
                 Currently exploring
               </p>
@@ -161,8 +153,8 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                   </p>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </ScrollReveal>
+          </ScrollReveal>
         </div>
       </div>
     </section>
