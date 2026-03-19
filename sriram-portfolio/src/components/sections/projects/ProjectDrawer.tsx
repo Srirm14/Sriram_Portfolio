@@ -76,10 +76,10 @@ export function ProjectDrawer({
             className={cn(
               "fixed top-0 right-0 bottom-0 z-[99990]",
               "flex flex-col overflow-hidden",
+              "w-4/5 max-w-[90vw] md:w-[min(55%,680px)] md:max-w-[680px]",
               isDev ? "border-l border-white/[0.08]" : "border-l-2 border-[#39FF14]"
             )}
             style={{
-              width: "min(55%, 680px)",
               background: isDev ? "rgba(10,10,18,0.97)" : "#0a0a0a",
               backdropFilter: "blur(20px)",
               boxShadow: isDev
@@ -100,8 +100,7 @@ export function ProjectDrawer({
           >
             {/* ── Gradient hero banner ───────────────── */}
             <div
-              className="relative flex-shrink-0 w-full overflow-hidden"
-              style={{ height: "260px" }}
+              className="relative flex-shrink-0 w-full overflow-hidden h-44 md:h-[260px]"
             >
               {/* Mesh gradient */}
               <div
@@ -146,7 +145,7 @@ export function ProjectDrawer({
                 onClick={onClose}
                 aria-label="Close drawer"
                 className={cn(
-                  "absolute top-5 right-5 w-9 h-9 z-10",
+                  "absolute top-4 right-4 md:top-5 md:right-5 w-9 h-9 z-10",
                   "flex items-center justify-center",
                   "transition-all duration-200",
                   isDev
@@ -158,7 +157,7 @@ export function ProjectDrawer({
               </button>
 
               {/* Tags */}
-              <div className="absolute top-5 left-6 flex flex-wrap gap-2">
+              <div className="absolute top-4 left-4 md:top-5 md:left-6 flex flex-wrap gap-1.5 md:gap-2">
                 {tags.map((tag) => (
                   <span
                     key={tag}
@@ -183,14 +182,14 @@ export function ProjectDrawer({
               </div>
 
               {/* Title block — bottom of banner */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#0a0a12] to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[#0a0a12] to-transparent">
                 <motion.h2
                   key={`${item.id}-title`}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15, duration: 0.4 }}
                   className={cn(
-                    "text-3xl text-white",
+                    "text-xl md:text-3xl text-white",
                     isDev
                       ? "font-grotesk font-bold"
                       : "font-bebas tracking-widest uppercase"
@@ -216,7 +215,7 @@ export function ProjectDrawer({
             </div>
 
             {/* ── Scrollable content ─────────────────── */}
-            <div className="flex-1 overflow-y-auto overscroll-contain flex flex-col gap-6 p-6">
+            <div className="flex-1 overflow-y-auto overscroll-contain flex flex-col gap-4 p-4 md:gap-6 md:p-6">
               {/* Duration */}
               <motion.p
                 key={`${item.id}-dur`}
