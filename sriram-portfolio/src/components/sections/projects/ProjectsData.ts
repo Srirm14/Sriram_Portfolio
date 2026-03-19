@@ -17,9 +17,39 @@ export interface ProjectItem {
   };
   imagePath?: string;
   link?: string;
+  linkLabel?: string;
 }
 
 export const projects: ProjectItem[] = [
+  {
+    id: "brandwatch",
+    title: "Brandwatch Platform",
+    shortDesc: "Social media analytics platform for brand performance",
+    featured: true,
+    duration: "Nov 2021 – Dec 2024",
+    link: "https://www.brandwatch.com/",
+    linkLabel: "View site",
+    devBullets: [
+      "Developed new product features, optimized performance, and resolved issues across sprints as a front-end developer at Brandwatch Technologies.",
+      "Designed and implemented intuitive UIs using Agile methodologies and Jira.",
+      "Optimized application performance through effective state management and reusable components.",
+      "Conducted performance analysis to improve responsiveness and scalability; resolved issues via debugging and POCs.",
+    ],
+    designBullets: [
+      "Contributed to internal design system — component APIs, tokens, Figma documentation.",
+      "Partnered with product and design on major UI redesigns; used FigJam for ideation and cross-functional alignment.",
+      "Bridged design and engineering — ensured Figma handoffs translated to production UI with pixel-level consistency.",
+    ],
+    devTech: ["Angular", "React", "TypeScript", "Redux", "Tailwind CSS", "Playwright"],
+    designTools: ["Figma", "FigJam", "Design Tokens", "Component APIs"],
+    tags: ["Enterprise", "Social Intelligence", "Analytics"],
+    designTags: ["Design System", "Figma", "UI/UX"],
+    gradient: {
+      from: "#06b6d4",
+      via: "#0891b2",
+      to: "#0e7490",
+    },
+  },
   {
     id: "smartledger",
     title: "SmartLedger",

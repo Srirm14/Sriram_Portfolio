@@ -24,7 +24,6 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
     <section
       id="work"
       className="relative bg-design py-24 px-6 lg:px-12 overflow-hidden"
-      style={{ willChange: "transform" }}
     >
       <div className="absolute inset-0 line-grid opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]/20" />

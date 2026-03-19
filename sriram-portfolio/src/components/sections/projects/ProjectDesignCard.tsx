@@ -118,7 +118,7 @@ export function ProjectDesignCard({ item }: ProjectDesignCardProps) {
               className="mt-3 flex items-center justify-center gap-1.5 py-2 border-2 border-[#39FF14]/60 font-mono text-xs text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-150 uppercase"
             >
               <ExternalLink className="w-3 h-3" />
-              View prototype
+              {item.linkLabel ?? "View prototype"}
             </a>
           )}
         </div>

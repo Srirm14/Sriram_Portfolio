@@ -55,12 +55,11 @@ export const experiences: ExperienceItem[] = [
     type: "Full-time",
     accentColor: "#06b6d4",
     devBullets: [
-      "Owned frontend development across 3 core product modules of a social media management platform serving 100K+ users — taking features from design handoff through implementation, QA, and production rollout.",
-      "Built and maintained a shared component library in Angular and React used across 4 engineering teams, eliminating duplicated UI logic and cutting new-developer ramp-up time by ~2 weeks.",
-      "Diagnosed and resolved rendering bottlenecks caused by unguarded subscription updates in Angular — reducing heavy dashboard repaint frequency and improving responsiveness on mid-tier devices.",
-      "Implemented Playwright E2E test coverage for 6 critical user flows; caught 3 regressions before production deployment within the first quarter of adoption.",
-      "Collaborated with product and design to refine 2 major UI redesigns, contributing to flow decisions that reduced average steps-to-task-completion for core workflows.",
-      "Contributed to an internal design system — standardising component APIs, design tokens, and usage documentation adopted across the frontend organisation.",
+      "Front-end developer at a social media analytics firm — developed product features, optimized performance, and resolved issues across sprints.",
+      "Designed and implemented intuitive UIs using Agile methodologies and Jira for task management.",
+      "Optimized application performance through effective state management and reusable components.",
+      "Conducted performance analysis to improve responsiveness and scalability; resolved issues via debugging and POCs.",
+      "Contributed to internal design system — component APIs, design tokens, and documentation adopted across teams.",
     ],
     devStack: [
       "Angular",
@@ -72,9 +71,9 @@ export const experiences: ExperienceItem[] = [
       "Internal Design System",
     ],
     designBullets: [
-      "Contributed to an internal design system used across the frontend organisation — standardising component APIs, design tokens, and Figma documentation.",
-      "Partnered with product and design teams on 2 major UI redesigns, contributing to flow decisions that reduced task-completion steps for core workflows.",
-      "Bridged design and engineering — ensured Figma designs translated accurately into production UI with pixel-level consistency.",
+      "Contributed to the internal design system — component APIs, design tokens, and Figma documentation adopted across the frontend organisation.",
+      "Partnered with product and design on 2 major UI redesigns, influencing flow decisions that reduced task-completion steps for core workflows.",
+      "Bridged design and engineering — ensured Figma handoffs translated to production UI with pixel-level consistency.",
     ],
     designTools: [
       "Figma",
@@ -82,6 +81,22 @@ export const experiences: ExperienceItem[] = [
       "Component APIs",
       "Figma Documentation",
     ],
+  },
+  {
+    id: "zoho",
+    company: "Zoho",
+    role: "Software Developer - Intern",
+    roleDesign: "Software Developer — Intern",
+    duration: "May 2021 – Jul 2021",
+    location: "Chennai",
+    type: "Internship",
+    accentColor: "#CC0000",
+    devBullets: [
+      "Interned in the software industry, tackling various technical challenges and gaining a broad understanding of the field, deepening knowledge and practical experience.",
+    ],
+    devStack: ["HTML", "CSS", "JavaScript", "Deluge", "React"],
+    designBullets: [],
+    designTools: [],
   },
   {
     id: "codestorm",

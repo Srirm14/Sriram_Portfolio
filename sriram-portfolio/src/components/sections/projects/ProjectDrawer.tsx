@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useCallback } from "react";
 import { X, ExternalLink } from "lucide-react";
@@ -48,7 +49,7 @@ export function ProjectDrawer({
   const tags =
     item ? (isDev ? item.tags : item.designTags) : [];
 
-  return (
+  const drawerContent = (
     <AnimatePresence mode="wait">
       {item && (
         <>
@@ -350,7 +351,7 @@ export function ProjectDrawer({
                   }
                 >
                   <ExternalLink className="w-3 h-3" />
-                  View prototype
+                  {item.linkLabel ?? "View prototype"}
                 </motion.a>
               )}
             </div>
@@ -359,4 +360,7 @@ export function ProjectDrawer({
       )}
     </AnimatePresence>
   );
+
+  if (typeof document === "undefined") return null;
+  return createPortal(drawerContent, document.body);
 }
