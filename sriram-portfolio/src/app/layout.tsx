@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { getYearsOfExperience } from "@/lib/experience";
 import {
   Inter,
@@ -120,9 +121,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -136,6 +137,7 @@ export default function RootLayout({
         ].join(" ")}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
