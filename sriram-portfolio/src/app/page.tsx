@@ -6,6 +6,7 @@ import {
   getMeta,
 } from "@/lib/data";
 import { ModeThemeSync } from "@/components/mode-theme-sync";
+import { ModeHint } from "@/components/ui/ModeHint";
 import { Navbar } from "@/components/navbar";
 import Hero from "@/components/sections/hero";
 import Experience from "@/components/sections/experience";
@@ -27,6 +28,7 @@ export default function Home() {
       <ModeThemeSync />
       <div className="min-h-screen">
         <Navbar />
+        <ModeHint />
         <main className="pt-16">
           <Hero meta={meta} />
           <Experience experiences={experiences} />
