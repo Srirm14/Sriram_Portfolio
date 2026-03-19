@@ -24,14 +24,15 @@ const config: Config = {
           teal: "#0891b2",
           glow: "rgba(124,58,237,0.25)",
         },
-        // Designer mode palette — KLX parrot green brutalism
+        // Designer mode palette — Spiderman red/navy
         design: {
-          bg: "#0a0a0a",
-          surface: "#111111",
-          green: "#39FF14",
-          lime: "#84cc16",
-          yellow: "#ffe600",
-          glow: "rgba(57,255,20,0.25)",
+          bg: "#0d0d14",
+          surface: "#12121e",
+          red: "#e63946",
+          navy: "#1d3557",
+          accent: "#457b9d",
+          text: "#f1faee",
+          glow: "rgba(230,57,70,0.25)",
         },
         // shadcn tokens
         border: "hsl(var(--border))",
@@ -128,36 +129,38 @@ const config: Config = {
           "0 4px 24px rgba(124,58,237,0.3), inset 0 0 0 1px rgba(124,58,237,0.2)",
         "glass-cyan":
           "0 4px 24px rgba(6,182,212,0.3),  inset 0 0 0 1px rgba(6,182,212,0.2)",
-        // Brutalist shadows
-        "brutal-sm": "2px 2px 0px #39FF14",
-        brutal: "4px 4px 0px #39FF14",
-        "brutal-lg": "6px 6px 0px #39FF14",
-        "brutal-xl": "8px 8px 0px #39FF14",
+        // Brutalist shadows — Spiderman navy
+        "brutal-sm": "2px 2px 0px #1d3557",
+        brutal: "4px 4px 0px #1d3557",
+        "brutal-lg": "6px 6px 0px #1d3557",
+        "brutal-xl": "8px 8px 0px #1d3557",
         "brutal-black": "4px 4px 0px #000000",
         // Glow shadows
         "glow-purple":
-          "0 0 20px rgba(124,58,237,0.5), 0 0 40px rgba(124,58,237,0.2)",
+          "0 0 20px rgba(201,168,76,0.35), 0 0 40px rgba(201,168,76,0.12)",
         "glow-cyan":
-          "0 0 20px rgba(6,182,212,0.5),  0 0 40px rgba(6,182,212,0.2)",
-        "glow-green":
-          "0 0 20px rgba(57,255,20,0.5),  0 0 40px rgba(57,255,20,0.2)",
+          "0 0 20px rgba(232,213,163,0.25), 0 0 40px rgba(201,168,76,0.1)",
+        "glow-gold":
+          "0 0 14px rgba(201,168,76,0.5), 0 0 28px rgba(201,168,76,0.2)",
+        "glow-design":
+          "0 0 20px rgba(230,57,70,0.5),  0 0 40px rgba(230,57,70,0.2)",
       },
 
       backgroundImage: {
         // Gradients — developer
-        "gradient-dev": "linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%)",
+        "gradient-dev": "linear-gradient(135deg, #c9a84c 0%, #e8d5a3 100%)",
         "gradient-dev-soft":
-          "linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(6,182,212,0.15) 100%)",
+          "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(232,213,163,0.1) 100%)",
         "gradient-dark": "linear-gradient(180deg, #0a0a0f 0%, #13131a 100%)",
-        // Gradients — designer
-        "gradient-design": "linear-gradient(135deg, #39FF14 0%, #84cc16 100%)",
+        // Gradients — designer (Spiderman)
+        "gradient-design": "linear-gradient(135deg, #e63946 0%, #1d3557 100%)",
         "gradient-design-soft":
-          "linear-gradient(135deg, rgba(57,255,20,0.15) 0%, rgba(132,204,22,0.15) 100%)",
+          "linear-gradient(135deg, rgba(230,57,70,0.15) 0%, rgba(29,53,87,0.15) 100%)",
         // Shimmer
         shimmer:
           "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%)",
-        "shimmer-green":
-          "linear-gradient(90deg, transparent 0%, rgba(57,255,20,0.08) 50%, transparent 100%)",
+        "shimmer-design":
+          "linear-gradient(90deg, transparent 0%, rgba(230,57,70,0.08) 50%, transparent 100%)",
       },
 
       keyframes: {
@@ -165,16 +168,16 @@ const config: Config = {
         "glow-pulse": {
           "0%, 100%": {
             opacity: "1",
-            boxShadow: "0 0 20px rgba(124,58,237,0.4)",
+            boxShadow: "0 0 18px rgba(201,168,76,0.35)",
           },
-          "50%": { opacity: "0.7", boxShadow: "0 0 40px rgba(124,58,237,0.8)" },
+          "50%": { opacity: "0.75", boxShadow: "0 0 32px rgba(201,168,76,0.55)" },
         },
-        "glow-pulse-green": {
+        "glow-pulse-design": {
           "0%, 100%": {
             opacity: "1",
-            boxShadow: "0 0 20px rgba(57,255,20,0.4)",
+            boxShadow: "0 0 20px rgba(230,57,70,0.4)",
           },
-          "50%": { opacity: "0.7", boxShadow: "0 0 40px rgba(57,255,20,0.8)" },
+          "50%": { opacity: "0.7", boxShadow: "0 0 40px rgba(230,57,70,0.8)" },
         },
         // Float
         float: {
@@ -243,7 +246,7 @@ const config: Config = {
 
       animation: {
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
-        "glow-pulse-green": "glow-pulse-green 3s ease-in-out infinite",
+        "glow-pulse-design": "glow-pulse-design 3s ease-in-out infinite",
         float: "float 6s ease-in-out infinite",
         "float-delayed": "float-delayed 8s ease-in-out infinite",
         shimmer: "shimmer 3s linear infinite",

@@ -25,7 +25,7 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
 
       <div className="relative z-10 max-w-5xl mx-auto">
         <ScrollReveal variant="fade-up" className="mb-10 md:mb-16 text-center">
-          <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
+          <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-3">
             02 — Experience
           </p>
           <h2 className="section-heading-dev">
@@ -41,7 +41,7 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
             className="absolute left-1/2 top-0 w-px -translate-x-1/2 hidden lg:block"
             style={{
               background:
-                "linear-gradient(180deg, transparent, rgba(124,58,237,0.3), transparent)",
+                "linear-gradient(180deg, transparent, rgba(201,168,76,0.35), transparent)",
             }}
             initial={{ height: 0 }}
             animate={{ height: lineInView ? "100%" : 0 }}

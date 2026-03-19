@@ -24,8 +24,8 @@ export const contactLinks: ContactLink[] = [
     canCopy: true,
     canNavigate: true,
     icon: "Linkedin",
-    devAccent: "#0077b5",
-    designAccent: "#39FF14",
+    devAccent: "#c9a84c",
+    designAccent: "#e63946",
   },
   {
     id: "email",
@@ -37,8 +37,8 @@ export const contactLinks: ContactLink[] = [
     canCopy: true,
     canNavigate: true,
     icon: "Mail",
-    devAccent: "#7c3aed",
-    designAccent: "#39FF14",
+    devAccent: "#e8d5a3",
+    designAccent: "#e63946",
   },
   {
     id: "behance",
@@ -50,7 +50,7 @@ export const contactLinks: ContactLink[] = [
     canCopy: true,
     canNavigate: true,
     icon: "Globe",
-    devAccent: "#06b6d4",
-    designAccent: "#39FF14",
+    devAccent: "#d4a843",
+    designAccent: "#e63946",
   },
 ];

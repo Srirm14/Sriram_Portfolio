@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useCallback } from "react";
 import { X, ExternalLink } from "lucide-react";
 import type { ProjectItem } from "./ProjectsData";
+import { getCardGradient } from "./projectGradients";
 import { cn } from "@/lib/utils";
 
 interface ProjectDrawerProps {
@@ -49,6 +50,8 @@ export function ProjectDrawer({
   const tags =
     item ? (isDev ? item.tags : item.designTags) : [];
 
+  const grad = item === null ? null : getCardGradient(item, isDev);
+
   const drawerContent = (
     <AnimatePresence mode="wait">
       {item && (
@@ -64,9 +67,9 @@ export function ProjectDrawer({
             onClick={onClose}
             style={{
               background: isDev
-                ? "rgba(10,10,15,0.5)"
+                ? "rgba(10,10,11,0.55)"
                 : "rgba(0,0,0,0.7)",
-              backdropFilter: "blur(4px)",
+              backdropFilter: "blur(6px)",
             }}
           />
 
@@ -77,14 +80,16 @@ export function ProjectDrawer({
               "fixed top-0 right-0 bottom-0 z-[99990]",
               "flex flex-col overflow-hidden",
               "w-4/5 max-w-[90vw] md:w-[min(55%,680px)] md:max-w-[680px]",
-              isDev ? "border-l border-white/[0.08]" : "border-l-2 border-[#39FF14]"
+              isDev
+                ? "border-l border-[rgba(201,168,76,0.18)]"
+                : "border-l-2 border-[#e63946]"
             )}
             style={{
-              background: isDev ? "rgba(10,10,18,0.97)" : "#0a0a0a",
+              background: isDev ? "rgba(10,10,11,0.98)" : "#0a0a0a",
               backdropFilter: "blur(20px)",
               boxShadow: isDev
-                ? "-20px 0 60px rgba(0,0,0,0.5), -1px 0 0 rgba(255,255,255,0.04)"
-                : "-4px 0 0 #39FF14",
+                ? "-24px 0 64px rgba(0,0,0,0.55), -1px 0 0 rgba(201,168,76,0.12), inset 0 0 0 1px rgba(201,168,76,0.06)"
+                : "-4px 0 0 #e63946",
               isolation: "isolate",
             }}
             initial={{ x: "100%" }}
@@ -107,20 +112,20 @@ export function ProjectDrawer({
                 className="absolute inset-0"
                 style={{
                   background: `linear-gradient(135deg,
-                    ${item.gradient.from}30 0%,
-                    ${item.gradient.via}20 50%,
-                    ${item.gradient.to}15 100%)`,
+                    ${grad!.from}28 0%,
+                    ${grad!.via}18 50%,
+                    ${grad!.to}12 100%)`,
                 }}
               />
 
               {/* Orbs */}
               <div
                 className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-                style={{ background: item.gradient.from, opacity: 0.2 }}
+                style={{ background: grad!.from, opacity: isDev ? 0.22 : 0.2 }}
               />
               <div
                 className="absolute bottom-0 left-0 w-48 h-48 rounded-full blur-2xl pointer-events-none"
-                style={{ background: item.gradient.to, opacity: 0.12 }}
+                style={{ background: grad!.to, opacity: isDev ? 0.14 : 0.12 }}
               />
 
               {isDev && (
@@ -133,7 +138,7 @@ export function ProjectDrawer({
                     className="absolute top-0 right-0 w-0 h-0 opacity-15"
                     style={{
                       borderLeft: "80px solid transparent",
-                      borderTop: "80px solid #39FF14",
+                      borderTop: "80px solid #e63946",
                     }}
                   />
                 </>
@@ -149,8 +154,8 @@ export function ProjectDrawer({
                   "flex items-center justify-center",
                   "transition-all duration-200",
                   isDev
-                    ? "rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10"
-                    : "border-2 border-[#39FF14]/50 text-[#39FF14] hover:bg-[#39FF14] hover:text-black"
+                    ? "rounded-full bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.25)] text-[#f0ece4]/70 hover:text-[#f0ece4] hover:bg-[rgba(201,168,76,0.14)]"
+                    : "border-2 border-[#e63946]/50 text-[#e63946] hover:bg-[#e63946] hover:text-black"
                 )}
               >
                 <X className="w-4 h-4" />
@@ -165,14 +170,14 @@ export function ProjectDrawer({
                     style={
                       isDev
                         ? {
-                            background: `${item.gradient.from}20`,
-                            border: `1px solid ${item.gradient.from}40`,
-                            color: item.gradient.from,
+                            background: `${grad!.from}22`,
+                            border: `1px solid ${grad!.from}42`,
+                            color: grad!.from,
                             borderRadius: "999px",
                           }
                         : {
-                            border: "1px solid rgba(57,255,20,0.5)",
-                            color: "#39FF14",
+                            border: "1px solid rgba(230,57,70,0.5)",
+                            color: "#e63946",
                           }
                     }
                   >
@@ -182,17 +187,16 @@ export function ProjectDrawer({
               </div>
 
               {/* Title block — bottom of banner */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[#0a0a12] to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/90 to-transparent">
                 <motion.h2
                   key={`${item.id}-title`}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15, duration: 0.4 }}
                   className={cn(
-                    "text-xl md:text-3xl text-white",
-                    isDev
-                      ? "font-grotesk font-bold"
-                      : "font-bebas tracking-widest uppercase"
+                    "text-xl md:text-3xl",
+                    isDev ? "font-grotesk font-bold text-[#f0ece4]" : "text-white",
+                    !isDev && "font-bebas tracking-widest uppercase"
                   )}
                 >
                   {item.title}
@@ -205,8 +209,8 @@ export function ProjectDrawer({
                   className={cn(
                     "text-sm mt-1",
                     isDev
-                      ? "font-poppins text-white/50"
-                      : "font-mono text-[#39FF14]/60"
+                      ? "font-poppins text-[#f0ece4]/55"
+                      : "font-mono text-[#e63946]/60"
                   )}
                 >
                   {item.shortDesc}
@@ -224,7 +228,7 @@ export function ProjectDrawer({
                 transition={{ delay: 0.25 }}
                 className={cn(
                   "font-mono text-xs",
-                  isDev ? "text-white/30" : "text-[#39FF14]/40"
+                  isDev ? "text-[#f0ece4]/35" : "text-[#e63946]/40"
                 )}
               >
                 {isDev ? "⏱ " : "// "}
@@ -237,8 +241,8 @@ export function ProjectDrawer({
                 style={{
                   height: isDev ? "1px" : "2px",
                   background: isDev
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(57,255,20,0.15)",
+                    ? "rgba(201,168,76,0.12)"
+                    : "rgba(230,57,70,0.15)",
                 }}
               />
 
@@ -260,7 +264,7 @@ export function ProjectDrawer({
                     <span
                       className="flex-shrink-0 mt-1 font-mono text-sm"
                       style={{
-                        color: isDev ? item.gradient.from : "#39FF14",
+                        color: isDev ? grad!.from : "#e63946",
                       }}
                     >
                       {isDev ? "▹" : "→"}
@@ -269,7 +273,7 @@ export function ProjectDrawer({
                       className={cn(
                         "text-sm leading-relaxed",
                         isDev
-                          ? "font-poppins text-white/70"
+                          ? "font-poppins text-[#f0ece4]/72"
                           : "font-poppins text-white/60"
                       )}
                     >
@@ -285,8 +289,8 @@ export function ProjectDrawer({
                 style={{
                   height: isDev ? "1px" : "2px",
                   background: isDev
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(57,255,20,0.15)",
+                    ? "rgba(201,168,76,0.12)"
+                    : "rgba(230,57,70,0.15)",
                 }}
               />
 
@@ -300,7 +304,7 @@ export function ProjectDrawer({
                 <p
                   className={cn(
                     "font-mono text-xs uppercase tracking-widest mb-3",
-                    isDev ? "text-white/30" : "text-[#39FF14]/40"
+                    isDev ? "text-[#c9a84c]/80" : "text-[#e63946]/40"
                   )}
                 >
                   {isDev ? "Stack" : "Tools"}
@@ -337,14 +341,14 @@ export function ProjectDrawer({
                     "flex items-center justify-center gap-1.5 py-2 font-mono text-xs transition-all duration-200",
                     isDev
                       ? "rounded-lg border"
-                      : "border-2 border-[#39FF14]/60 text-[#39FF14] hover:bg-[#39FF14] hover:text-black uppercase"
+                      : "border-2 border-[#e63946]/60 text-[#e63946] hover:bg-[#e63946] hover:text-black uppercase"
                   )}
                   style={
                     isDev
                       ? {
-                          borderColor: `${item.gradient.from}40`,
-                          color: item.gradient.from,
-                          background: `${item.gradient.from}10`,
+                          borderColor: `${grad!.from}45`,
+                          color: grad!.from,
+                          background: `${grad!.from}12`,
                         }
                       : undefined
                   }

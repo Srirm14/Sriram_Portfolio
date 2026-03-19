@@ -40,7 +40,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             className="badge-available-dev mb-4 md:mb-6 flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-ping-slow" />
-            <span className="text-white">Open to roles · Bengaluru / Remote</span>
+            <span className="text-[#f0ece4]/90">Open to roles · Bengaluru / Remote</span>
           </motion.div>
 
           {/* Headline */}
@@ -48,7 +48,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="font-grotesk font-bold text-display-lg md:text-display-xl text-white tracking-tight leading-tight mb-4"
+            className="font-grotesk font-bold text-display-lg md:text-display-xl text-[#f0ece4] tracking-tight leading-tight mb-4"
           >
             Senior Frontend
             <br />
@@ -70,7 +70,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="font-poppins font-light text-base md:text-lg text-white/60 max-w-md leading-relaxed mb-8"
+            className="font-poppins font-light text-base md:text-lg text-[#f0ece4]/65 max-w-md leading-relaxed mb-8"
           >
             Building fast, scalable products with React, Next.js & TypeScript
           </motion.p>

@@ -72,10 +72,10 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
               {renderIcon(link, "w-4 h-4", { color: link.devAccent })}
             </div>
             <div>
-              <p className="font-grotesk font-semibold text-white text-sm">
+              <p className="font-grotesk font-semibold text-[#f0ece4] text-sm">
                 {link.label}
               </p>
-              <p className="font-mono text-xs text-white/30 mt-0.5">
+              <p className="font-mono text-xs text-[#f0ece4]/40 mt-0.5">
                 {link.sublabel}
               </p>
             </div>
@@ -84,7 +84,7 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
         <p
           className="font-mono text-sm mb-5 truncate transition-colors duration-300"
           style={{
-            color: hovered ? link.devAccent : "rgba(255,255,255,0.5)",
+            color: hovered ? link.devAccent : "rgba(240,236,228,0.55)",
           }}
         >
           {link.value}
@@ -126,11 +126,11 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
               style={{
                 background: copied
                   ? `${link.devAccent}30`
-                  : "rgba(255,255,255,0.05)",
+                  : "rgba(201,168,76,0.08)",
                 border: `1px solid ${
-                  copied ? link.devAccent + "50" : "rgba(255,255,255,0.08)"
+                  copied ? link.devAccent + "50" : "rgba(201,168,76,0.2)"
                 }`,
-                color: copied ? link.devAccent : "rgba(255,255,255,0.4)",
+                color: copied ? link.devAccent : "rgba(240,236,228,0.45)",
               }}
             >
               {copied ? (

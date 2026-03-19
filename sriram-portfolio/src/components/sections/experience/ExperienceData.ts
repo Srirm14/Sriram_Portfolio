@@ -106,7 +106,7 @@ export const experiences: ExperienceItem[] = [
     duration: "Nov 2023 – Feb 2024",
     location: "Remote",
     type: "Freelance",
-    accentColor: "#39FF14",
+    accentColor: "#e63946",
     devBullets: [],
     devStack: [],
     designBullets: [

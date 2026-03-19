@@ -45,7 +45,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
             transition={{ delay: 0.1 }}
             className="badge-available-design mb-3 md:mb-6 flex items-center gap-2"
           >
-            <span className="text-[#39FF14]">●</span>
+            <span className="text-[#e63946]">●</span>
             <span>{meta.availability}</span>
           </motion.div>
 

@@ -53,7 +53,7 @@ export default async function Image() {
               width: "8px",
               height: "8px",
               borderRadius: "50%",
-              background: "#39FF14",
+              background: "#e63946",
             }}
           />
           <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "14px" }}>

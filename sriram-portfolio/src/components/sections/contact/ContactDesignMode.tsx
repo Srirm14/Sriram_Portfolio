@@ -22,7 +22,7 @@ export function ContactDesignMode({
       style={{ willChange: "transform" }}
     >
       <div className="absolute inset-0 line-grid opacity-50 pointer-events-none" />
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#39FF14]/30" />
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#e63946]/30" />
 
       <div
         className="absolute bottom-0 left-0 right-0 h-32
@@ -32,14 +32,14 @@ export function ContactDesignMode({
 
       <div className="relative z-10 max-w-5xl mx-auto">
         <ScrollReveal variant="blur-in" className="mb-12 text-center">
-          <p className="font-mono text-xs text-[#39FF14]/60 uppercase tracking-widest mb-3">
+          <p className="font-mono text-xs text-[#e63946]/60 uppercase tracking-widest mb-3">
             05 — Contact
           </p>
           <h2 className="section-heading-design text-white">
             LET&apos;S{" "}
-            <span className="text-[#39FF14]">CONNECT</span>
+            <span className="text-[#e63946]">CONNECT</span>
           </h2>
-          <div className="w-24 h-1 bg-[#39FF14] mt-4 mx-auto" />
+          <div className="w-24 h-1 bg-[#e63946] mt-4 mx-auto" />
           <p className="font-poppins text-white/40 text-sm mt-4 max-w-md mx-auto">
             Open to senior frontend roles in Bengaluru or remote. Hover a card
             to open or copy.

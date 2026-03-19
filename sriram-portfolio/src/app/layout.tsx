@@ -117,7 +117,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0a0a0f",
+  themeColor: "#0a0a0b",
 };
 
 export default function RootLayout({
@@ -134,7 +134,7 @@ export default function RootLayout({
           spaceGrotesk.variable,
           jetbrainsMono.variable,
           syne.variable,
-          "bg-[#0a0a0a] font-sans antialiased",
+          "bg-[#0a0a0b] font-sans antialiased text-neutral-200",
         ].join(" ")}
       >
         {children}

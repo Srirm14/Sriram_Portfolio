@@ -42,15 +42,15 @@ export function ContactCardDesign({ link }: ContactCardDesignProps) {
       style={{
         maxHeight: "240px",
         boxShadow: hovered
-          ? "6px 6px 0px #39FF14"
-          : "4px 4px 0px #39FF14",
+          ? "6px 6px 0px #e63946"
+          : "4px 4px 0px #e63946",
       }}
     >
       <div
         className="absolute top-0 left-0 right-0 transition-all duration-200"
         style={{
           height: hovered ? "3px" : "2px",
-          background: "#39FF14",
+          background: "#e63946",
         }}
       />
       <div className="relative z-10 flex flex-col justify-between h-full">
@@ -59,11 +59,11 @@ export function ContactCardDesign({ link }: ContactCardDesignProps) {
             <div
               className="w-10 h-10 flex items-center justify-center flex-shrink-0 border-2 transition-all duration-150"
               style={{
-                borderColor: hovered ? "#39FF14" : "rgba(57,255,20,0.3)",
-                background: hovered ? "rgba(57,255,20,0.1)" : "transparent",
+                borderColor: hovered ? "#e63946" : "rgba(230,57,70,0.3)",
+                background: hovered ? "rgba(230,57,70,0.1)" : "transparent",
               }}
             >
-              {renderIcon(link, "w-4 h-4 text-[#39FF14]", { color: "#39FF14" })}
+              {renderIcon(link, "w-4 h-4 text-[#e63946]", { color: "#e63946" })}
             </div>
             <div>
               <p className="font-bebas text-white text-sm">{link.label}</p>
@@ -76,7 +76,7 @@ export function ContactCardDesign({ link }: ContactCardDesignProps) {
         <p
           className="font-mono text-sm mb-5 truncate transition-colors duration-150"
           style={{
-            color: hovered ? "#39FF14" : "rgba(255,255,255,0.4)",
+            color: hovered ? "#e63946" : "rgba(255,255,255,0.4)",
           }}
         >
           {link.value}
@@ -94,7 +94,7 @@ export function ContactCardDesign({ link }: ContactCardDesignProps) {
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
               onClick={(e) => e.stopPropagation()}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 border-2 border-[#39FF14]/40 font-mono text-xs text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-150 uppercase no-underline"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 border-2 border-[#e63946]/40 font-mono text-xs text-[#e63946] hover:bg-[#e63946] hover:text-black transition-all duration-150 uppercase no-underline"
             >
               <ExternalLink className="w-3 h-3" />
               Open
@@ -105,9 +105,9 @@ export function ContactCardDesign({ link }: ContactCardDesignProps) {
               onClick={handleCopy}
               className="flex-1 flex items-center justify-center gap-1.5 py-2 border-2 border-l-0 font-mono text-xs uppercase transition-all duration-150"
               style={{
-                borderColor: copied ? "#39FF14" : "rgba(57,255,20,0.4)",
-                color: copied ? "#000" : "#39FF14",
-                background: copied ? "#39FF14" : "transparent",
+                borderColor: copied ? "#e63946" : "rgba(230,57,70,0.4)",
+                color: copied ? "#000" : "#e63946",
+                background: copied ? "#e63946" : "transparent",
               }}
             >
               {copied ? (

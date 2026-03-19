@@ -42,7 +42,7 @@ export function SkillOrbit({
           borderColor:
             mode === "developer"
               ? "rgba(255,255,255,0.06)"
-              : "rgba(57,255,20,0.12)",
+              : "rgba(230,57,70,0.12)",
         }}
       />
 

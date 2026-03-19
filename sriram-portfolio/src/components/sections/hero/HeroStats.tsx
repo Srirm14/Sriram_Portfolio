@@ -37,7 +37,7 @@ export function HeroStats({ mode }: HeroStatsProps) {
                 "font-bold",
                 isDev
                   ? "font-grotesk text-gradient-dev text-2xl"
-                  : "font-bebas text-[#39FF14] text-xl md:text-2xl"
+                  : "font-bebas text-[#e63946] text-xl md:text-2xl"
               )}
             >
               {typeof stat.value === "function" ? stat.value() : stat.value}
@@ -50,7 +50,7 @@ export function HeroStats({ mode }: HeroStatsProps) {
             <div
               className={cn(
                 "h-8",
-                isDev ? "w-px bg-white/10" : "w-0.5 bg-[#39FF14]/30"
+                isDev ? "w-px bg-white/10" : "w-0.5 bg-[#e63946]/30"
               )}
             />
           )}

@@ -27,7 +27,7 @@ function CardContent({
 
   return (
     <div
-      className="glass-card p-6 rounded-xl w-full max-w-lg hover:border-[#7c3aed]/30 transition-all duration-300 cursor-pointer group"
+      className="glass-card p-6 rounded-xl w-full max-w-lg hover:border-[#c9a84c]/30 transition-all duration-300 cursor-pointer group"
       onClick={onToggle}
     >
       <div className="flex items-start justify-between gap-4">
@@ -40,7 +40,7 @@ function CardContent({
             <span className="font-mono text-xs text-white/30">{duration}</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
             <span className="font-mono text-xs text-white/30">{location}</span>
-            <span className="ml-auto px-2 py-0.5 rounded-full bg-[#7c3aed]/10 border border-[#7c3aed]/20 font-mono text-xs text-[#7c3aed]">
+            <span className="ml-auto px-2 py-0.5 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 font-mono text-xs text-[#c9a84c]">
               {type}
             </span>
           </div>
@@ -55,14 +55,14 @@ function CardContent({
 
       {devBullets.slice(0, 2).map((bullet, i) => (
         <div key={i} className="flex gap-2 mt-3">
-          <span className="w-1 h-1 rounded-full bg-[#7c3aed]/60 mt-2 flex-shrink-0" />
+          <span className="w-1 h-1 rounded-full bg-[#c9a84c]/60 mt-2 flex-shrink-0" />
           <p className="font-poppins text-sm text-white/50 line-clamp-2">
             {bullet}
           </p>
         </div>
       ))}
 
-      <p className="font-mono text-xs text-[#7c3aed]/50 mt-3 group-hover:text-[#7c3aed] transition-colors">
+      <p className="font-mono text-xs text-[#c9a84c]/50 mt-3 group-hover:text-[#c9a84c] transition-colors">
         {expanded
           ? "— collapse"
           : `+ ${Math.max(0, devBullets.length - 2)} more`}
@@ -79,7 +79,7 @@ function CardContent({
           >
             {devBullets.slice(2).map((bullet, i) => (
               <div key={i} className="flex gap-2 mt-3">
-                <span className="w-1 h-1 rounded-full bg-[#7c3aed]/60 mt-2 flex-shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-[#c9a84c]/60 mt-2 flex-shrink-0" />
                 <p className="font-poppins text-sm text-white/50">{bullet}</p>
               </div>
             ))}
@@ -114,7 +114,7 @@ export function ExperienceDevCard({
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.12 }}
-        className="border-l-2 border-[#7c3aed]/30 pl-6"
+        className="border-l-2 border-[#c9a84c]/30 pl-6"
       >
         <CardContent
           item={item}
@@ -144,7 +144,7 @@ export function ExperienceDevCard({
       </div>
 
       <div className="flex flex-col items-center">
-        <div className="w-3 h-3 rounded-full bg-[#7c3aed] shadow-glow-purple border-2 border-[#7c3aed]/50 z-10 mt-6" />
+        <div className="w-3 h-3 rounded-full bg-[#c9a84c] shadow-glow-gold border-2 border-[#c9a84c]/50 z-10 mt-6" />
       </div>
 
       <div className={cn(!isLeft ? "flex justify-start" : "")}>

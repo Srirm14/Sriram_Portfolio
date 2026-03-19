@@ -43,14 +43,14 @@ export function Typewriter() {
   return (
     <span className="inline-flex items-baseline">
       <span
-        className={isDev ? "text-[#06b6d4]" : "text-[#39FF14]"}
-        style={{ color: isDev ? "#06b6d4" : "#39FF14" }}
+        className={isDev ? "text-[#e8d5a3]" : "text-[#e63946]"}
+        style={{ color: isDev ? "#e8d5a3" : "#e63946" }}
       >
         {displayText}
       </span>
       <span
         className="ml-0.5 inline-block h-4 w-0.5 animate-blink bg-current"
-        style={{ color: isDev ? "#06b6d4" : "#39FF14" }}
+        style={{ color: isDev ? "#c9a84c" : "#e63946" }}
         aria-hidden
       />
     </span>

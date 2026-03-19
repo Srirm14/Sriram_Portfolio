@@ -58,11 +58,11 @@ export function ModeHint() {
             className="absolute -top-2 right-10 w-3 h-3 rotate-45"
             style={{
               background: isDev
-                ? "rgba(124,58,237,0.9)"
-                : "#39FF14",
+                ? "rgba(201,168,76,0.95)"
+                : "#e63946",
               boxShadow: isDev
-                ? "0 0 8px rgba(124,58,237,0.6)"
-                : "0 0 8px rgba(57,255,20,0.6)",
+                ? "0 0 8px rgba(201,168,76,0.5)"
+                : "0 0 8px rgba(230,57,70,0.6)",
             }}
           />
 
@@ -71,8 +71,8 @@ export function ModeHint() {
             className={cn(
               "relative flex flex-col gap-3 p-4 max-w-[220px]",
               isDev
-                ? "rounded-xl backdrop-blur-[20px] bg-[rgba(10,10,15,0.95)] border border-[rgba(124,58,237,0.3)] shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(124,58,237,0.15)]"
-                : "border-2 border-[#39FF14] bg-[#0a0a0a] shadow-[4px_4px_0px_#39FF14]",
+                ? "rounded-xl backdrop-blur-[20px] bg-[rgba(10,10,11,0.96)] border border-[rgba(201,168,76,0.28)] shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(201,168,76,0.12)]"
+                : "border-2 border-[#e63946] bg-[#0a0a0a] shadow-[4px_4px_0px_#e63946]",
             )}
           >
             {/* Close button */}
@@ -85,8 +85,8 @@ export function ModeHint() {
                 "flex items-center justify-center",
                 "transition-all duration-150",
                 isDev
-                  ? "text-white/25 hover:text-white/60 rounded-full hover:bg-white/5"
-                  : "text-[#39FF14]/40 hover:text-[#39FF14]",
+                  ? "text-[#f0ece4]/30 hover:text-[#f0ece4]/70 rounded-full hover:bg-white/5"
+                  : "text-[#e63946]/40 hover:text-[#e63946]",
               )}
             >
               <X className="w-3 h-3" />
@@ -103,11 +103,11 @@ export function ModeHint() {
                 style={
                   isDev
                     ? {
-                        background: "rgba(124,58,237,0.15)",
-                        border: "1px solid rgba(124,58,237,0.3)",
+                        background: "rgba(201,168,76,0.12)",
+                        border: "1px solid rgba(201,168,76,0.35)",
                       }
                     : {
-                        border: "2px solid #39FF14",
+                        border: "2px solid #e63946",
                         background: "transparent",
                       }
                 }
@@ -123,7 +123,7 @@ export function ModeHint() {
                 >
                   <Sparkles
                     className="w-4 h-4"
-                    style={{ color: isDev ? "#7c3aed" : "#39FF14" }}
+                    style={{ color: isDev ? "#c9a84c" : "#e63946" }}
                   />
                 </motion.div>
               </div>
@@ -132,7 +132,7 @@ export function ModeHint() {
                 <p
                   className={cn(
                     "font-mono text-xs font-semibold leading-tight",
-                    isDev ? "text-white" : "text-[#39FF14] uppercase tracking-wide",
+                    isDev ? "text-[#f0ece4]" : "text-[#e63946] uppercase tracking-wide",
                   )}
                 >
                   {isDev ? "Try designer mode" : "TRY DESIGNER MODE"}
@@ -140,7 +140,7 @@ export function ModeHint() {
                 <p
                   className={cn(
                     "font-mono text-[10px] mt-0.5 leading-relaxed",
-                    isDev ? "text-white/35" : "text-white/30",
+                    isDev ? "text-[#f0ece4]/40" : "text-white/30",
                   )}
                 >
                   {isDev
@@ -159,15 +159,15 @@ export function ModeHint() {
               style={{
                 background: isDev
                   ? "rgba(255,255,255,0.06)"
-                  : "rgba(57,255,20,0.15)",
+                  : "rgba(230,57,70,0.15)",
               }}
             >
               <motion.div
                 className="h-full"
                 style={{
                   background: isDev
-                    ? "linear-gradient(90deg, #7c3aed, #06b6d4)"
-                    : "#39FF14",
+                    ? "linear-gradient(90deg, #c9a84c, #e8d5a3)"
+                    : "#e63946",
                 }}
                 initial={{ width: "100%" }}
                 animate={{ width: "0%" }}

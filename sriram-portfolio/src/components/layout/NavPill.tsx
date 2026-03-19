@@ -38,7 +38,7 @@ function MobileNavLink({
       onClick={() => onNavigate(link.href)}
       className={cn(
         "font-grotesk text-2xl font-semibold transition-colors",
-        isDev ? "text-white hover:text-[#06b6d4]" : "text-white hover:text-[#39FF14]",
+        isDev ? "text-[#f0ece4] hover:text-[#e8d5a3]" : "text-white hover:text-[#e63946]",
       )}
     >
       {link.label}
@@ -62,7 +62,7 @@ function AnchoredNavLink({
         onClick={() => onNavigate(link.href)}
         className={cn(
           "text-sm font-medium transition-colors",
-          isDev ? "text-white/80 hover:text-white" : "text-white/80 hover:text-[#39FF14]",
+          isDev ? "text-[#f0ece4]/85 hover:text-[#f0ece4]" : "text-white/80 hover:text-[#e63946]",
         )}
       >
         {link.label}
@@ -78,13 +78,13 @@ function NavLinkPill({ link, isActive, isDev, onNavigate }: NavLinkPillProps) {
       onClick={() => onNavigate(link.href)}
       className={cn(
         "relative px-3 py-1 rounded-full font-mono text-xs transition-all duration-200",
-        isActive ? "text-white" : "text-white/40 hover:text-white/80",
+        isActive ? "text-[#f0ece4]" : "text-[#f0ece4]/40 hover:text-[#f0ece4]/85",
       )}
     >
       {isActive && (
         <motion.div
           layoutId="nav-active-dev"
-          className="absolute inset-0 rounded-full bg-gradient-to-r from-[#7c3aed]/30 to-[#06b6d4]/30 border border-[#7c3aed]/30"
+          className="absolute inset-0 rounded-full bg-gradient-to-r from-[#c9a84c]/25 to-[#e8d5a3]/20 border border-[#c9a84c]/35"
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
         />
       )}
@@ -96,13 +96,13 @@ function NavLinkPill({ link, isActive, isDev, onNavigate }: NavLinkPillProps) {
       onClick={() => onNavigate(link.href)}
       className={cn(
         "relative px-3 py-1 font-mono text-xs uppercase transition-all duration-150",
-        isActive ? "text-[#39FF14]" : "text-white/40 hover:text-[#39FF14]/70",
+        isActive ? "text-[#e63946]" : "text-white/40 hover:text-[#e63946]/70",
       )}
     >
       {isActive && (
         <motion.div
           layoutId="nav-active-design"
-          className="absolute inset-0 bg-[rgba(57,255,20,0.08)] border border-[#39FF14]/40"
+          className="absolute inset-0 bg-[rgba(230,57,70,0.08)] border border-[#e63946]/40"
           transition={{ type: "spring", stiffness: 500, damping: 35 }}
         />
       )}
@@ -185,8 +185,8 @@ export function NavPill() {
           "flex h-16 w-full items-center justify-between px-6 md:px-12",
           "transition-all duration-300",
           isDev
-            ? "backdrop-blur-[16px] bg-[rgba(10,10,15,0.85)] border-b border-white/[0.06]"
-            : "backdrop-blur-[12px] bg-[rgba(10,10,10,0.9)] border-b border-[rgba(57,255,20,0.15)]",
+            ? "backdrop-blur-[16px] bg-[rgba(10,10,11,0.92)] border-b border-[rgba(201,168,76,0.14)] shadow-[0_4px_28px_rgba(0,0,0,0.45),0_0_0_1px_rgba(201,168,76,0.06),inset_0_1px_0_rgba(240,236,228,0.04)]"
+            : "backdrop-blur-[12px] bg-[rgba(13,13,20,0.9)] border-b border-[rgba(230,57,70,0.2)]",
         )}
       >
         <button
@@ -199,8 +199,8 @@ export function NavPill() {
             className={cn(
               "md:hidden w-8 h-8 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0",
               isDev
-                ? "rounded-full bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] text-white"
-                : "border-2 border-[#39FF14] text-[#39FF14]",
+                ? "rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a3] text-[#0a0a0b]"
+                : "border-2 border-[#e63946] text-[#e63946]",
             )}
           >
             SV
@@ -216,14 +216,14 @@ export function NavPill() {
                 {"Sriram Venkatachalam".split("").map((char, i) => (
                   <span
                     key={i}
-                    className="inline-block transition-all duration-150 hover:text-[#39FF14] hover:-translate-y-0.5"
+                    className="inline-block transition-all duration-150 hover:text-[#e63946] hover:-translate-y-0.5"
                     style={{ transitionDelay: `${i * 15}ms` }}
                   >
                     {char === " " ? "\u00A0" : char}
                   </span>
                 ))}
                 <span
-                  className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#39FF14] group-hover:w-full transition-all duration-300 shadow-[0_0_6px_#39FF14]"
+                  className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#e63946] group-hover:w-full transition-all duration-300 shadow-[0_0_6px_#e63946]"
                 />
               </span>
             )}
@@ -233,7 +233,12 @@ export function NavPill() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
+            className={cn(
+              "md:hidden p-2 transition-colors",
+              isDev
+                ? "text-[#f0ece4]/55 hover:text-[#f0ece4]"
+                : "text-white/60 hover:text-white",
+            )}
             aria-label="Open menu"
           >
             <Menu className="w-5 h-5" />
@@ -267,15 +272,16 @@ export function NavPill() {
         className={cn(
           "relative flex items-center gap-1 px-2 py-2",
           isDev
-            ? "rounded-full backdrop-blur-[20px] bg-[rgba(10,10,15,0.85)] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_0_1px_rgba(124,58,237,0.15)]"
-            : "rounded-none backdrop-blur-[16px] bg-[rgba(10,10,10,0.9)] border-2 border-[rgba(57,255,20,0.3)] shadow-[0_8px_32px_rgba(0,0,0,0.5),4px_4px_0px_rgba(57,255,20,0.15)]",
+            ? "rounded-full backdrop-blur-[20px] bg-[rgba(10,10,11,0.9)] border border-[rgba(201,168,76,0.16)] shadow-[0_12px_40px_rgba(0,0,0,0.55),0_0_0_1px_rgba(201,168,76,0.14),0_0_32px_rgba(201,168,76,0.07)]"
+            : "rounded-none backdrop-blur-[16px] bg-[rgba(13,13,20,0.9)] border-2 border-[rgba(230,57,70,0.35)] shadow-[0_8px_32px_rgba(0,0,0,0.5),4px_4px_0px_#1d3557]",
         )}
       >
         {isDev && (
           <div
             className="absolute inset-0 rounded-full pointer-events-none animate-glow-pulse"
             style={{
-              boxShadow: "0 0 0 1px rgba(124,58,237,0.2)",
+              boxShadow:
+                "0 0 0 1px rgba(201,168,76,0.25), 0 0 20px rgba(201,168,76,0.08)",
               borderRadius: "inherit",
             }}
           />
@@ -286,8 +292,8 @@ export function NavPill() {
           className={cn(
             "w-7 h-7 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0",
             isDev
-              ? "rounded-full bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] text-white hover:scale-110 transition-transform duration-200"
-              : "border-2 border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-150",
+              ? "rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a3] text-[#0a0a0b] hover:scale-110 transition-transform duration-200"
+              : "border-2 border-[#e63946] text-[#e63946] hover:bg-[#e63946] hover:text-[#f1faee] transition-all duration-150",
           )}
         >
           SV
@@ -295,7 +301,7 @@ export function NavPill() {
         <div
           className={cn(
             "w-px h-4 mx-1 flex-shrink-0",
-            isDev ? "bg-white/10" : "bg-[#39FF14]/20",
+            isDev ? "bg-[rgba(201,168,76,0.2)]" : "bg-[#e63946]/20",
           )}
         />
         <div className="hidden items-center gap-0 md:flex">
@@ -312,13 +318,18 @@ export function NavPill() {
         <div
           className={cn(
             "w-px h-4 mx-1 flex-shrink-0",
-            isDev ? "bg-white/10" : "bg-[#39FF14]/20",
+            isDev ? "bg-[rgba(201,168,76,0.2)]" : "bg-[#e63946]/20",
           )}
         />
         <button
           type="button"
           onClick={() => setMobileOpen(true)}
-          className="md:hidden p-1.5 text-white/60 hover:text-white transition-colors"
+          className={cn(
+            "md:hidden p-1.5 transition-colors",
+            isDev
+              ? "text-[#f0ece4]/55 hover:text-[#f0ece4]"
+              : "text-white/60 hover:text-white",
+          )}
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5" />
@@ -344,7 +355,7 @@ export function NavPill() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[9998] bg-[#0a0a0f]/95 backdrop-blur-xl"
+            className="fixed inset-0 z-[9998] bg-[#0a0a0b]/96 backdrop-blur-xl"
           >
             <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-6">
               <button
@@ -364,8 +375,8 @@ export function NavPill() {
                   className={cn(
                     "w-12 h-12 flex items-center justify-center font-mono text-sm font-bold",
                     isDev
-                      ? "rounded-full bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] text-white"
-                      : "border-2 border-[#39FF14] text-[#39FF14]",
+                      ? "rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a3] text-[#0a0a0b]"
+                      : "border-2 border-[#e63946] text-[#e63946]",
                   )}
                 >
                   SV

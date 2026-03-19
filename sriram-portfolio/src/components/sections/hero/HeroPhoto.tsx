@@ -13,7 +13,7 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
   if (mode === "developer") {
     return (
       <div className="relative inline-flex items-center justify-center">
-        {/* Ring 1 — outermost, slowest, purple gradient arc */}
+        {/* Ring 1 — outermost, slowest, gold gradient arc */}
         <div
           className="absolute rounded-full animate-spin"
           style={{
@@ -21,14 +21,14 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
             height: "calc(100% + 72px)",
             animationDuration: "6s",
             border: "1.5px solid transparent",
-            borderTopColor: "#7c3aed",
-            borderRightColor: "rgba(124,58,237,0.15)",
+            borderTopColor: "#c9a84c",
+            borderRightColor: "rgba(201,168,76,0.2)",
             borderBottomColor: "transparent",
-            borderLeftColor: "rgba(6,182,212,0.4)",
-            filter: "drop-shadow(0 0 6px #7c3aed)",
+            borderLeftColor: "rgba(232,213,163,0.45)",
+            filter: "drop-shadow(0 0 6px rgba(201,168,76,0.5))",
           }}
         />
-        {/* Ring 2 — mid, reverse, cyan arc */}
+        {/* Ring 2 — mid, reverse, champagne arc */}
         <div
           className="absolute rounded-full animate-spin"
           style={{
@@ -37,22 +37,22 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
             animationDuration: "4s",
             animationDirection: "reverse",
             border: "1px solid transparent",
-            borderTopColor: "rgba(6,182,212,0.8)",
+            borderTopColor: "rgba(232,213,163,0.85)",
             borderRightColor: "transparent",
-            borderBottomColor: "rgba(6,182,212,0.3)",
+            borderBottomColor: "rgba(232,213,163,0.35)",
             borderLeftColor: "transparent",
-            filter: "drop-shadow(0 0 4px #06b6d4)",
+            filter: "drop-shadow(0 0 4px rgba(232,213,163,0.4))",
           }}
         />
-        {/* Ring 3 — innermost, fastest, dashed purple */}
+        {/* Ring 3 — innermost, fastest, dashed gold */}
         <div
           className="absolute rounded-full animate-spin"
           style={{
             width: "calc(100% + 20px)",
             height: "calc(100% + 20px)",
             animationDuration: "2.5s",
-            border: "1px dashed rgba(124,58,237,0.4)",
-            filter: "drop-shadow(0 0 3px rgba(124,58,237,0.3))",
+            border: "1px dashed rgba(201,168,76,0.45)",
+            filter: "drop-shadow(0 0 3px rgba(201,168,76,0.35))",
           }}
         />
         {/* Glow radial behind image */}
@@ -62,7 +62,7 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
             width: "calc(100% + 80px)",
             height: "calc(100% + 80px)",
             background:
-              "radial-gradient(circle, rgba(124,58,237,0.18) 0%, rgba(6,182,212,0.08) 50%, transparent 75%)",
+              "radial-gradient(circle, rgba(201,168,76,0.2) 0%, rgba(232,213,163,0.08) 50%, transparent 75%)",
             filter: "blur(20px)",
           }}
         />
@@ -73,7 +73,7 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
             width: "calc(100% + 32px)",
             height: "calc(100% + 32px)",
             background:
-              "radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%)",
           }}
         />
         {/* Gradient border ring around image */}
@@ -83,7 +83,7 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
             inset: "-2px",
             padding: "2px",
             background:
-              "linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #7c3aed 100%)",
+              "linear-gradient(135deg, #c9a84c 0%, #e8d5a3 50%, #c9a84c 100%)",
             borderRadius: "9999px",
             WebkitMask:
               "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -162,8 +162,8 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
         className="relative z-10 w-72 h-72 md:w-96 md:h-96
                    flex-shrink-0 overflow-hidden group"
         style={{
-          border: "2px solid #39FF14",
-          boxShadow: "6px 6px 0px #39FF14, -2px -2px 0px rgba(57,255,20,0.2)",
+          border: "2px solid #e63946",
+          boxShadow: "6px 6px 0px #e63946, -2px -2px 0px rgba(230,57,70,0.2)",
         }}
       >
         <Image
@@ -181,7 +181,7 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
           className="absolute inset-0 pointer-events-none z-10"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(57,255,20,0.03) 2px, rgba(57,255,20,0.03) 4px)",
+              "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(230,57,70,0.03) 2px, rgba(230,57,70,0.03) 4px)",
           }}
         />
         {/* Bottom green gradient fade */}
@@ -189,18 +189,18 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
           className="absolute inset-0 pointer-events-none z-10"
           style={{
             background:
-              "linear-gradient(180deg, transparent 50%, rgba(57,255,20,0.15) 100%)",
+              "linear-gradient(180deg, transparent 50%, rgba(230,57,70,0.15) 100%)",
           }}
         />
         {/* Corner accent — top left */}
         <div className="absolute top-0 left-0 z-20 pointer-events-none">
-          <div className="w-6 h-0.5 bg-[#39FF14]" />
-          <div className="w-0.5 h-6 bg-[#39FF14]" />
+          <div className="w-6 h-0.5 bg-[#e63946]" />
+          <div className="w-0.5 h-6 bg-[#e63946]" />
         </div>
         {/* Corner accent — bottom right */}
         <div className="absolute bottom-0 right-0 z-20 pointer-events-none">
-          <div className="w-6 h-0.5 bg-[#39FF14] ml-auto" />
-          <div className="w-0.5 h-6 bg-[#39FF14] ml-auto" />
+          <div className="w-6 h-0.5 bg-[#e63946] ml-auto" />
+          <div className="w-0.5 h-6 bg-[#e63946] ml-auto" />
         </div>
       </div>
       {/* Hard shadow label */}
@@ -209,7 +209,7 @@ export function HeroPhoto({ mode }: HeroPhotoProps) {
                    flex justify-center"
       >
         <span
-          className="font-mono text-xs text-[#39FF14]/50 uppercase
+          className="font-mono text-xs text-[#e63946]/50 uppercase
                      tracking-widest"
         >
           sriram.v

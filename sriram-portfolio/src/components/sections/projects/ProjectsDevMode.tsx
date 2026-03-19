@@ -34,7 +34,7 @@ export function ProjectsDevMode({ projects }: ProjectsDevModeProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
+          <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-3">
             03 — Projects
           </p>
           <h2 className="section-heading-dev">

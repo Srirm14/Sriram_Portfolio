@@ -22,19 +22,19 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
 
       <div
         className="absolute bottom-0 left-0 right-0 h-32
-                    bg-gradient-to-t from-[#0a0a0f] to-transparent
+                    bg-gradient-to-t from-[#0a0a0b] to-transparent
                     pointer-events-none"
       />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         <ScrollReveal variant="blur-in" className="mb-8 md:mb-12 text-center">
-          <p className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest mb-3">
+          <p className="font-mono text-xs text-[#c9a84c] uppercase tracking-widest mb-3">
             05 — Contact
           </p>
           <h2 className="section-heading-dev">
             Let&apos;s <span className="text-gradient-dev">Connect</span>
           </h2>
-          <p className="font-poppins text-white/40 text-sm mt-3 max-w-md mx-auto">
+          <p className="font-poppins text-[#f0ece4]/50 text-sm mt-3 max-w-md mx-auto">
             Open to senior frontend roles in Bengaluru or remote. Hover a card
             to open or copy.
           </p>
@@ -53,7 +53,7 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
         <ScrollReveal
           variant="fade-up"
           delay={0.5}
-          className="text-center font-mono text-xs text-white/15 mt-16"
+          className="text-center font-mono text-xs text-[#f0ece4]/25 mt-16"
         >
           Built with Next.js · Designed & developed by {meta.name}
         </ScrollReveal>

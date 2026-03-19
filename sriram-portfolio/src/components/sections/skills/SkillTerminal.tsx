@@ -17,7 +17,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: "sriram@portfolio",
     delay: 50,
-    color: "#06b6d4",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   { type: "command", content: "ls skills/", delay: 120 },
@@ -26,7 +26,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     content:
       "frameworks/  state/  styling/  forms/  testing/  tooling/",
     delay: 50,
-    color: "#7c3aed",
+    color: "#c9a84c",
   },
   { type: "blank", content: "", delay: 80 },
   { type: "command", content: "cat skills/frameworks", delay: 140 },
@@ -35,7 +35,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     content:
       "TypeScript  JavaScript  Next.js  React  Angular  React Native",
     delay: 50,
-    color: "#a78bfa",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   { type: "command", content: "cat skills/state", delay: 120 },
@@ -43,7 +43,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: "Zustand  Redux  TanStack Query",
     delay: 50,
-    color: "#a78bfa",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   { type: "command", content: "cat skills/styling", delay: 120 },
@@ -51,7 +51,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: "Tailwind CSS  Material UI  Design Systems",
     delay: 50,
-    color: "#a78bfa",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   { type: "command", content: "cat skills/forms", delay: 120 },
@@ -59,7 +59,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: "Formily  React Hook Form  TipTap",
     delay: 50,
-    color: "#a78bfa",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   { type: "command", content: "cat skills/testing", delay: 120 },
@@ -67,7 +67,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: "Playwright (E2E)",
     delay: 50,
-    color: "#a78bfa",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   { type: "command", content: "cat skills/tooling", delay: 120 },
@@ -75,7 +75,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: "Git  Vercel  Figma",
     delay: 50,
-    color: "#a78bfa",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 80 },
   {
@@ -87,7 +87,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     type: "output",
     content: getYearsOfExperience(),
     delay: 50,
-    color: "#06b6d4",
+    color: "#e8d5a3",
   },
   { type: "blank", content: "", delay: 60 },
   {
@@ -95,7 +95,7 @@ const TERMINAL_LINES: TerminalLine[] = [
     content: 'echo "ready for hire"',
     delay: 140,
   },
-  { type: "output", content: "true ✓", delay: 50, color: "#39FF14" },
+  { type: "output", content: "true ✓", delay: 50, color: "#c9a84c" },
   { type: "blank", content: "", delay: 60 },
 ];
 
@@ -129,7 +129,7 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
         <button
           type="button"
           onClick={restart}
-          className="font-mono text-xs text-white/20 hover:text-[#7c3aed] transition-colors duration-200 flex items-center gap-1"
+          className="font-mono text-xs text-white/20 hover:text-[#c9a84c] transition-colors duration-200 flex items-center gap-1"
         >
           <RotateCw className="w-3 h-3" />
           replay
@@ -140,7 +140,7 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
       <div
         className="p-5 font-mono text-sm leading-relaxed overflow-y-auto overscroll-contain"
         style={{
-          background: "rgba(10,10,15,0.95)",
+          background: "rgba(10,10,11,0.96)",
           flex: "1 1 0",
           minHeight: 0,
           maxHeight: "100%",
@@ -154,8 +154,8 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
 
             {line.type === "command" && (
               <div className="flex items-center gap-2 w-full">
-                <span className="text-[#7c3aed] select-none flex-shrink-0">
-                  <span className="text-[#06b6d4]">~/portfolio</span>
+                <span className="text-[#c9a84c] select-none flex-shrink-0">
+                  <span className="text-[#e8d5a3]">~/portfolio</span>
                   <span className="text-white/40"> $ </span>
                 </span>
                 <span className="text-white">{line.content}</span>
@@ -166,7 +166,7 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
               <div className="pl-0 w-full">
                 <span
                   className="leading-relaxed"
-                  style={{ color: line.color ?? "#a78bfa" }}
+                  style={{ color: line.color ?? "#e8d5a3" }}
                 >
                   {line.content}
                 </span>
@@ -177,9 +177,9 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
 
         {/* Blinking cursor at end */}
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-[#06b6d4]">~/portfolio</span>
+          <span className="text-[#e8d5a3]">~/portfolio</span>
           <span className="text-white/40"> $ </span>
-          <span className="w-2 h-4 bg-[#7c3aed] animate-blink inline-block" />
+          <span className="w-2 h-4 bg-[#c9a84c] animate-blink inline-block" />
         </div>
 
         <div ref={bottomRef} />

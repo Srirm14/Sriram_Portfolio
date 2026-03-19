@@ -36,10 +36,10 @@ export function ModeToggle() {
                 mode === opt.value
                   ? opt.value === "designer"
                     ? "text-black"
-                    : "text-white"
+                    : "text-[#0a0a0b]"
                   : opt.value === "developer"
-                    ? "text-white/50 hover:text-white"
-                    : "text-white hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]",
+                    ? "text-[#f0ece4]/45 hover:text-[#f0ece4]/80"
+                    : "text-white hover:drop-shadow-[0_0_8px_rgba(230,57,70,0.5)]",
               )}
             >
               <Icon className="size-3.5 shrink-0" strokeWidth={2.5} />
@@ -50,7 +50,7 @@ export function ModeToggle() {
         {mode === "developer" ? (
           <motion.div
             layoutId="mode-toggle-indicator"
-            className="absolute inset-y-0.5 left-0.5 z-0 w-[calc(50%-4px)] rounded-full bg-gradient-to-r from-[#7c3aed] to-[#06b6d4]"
+            className="absolute inset-y-0.5 left-0.5 z-0 w-[calc(50%-4px)] rounded-full bg-gradient-to-r from-[#c9a84c] to-[#e8d5a3]"
             transition={{
               type: "spring",
               stiffness: 400,
@@ -60,7 +60,7 @@ export function ModeToggle() {
         ) : (
           <motion.div
             layoutId="mode-toggle-indicator"
-            className="absolute inset-y-0.5 left-[calc(50%+2px)] z-0 w-[calc(50%-4px)] rounded-full bg-[#39FF14]"
+            className="absolute inset-y-0.5 left-[calc(50%+2px)] z-0 w-[calc(50%-4px)] rounded-full bg-[#e63946]"
             transition={{
               type: "spring",
               stiffness: 400,

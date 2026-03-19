@@ -30,13 +30,13 @@ export function HeroBackground() {
               >
                 <path
                   d="M 0 40 L 80 40"
-                  stroke="#39FF14"
+                  stroke="#e63946"
                   strokeWidth="1"
                   fill="none"
                 />
                 <path
                   d="M 40 0 L 40 80"
-                  stroke="#39FF14"
+                  stroke="#e63946"
                   strokeWidth="1"
                   fill="none"
                 />
@@ -46,19 +46,19 @@ export function HeroBackground() {
           </svg>
         </div>
         <motion.div
-          className="absolute bottom-20 left-10 h-1 w-32 bg-[#39FF14]"
+          className="absolute bottom-20 left-10 h-1 w-32 bg-[#e63946]"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 0.3, x: 0 }}
           transition={{ duration: 0.6 }}
         />
         <motion.div
-          className="absolute right-20 top-1/3 h-1 w-24 rotate-45 bg-[#39FF14]"
+          className="absolute right-20 top-1/3 h-1 w-24 rotate-45 bg-[#e63946]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.2 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         />
         <motion.div
-          className="absolute left-1/4 top-20 h-1 w-20 -rotate-12 bg-[#39FF14]"
+          className="absolute left-1/4 top-20 h-1 w-20 -rotate-12 bg-[#e63946]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.25 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -74,17 +74,17 @@ export function HeroBackground() {
     >
       <div className="absolute inset-0 bg-gradient-dev-soft opacity-50" />
       <motion.div
-        className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-[#7c3aed]/20 blur-3xl"
+        className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-[#c9a84c]/18 blur-3xl"
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 h-48 w-48 rounded-full bg-[#06b6d4]/20 blur-3xl"
+        className="absolute bottom-1/4 right-1/4 h-48 w-48 rounded-full bg-[#e8d5a3]/14 blur-3xl"
         animate={{ y: [0, 15, 0], rotate: [0, -3, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute left-1/2 top-1/3 h-32 w-32 rounded-full bg-[#7c3aed]/15 blur-2xl"
+        className="absolute left-1/2 top-1/3 h-32 w-32 rounded-full bg-[#c9a84c]/14 blur-2xl"
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />

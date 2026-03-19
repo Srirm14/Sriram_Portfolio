@@ -15,7 +15,7 @@ export function HeroTypewriter({ mode, words }: HeroTypewriterProps) {
   if (mode === "developer") {
     return (
       <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-base md:text-lg">
-        <span className="text-white/30">—</span>
+        <span className="text-[#f0ece4]/35">—</span>
         <span
           className={cn(
             "text-gradient-dev transition-opacity duration-300",
@@ -24,16 +24,16 @@ export function HeroTypewriter({ mode, words }: HeroTypewriterProps) {
         >
           {displayed}
         </span>
-        <span className="text-[#7c3aed] animate-blink">|</span>
+        <span className="text-[#c9a84c] animate-blink">|</span>
       </div>
     );
   }
 
   return (
     <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-sm md:text-lg">
-      <span className="text-[#39FF14]/40">{"// "}</span>
-      <span className="text-[#39FF14] font-bold">{displayed}</span>
-      <span className="text-[#39FF14] animate-blink">_</span>
+      <span className="text-[#e63946]/40">{"// "}</span>
+      <span className="text-[#e63946] font-bold">{displayed}</span>
+      <span className="text-[#e63946] animate-blink">_</span>
     </div>
   );
 }

@@ -140,7 +140,7 @@ export const projects: ProjectItem[] = [
     tags: [],
     designTags: ["UI/UX", "Design System", "Multi-role"],
     gradient: {
-      from: "#39FF14",
+      from: "#e63946",
       via: "#16a34a",
       to: "#0891b2",
     },

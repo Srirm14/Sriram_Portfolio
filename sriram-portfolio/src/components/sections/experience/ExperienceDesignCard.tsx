@@ -28,22 +28,22 @@ function CardContent({ item }: { item: ExperienceItem }) {
         <p className="font-bebas text-lg text-white">
           {company}
         </p>
-        <span className="px-2 py-0.5 border border-[#39FF14]/50 font-mono text-xs text-[#39FF14] uppercase">
+        <span className="px-2 py-0.5 border border-[#e63946]/50 font-mono text-xs text-[#e63946] uppercase">
           {type}
         </span>
       </div>
-      <p className="font-mono text-sm text-[#39FF14]/70 mt-1">{roleDesign}</p>
+      <p className="font-mono text-sm text-[#e63946]/70 mt-1">{roleDesign}</p>
       <p className="font-mono text-xs text-white/30 mt-2">
         {duration}
-        <span className="text-[#39FF14]/30"> · </span>
+        <span className="text-[#e63946]/30"> · </span>
         {location}
       </p>
 
-      <div className="w-full h-px bg-[#39FF14]/20 my-4" />
+      <div className="w-full h-px bg-[#e63946]/20 my-4" />
 
       {designBullets.map((bullet, i) => (
         <div key={i} className="flex gap-3 mb-3">
-          <span className="text-[#39FF14] font-mono text-xs mt-0.5 flex-shrink-0">
+          <span className="text-[#e63946] font-mono text-xs mt-0.5 flex-shrink-0">
             →
           </span>
           <p className="font-poppins text-sm text-white/60 leading-relaxed">
@@ -53,7 +53,7 @@ function CardContent({ item }: { item: ExperienceItem }) {
       ))}
 
       {designTools.length > 0 && (
-        <div className="mt-4 pt-4 border-t-2 border-[#39FF14]/20 flex flex-wrap gap-2">
+        <div className="mt-4 pt-4 border-t-2 border-[#e63946]/20 flex flex-wrap gap-2">
           {designTools.map((tool) => (
             <span key={tool} className="skill-pill-design">
               {tool}
@@ -83,7 +83,7 @@ export function ExperienceDesignCard({
           damping: 25,
           delay: index * 0.12,
         }}
-        className="border-l-2 border-[#39FF14]/30 pl-6"
+        className="border-l-2 border-[#e63946]/30 pl-6"
       >
         <CardContent item={item} />
       </motion.div>
@@ -108,7 +108,7 @@ export function ExperienceDesignCard({
       </div>
 
       <div className="flex flex-col items-center">
-        <div className="w-3 h-3 bg-[#39FF14] shadow-glow-green border-2 border-[#39FF14]/50 z-10 mt-6 rounded-none" />
+        <div className="w-3 h-3 bg-design-red shadow-glow-design border-2 border-design-red/50 z-10 mt-6 rounded-none" />
       </div>
 
       <div className={cn(!isLeft ? "flex justify-start" : "")}>
