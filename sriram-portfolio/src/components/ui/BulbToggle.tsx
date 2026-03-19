@@ -5,7 +5,88 @@ import { useLightDark } from "@/context/LightDarkContext";
 import { useModeStore } from "@/store";
 import { cn } from "@/lib/utils";
 
-export function BulbToggle() {
+export type BulbToggleVariant = "compact" | "hanging";
+
+interface BulbToggleProps {
+  readonly variant?: BulbToggleVariant;
+}
+
+/** Sun/moon — anchored top nav; dev theme uses gold glow (no purple). */
+function BulbToggleCompact() {
+  const { isLight, toggleLightDark } = useLightDark();
+  const mode = useModeStore((s) => s.mode);
+  const isDev = mode === "developer";
+
+  const primaryColor = isDev
+    ? isLight
+      ? "#c9a84c"
+      : "rgba(201,168,76,0.4)"
+    : isLight
+      ? "#e63946"
+      : "rgba(230,57,70,0.35)";
+
+  const glowColor = isDev ? "rgba(201,168,76,0.45)" : "rgba(230,57,70,0.4)";
+  const glowColorOuter = isDev ? "rgba(201,168,76,0.2)" : "rgba(230,57,70,0.15)";
+
+  return (
+    <button
+      type="button"
+      onClick={toggleLightDark}
+      aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
+      className={cn(
+        "flex h-6 w-6 cursor-pointer items-center justify-center",
+        "rounded-full transition-all duration-500",
+      )}
+      style={{
+        boxShadow: isLight
+          ? `0 0 8px 2px ${glowColor}, 0 0 16px 4px ${glowColorOuter}`
+          : "none",
+        background: isLight
+          ? isDev
+            ? "rgba(201,168,76,0.1)"
+            : "rgba(230,57,70,0.08)"
+          : "transparent",
+      }}
+    >
+      {isLight ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <circle cx="12" cy="12" r="5" fill={primaryColor} opacity="0.9" />
+          {Array.from({ length: 8 }).map((_, i) => {
+            const angleDeg = i * 45;
+            const angle = (angleDeg * Math.PI) / 180;
+            const inner = 7.5;
+            const outer = 10.5;
+            return (
+              <line
+                key={`sun-ray-${angleDeg}`}
+                x1={12 + inner * Math.cos(angle)}
+                y1={12 + inner * Math.sin(angle)}
+                x2={12 + outer * Math.cos(angle)}
+                y2={12 + outer * Math.sin(angle)}
+                stroke={primaryColor}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                opacity="0.85"
+              />
+            );
+          })}
+        </svg>
+      ) : (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M21 12.79A9 9 0 1 1 11.21 3
+               a7 7 0 0 0 9.79 9.79z"
+            fill={primaryColor}
+            opacity="0.7"
+          />
+        </svg>
+      )}
+    </button>
+  );
+}
+
+/** Original hanging bulb + wire — floating nav pill only. */
+function BulbToggleHanging() {
   const { isLight, toggleLightDark } = useLightDark();
   const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
@@ -68,13 +149,7 @@ export function BulbToggle() {
         }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
-        <svg
-          width="20"
-          height="28"
-          viewBox="0 0 20 28"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           {isLight && (
             <motion.circle
               cx="10"
@@ -176,4 +251,11 @@ export function BulbToggle() {
       </div>
     </button>
   );
+}
+
+export function BulbToggle({ variant = "compact" }: BulbToggleProps) {
+  if (variant === "hanging") {
+    return <BulbToggleHanging />;
+  }
+  return <BulbToggleCompact />;
 }

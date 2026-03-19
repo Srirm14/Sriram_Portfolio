@@ -147,10 +147,10 @@ export default function RootLayout({
 (function() {
   try {
     var saved = localStorage.getItem('lightDark');
-    var mode = (saved === 'dark') ? 'dark' : 'light';
+    var mode = (saved === 'light') ? 'light' : 'dark';
     document.documentElement.classList.add('ld-' + mode);
   } catch (e) {
-    document.documentElement.classList.add('ld-light');
+    document.documentElement.classList.add('ld-dark');
   }
 })();
 `,

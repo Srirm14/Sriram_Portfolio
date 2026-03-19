@@ -20,7 +20,7 @@ interface LightDarkContextValue {
 const LightDarkContext = createContext<LightDarkContextValue | null>(null);
 
 export function LightDarkProvider({ children }: { children: ReactNode }) {
-  const [lightDark, setLightDark] = useState<LightDark>("light");
+  const [lightDark, setLightDark] = useState<LightDark>("dark");
 
   useEffect(() => {
     const saved = localStorage.getItem("lightDark") as LightDark;

@@ -263,7 +263,10 @@ export function NavPill() {
               />
             ))}
           </ul>
-          <ModeToggle />
+          <div className="flex items-center gap-3">
+            <BulbToggle />
+            <ModeToggle />
+          </div>
         </div>
       </div>
     </motion.header>
@@ -352,7 +355,7 @@ export function NavPill() {
         className="absolute"
         style={{ right: "-4px", top: "100%", marginTop: "0px" }}
       >
-        <BulbToggle />
+        <BulbToggle variant="hanging" />
       </div>
     </motion.div>
   );
