@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, Download } from "lucide-react";
+import { ArrowDown, Download, Send } from "lucide-react";
 import { useLightDark } from "@/context/LightDarkContext";
 import { HeroBackground } from "./HeroBackground";
 import { HeroStats } from "./HeroStats";
@@ -55,6 +55,17 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             >
               {meta.name}
             </motion.h1>
+            <motion.p
+              {...fadeUp}
+              transition={{
+                duration: 0.45,
+                delay: 0.04,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-mono text-sm text-[rgba(28,22,18,0.6)] mt-1"
+            >
+              — {((meta as { devRole?: string; title: string }).devRole) ?? ((meta as { devRole?: string; title: string }).title)}
+            </motion.p>
           </div>
 
           <motion.p
@@ -89,6 +100,18 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             >
               <ArrowDown className="h-4 w-4" />
               View Experience
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="dev-btn-outline flex items-center gap-2"
+            >
+              <Send className="h-4 w-4" />
+              Apply
             </button>
             <Link
               href={meta.resume}
@@ -152,6 +175,17 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
           >
             {meta.name}
           </motion.h1>
+          <motion.p
+            {...fadeUp}
+            transition={{
+              duration: 0.45,
+              delay: 0.04,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="font-mono text-sm text-[rgba(232,228,218,0.65)] mt-1"
+          >
+            — {((meta as { devRole?: string; title: string }).devRole) ?? ((meta as { devRole?: string; title: string }).title)}
+          </motion.p>
         </div>
 
         <motion.p
@@ -186,6 +220,18 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
           >
             <ArrowDown className="h-4 w-4" />
             View Experience
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="dev-btn-outline flex items-center gap-2"
+          >
+            <Send className="h-4 w-4" />
+            Apply
           </button>
           <Link
             href={meta.resume}

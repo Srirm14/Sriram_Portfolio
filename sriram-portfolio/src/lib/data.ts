@@ -28,6 +28,7 @@ export function getMeta() {
   return {
     name: "Sriram Venkatachalam",
     title: "Senior Frontend Engineer",
+    devRole: "Senior Software Developer",
     subtitle: `${getYearsOfExperience()} Years · React · Next.js · TypeScript`,
     location: "Bengaluru, India",
     availability: "Open to roles · Bengaluru / Remote",
