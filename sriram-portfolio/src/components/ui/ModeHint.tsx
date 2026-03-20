@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles } from "lucide-react";
 import { useLightDark } from "@/context/LightDarkContext";
@@ -8,9 +8,10 @@ import { useModeStore } from "@/store";
 import { cn } from "@/lib/utils";
 
 export function ModeHint() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [dismissed, setDismissed] = useState(false);
   const mode = useModeStore((s) => s.mode);
+  const prevModeRef = useRef(mode);
   const isDev = mode === "developer";
   const { isLight } = useLightDark();
 
@@ -19,10 +20,14 @@ export function ModeHint() {
     setDismissed(true);
   }, []);
 
+  // When mode switches: hide (defer setState to next tick)
   useEffect(() => {
-    // Show immediately — always visible for testing
-    setVisible(true);
-  }, []);
+    if (prevModeRef.current !== mode) {
+      prevModeRef.current = mode;
+      const id = setTimeout(() => setVisible(false), 0);
+      return () => clearTimeout(id);
+    }
+  }, [mode]);
 
   // Don't render if already dismissed
   if (dismissed) return null;
