@@ -4,6 +4,7 @@
 
 /* Dev / Moonknight palette — used when data-mode="developer" */
 :root {
+  --font-big-shoulders: "Big Shoulders Display", system-ui, sans-serif;
   --pearl: #f0ece4;
   --pearl-dim: rgba(240, 236, 228, 0.65);
   --pearl-muted: rgba(240, 236, 228, 0.4);
@@ -89,621 +90,25 @@
   }
 
   /* ═══════════════════════════════════════
-     DESIGNER THEMES — Spiderman is default
+     DESIGNER THEMES — KTM
   ═══════════════════════════════════════ */
 
-  .theme-spiderman {
-    --theme-primary: #e63946;
-    --theme-secondary: #1d3557;
-    --theme-accent: #457b9d;
-    --theme-bg: #0d0d14;
-    --theme-surface: #12121e;
-    --theme-text: #f1faee;
-    --theme-text-muted: rgba(241, 250, 238, 0.5);
-    --theme-border: rgba(230, 57, 70, 0.4);
-    --theme-glow: rgba(230, 57, 70, 0.2);
-    --theme-gradient: linear-gradient(135deg, #e63946 0%, #1d3557 100%);
+  .theme-ktm {
+    --theme-primary: #e85d00;
+    --theme-secondary: #1a1a1a;
+    --theme-accent: #ff7a1a;
+    --theme-bg: #fff8f2;
+    --theme-surface: #fff3ea;
+    --theme-text: #0f0f0f;
+    --theme-text-muted: rgba(15, 15, 15, 0.48);
+    --theme-border: rgba(232, 93, 0, 0.32);
+    --theme-glow: rgba(232, 93, 0, 0.14);
+    --theme-gradient: linear-gradient(135deg, #e85d00 0%, #ff7a1a 100%);
     --theme-pill-bg: transparent;
-    --theme-pill-border: rgba(230, 57, 70, 0.5);
-    --theme-pill-text: #e63946;
-    --theme-shadow: 4px 4px 0px #1d3557;
+    --theme-pill-border: rgba(232, 93, 0, 0.38);
+    --theme-pill-text: #e85d00;
+    --theme-shadow: 4px 4px 0px #1a1a1a;
   }
-
-  .theme-academia-dark {
-    --theme-primary: #c9a84c;
-    --theme-secondary: #8b6914;
-    --theme-accent: #d4a843;
-    --theme-bg: #1a1208;
-    --theme-surface: #231908;
-    --theme-text: #f0e0c0;
-    --theme-text-muted: rgba(240, 224, 192, 0.55);
-    --theme-border: rgba(201, 168, 76, 0.35);
-    --theme-glow: rgba(201, 168, 76, 0.18);
-    --theme-gradient: linear-gradient(135deg, #c9a84c 0%, #8b6914 100%);
-    --theme-pill-bg: rgba(201, 168, 76, 0.08);
-    --theme-pill-border: rgba(201, 168, 76, 0.4);
-    --theme-pill-text: #c9a84c;
-    --theme-shadow: 4px 4px 0px #8b6914;
-    --theme-font-display: var(--font-syne);
-  }
-
-  .theme-academia-light {
-    --theme-primary: #8b6914;
-    --theme-secondary: #2c1a0e;
-    --theme-accent: #c9a84c;
-    --theme-bg: #f5e6c8;
-    --theme-surface: #ede0c4;
-    --theme-text: #1a0f05;
-    --theme-text-muted: rgba(26, 15, 5, 0.55);
-    --theme-border: rgba(139, 105, 20, 0.4);
-    --theme-glow: rgba(139, 105, 20, 0.15);
-    --theme-gradient: linear-gradient(135deg, #8b6914 0%, #2c1a0e 100%);
-    --theme-pill-bg: rgba(139, 105, 20, 0.08);
-    --theme-pill-border: rgba(139, 105, 20, 0.4);
-    --theme-pill-text: #8b6914;
-    --theme-shadow: 4px 4px 0px #2c1a0e;
-    --theme-font-display: var(--font-syne);
-  }
-
-  .theme-bauhaus {
-    --theme-primary: #e63946;
-    --theme-secondary: #ffd60a;
-    --theme-accent: #023e8a;
-    --theme-bg: #f8f8f8;
-    --theme-surface: #ffffff;
-    --theme-text: #111111;
-    color-scheme: light;
-  }
-}
-
-/* ═══════════════════════════════════════
-   SPIDERMAN THEME OVERRIDES
- ═══════════════════════════════════════ */
-
-/* Base bg */
-.theme-spiderman .bg-design,
-.theme-spiderman section {
-  background-color: #0d0d14;
-}
-
-/* Web crosshatch pattern */
-.theme-spiderman .line-grid {
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      rgba(230, 57, 70, 0.04) 0px,
-      rgba(230, 57, 70, 0.04) 1px,
-      transparent 1px,
-      transparent 36px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(29, 53, 87, 0.05) 0px,
-      rgba(29, 53, 87, 0.05) 1px,
-      transparent 1px,
-      transparent 36px
-    ) !important;
-  background-size: 36px 36px !important;
-}
-
-/* Dot grid red tint */
-.theme-spiderman .dot-grid {
-  background-image: radial-gradient(
-    rgba(230, 57, 70, 0.07) 1px,
-    transparent 1px
-  ) !important;
-}
-
-/* Cards */
-.theme-spiderman .brutal-card {
-  border-color: #e63946 !important;
-  box-shadow: 4px 4px 0px #1d3557 !important;
-  background: #12121e !important;
-}
-.theme-spiderman .brutal-card:hover {
-  border-color: #e63946 !important;
-  box-shadow: 6px 6px 0px #1d3557 !important;
-}
-
-/* Buttons */
-.theme-spiderman .brutal-btn {
-  background: #e63946;
-  color: #f1faee;
-  border-color: #e63946;
-  box-shadow: 4px 4px 0px #1d3557;
-}
-.theme-spiderman .brutal-btn:hover {
-  background: #1d3557;
-  color: #f1faee;
-  border-color: #1d3557;
-  box-shadow: 6px 6px 0px #e63946;
-}
-.theme-spiderman .brutal-btn-outline {
-  border-color: #e63946;
-  color: #e63946;
-  box-shadow: 4px 4px 0px #1d3557;
-}
-.theme-spiderman .brutal-btn-outline:hover {
-  background: #e63946;
-  color: #f1faee;
-  box-shadow: 6px 6px 0px #1d3557;
-}
-
-/* Skill pills */
-.theme-spiderman .skill-pill-design {
-  border-color: rgba(230, 57, 70, 0.45);
-  color: #e63946;
-  background: transparent;
-}
-.theme-spiderman .skill-pill-design:hover {
-  background: #e63946;
-  border-color: #e63946;
-  color: #f1faee;
-  box-shadow: 2px 2px 0px #1d3557;
-}
-
-/* Section headings */
-.theme-spiderman .section-heading-design span {
-  color: #e63946;
-}
-
-/* Divider lines */
-.theme-spiderman .h-1.bg-\[\#39FF14\] {
-  background: linear-gradient(
-    90deg,
-    #e63946,
-    #1d3557
-  ) !important;
-}
-
-/* Availability badge */
-.theme-spiderman .badge-available-design {
-  border-color: #e63946;
-  color: #e63946;
-}
-
-/* Timeline line */
-.theme-spiderman .experience-timeline-line {
-  background: linear-gradient(
-    180deg,
-    #e63946,
-    #1d3557
-  ) !important;
-  opacity: 0.5;
-}
-
-/* Top accent bar on sections */
-.theme-spiderman [class*="h-0.5"][class*="bg-\[#39FF14\]"],
-.theme-spiderman .absolute.top-0.left-0.right-0 {
-  background: linear-gradient(
-    90deg,
-    #e63946,
-    #1d3557,
-    #e63946
-  ) !important;
-  opacity: 0.5;
-}
-
-/* Navbar designer border */
-.theme-spiderman header {
-  border-bottom-color: rgba(230, 57, 70, 0.25) !important;
-}
-
-/* Scrollbar */
-.theme-spiderman ::-webkit-scrollbar-thumb {
-  background: rgba(230, 57, 70, 0.35);
-}
-.theme-spiderman ::-webkit-scrollbar-thumb:hover {
-  background: rgba(230, 57, 70, 0.6);
-}
-
-/* Text color on dark bg */
-.theme-spiderman .text-white {
-  color: #f1faee;
-}
-.theme-spiderman .text-\[\#39FF14\] {
-  color: #e63946 !important;
-}
-.theme-spiderman .border-\[\#39FF14\] {
-  border-color: #e63946 !important;
-}
-.theme-spiderman .text-\[\#39FF14\]\/60,
-.theme-spiderman .text-\[\#39FF14\]\/40,
-.theme-spiderman .text-\[\#39FF14\]\/50 {
-  color: rgba(230, 57, 70, 0.6) !important;
-}
-
-/* ModeHint tooltip in spiderman */
-.theme-spiderman ~ [class*="ModeHint"] {
-  border-color: #e63946 !important;
-  box-shadow: 4px 4px 0px #1d3557 !important;
-}
-
-/* ═══════════════════════════════════════
-   ACADEMIA DARK
-═══════════════════════════════════════ */
-
-/* Base backgrounds */
-.theme-academia-dark body,
-.theme-academia-dark .bg-design,
-.theme-academia-dark section {
-  background-color: #1a1208 !important;
-}
-
-/* Warm parchment text — never pure white */
-.theme-academia-dark .text-white {
-  color: #f0e0c0 !important;
-}
-.theme-academia-dark .text-white\/70,
-.theme-academia-dark .text-white\/60 {
-  color: rgba(240, 224, 192, 0.65) !important;
-}
-.theme-academia-dark .text-white\/50,
-.theme-academia-dark .text-white\/40 {
-  color: rgba(240, 224, 192, 0.45) !important;
-}
-.theme-academia-dark .text-white\/30,
-.theme-academia-dark .text-white\/25,
-.theme-academia-dark .text-white\/20 {
-  color: rgba(240, 224, 192, 0.28) !important;
-}
-
-/* Section heading accent */
-.theme-academia-dark .section-heading-design span,
-.theme-academia-dark [class*="text-\[#e63946\]"] {
-  color: #c9a84c !important;
-}
-
-/* Accent label text */
-.theme-academia-dark [class*="text-\[#e63946\]\/60"],
-.theme-academia-dark [class*="text-design-red"] {
-  color: rgba(201, 168, 76, 0.6) !important;
-}
-
-/* Heading underline bar */
-.theme-academia-dark .w-24.h-1 {
-  background: linear-gradient(90deg, #c9a84c, #8b6914) !important;
-}
-
-/* Top section accent line */
-.theme-academia-dark .absolute.top-0.left-0.right-0.h-0\.5,
-.theme-academia-dark [class*="h-0.5"] {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #c9a84c,
-    #8b6914,
-    transparent
-  ) !important;
-  opacity: 0.5 !important;
-}
-
-/* Brutal cards — gold border + warm surface */
-.theme-academia-dark .brutal-card {
-  background: #231908 !important;
-  border-color: #c9a84c !important;
-  border-width: 1.5px !important;
-  box-shadow: 4px 4px 0px #8b6914 !important;
-}
-.theme-academia-dark .brutal-card:hover {
-  border-color: #d4a843 !important;
-  box-shadow: 6px 6px 0px #8b6914 !important;
-}
-
-/* Glass cards — warm tinted */
-.theme-academia-dark .glass-card {
-  background: rgba(35, 25, 8, 0.85) !important;
-  border-color: rgba(201, 168, 76, 0.2) !important;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(201, 168, 76, 0.1) !important;
-}
-.theme-academia-dark .glass-card:hover {
-  border-color: rgba(201, 168, 76, 0.35) !important;
-  box-shadow:
-    0 8px 32px rgba(201, 168, 76, 0.12),
-    inset 0 0 0 1px rgba(201, 168, 76, 0.18) !important;
-}
-
-/* Skill pills */
-.theme-academia-dark .skill-pill-design,
-.theme-academia-dark .skill-pill-dev {
-  background: rgba(201, 168, 76, 0.07) !important;
-  border-color: rgba(201, 168, 76, 0.35) !important;
-  color: #c9a84c !important;
-}
-.theme-academia-dark .skill-pill-design:hover,
-.theme-academia-dark .skill-pill-dev:hover {
-  background: rgba(201, 168, 76, 0.18) !important;
-  border-color: rgba(201, 168, 76, 0.6) !important;
-  color: #f0e0c0 !important;
-}
-
-/* Buttons */
-.theme-academia-dark .brutal-btn {
-  background: #c9a84c;
-  color: #1a1208;
-  border-color: #c9a84c;
-  box-shadow: 4px 4px 0px #8b6914;
-  font-family: var(--font-syne);
-}
-.theme-academia-dark .brutal-btn:hover {
-  background: #8b6914;
-  color: #f0e0c0;
-  box-shadow: 6px 6px 0px #c9a84c;
-}
-.theme-academia-dark .brutal-btn-outline {
-  border-color: #c9a84c;
-  color: #c9a84c;
-  box-shadow: 4px 4px 0px #8b6914;
-}
-.theme-academia-dark .brutal-btn-outline:hover {
-  background: #c9a84c;
-  color: #1a1208;
-}
-
-/* Availability badge */
-.theme-academia-dark .badge-available-design {
-  border-color: #c9a84c;
-  color: #c9a84c;
-  background: rgba(201, 168, 76, 0.08);
-}
-
-/* Timeline line */
-.theme-academia-dark .experience-timeline-line {
-  background: linear-gradient(180deg, #c9a84c, #8b6914) !important;
-  opacity: 0.4 !important;
-}
-
-/* Nav border */
-.theme-academia-dark header {
-  border-bottom-color: rgba(201, 168, 76, 0.2) !important;
-}
-
-/* Line grid — warm tone */
-.theme-academia-dark .line-grid {
-  background-image:
-    linear-gradient(rgba(201, 168, 76, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 168, 76, 0.05) 1px, transparent 1px) !important;
-}
-
-/* Dot grid — warm */
-.theme-academia-dark .dot-grid {
-  background-image: radial-gradient(
-    rgba(201, 168, 76, 0.08) 1px,
-    transparent 1px
-  ) !important;
-}
-
-/* Scrollbar */
-.theme-academia-dark ::-webkit-scrollbar-track {
-  background: #1a1208;
-}
-.theme-academia-dark ::-webkit-scrollbar-thumb {
-  background: rgba(201, 168, 76, 0.3);
-}
-.theme-academia-dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(201, 168, 76, 0.55);
-}
-
-/* Font overrides — Syne for headings, Poppins for body */
-.theme-academia-dark h1,
-.theme-academia-dark h2,
-.theme-academia-dark h3 {
-  font-family: var(--font-syne) !important;
-  letter-spacing: 0.02em;
-}
-.theme-academia-dark .font-mono {
-  font-family: var(--font-jetbrains) !important;
-  color: rgba(201, 168, 76, 0.7);
-}
-
-/* Project cards illustration overlay */
-.theme-academia-dark .brutal-card .absolute.bottom-0 {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(26, 18, 8, 0.97)
-  ) !important;
-}
-
-/* ═══════════════════════════════════════
-   ACADEMIA LIGHT
-═══════════════════════════════════════ */
-
-/* Parchment base */
-.theme-academia-light body,
-.theme-academia-light .bg-design,
-.theme-academia-light section {
-  background-color: #f5e6c8 !important;
-  color-scheme: light;
-}
-
-/* Dark brown text — never black */
-.theme-academia-light .text-white {
-  color: #1a0f05 !important;
-}
-.theme-academia-light .text-white\/70,
-.theme-academia-light .text-white\/60 {
-  color: rgba(26, 15, 5, 0.65) !important;
-}
-.theme-academia-light .text-white\/50,
-.theme-academia-light .text-white\/40 {
-  color: rgba(26, 15, 5, 0.45) !important;
-}
-.theme-academia-light .text-white\/30,
-.theme-academia-light .text-white\/25,
-.theme-academia-light .text-white\/20 {
-  color: rgba(26, 15, 5, 0.28) !important;
-}
-
-/* Accent color */
-.theme-academia-light .section-heading-design span,
-.theme-academia-light [class*="text-\[#e63946\]"] {
-  color: #8b6914 !important;
-}
-.theme-academia-light [class*="text-\[#e63946\]\/60"],
-.theme-academia-light [class*="text-design-red"] {
-  color: rgba(139, 105, 20, 0.6) !important;
-}
-
-/* Heading bar */
-.theme-academia-light .w-24.h-1 {
-  background: linear-gradient(90deg, #8b6914, #2c1a0e) !important;
-}
-
-/* Top line */
-.theme-academia-light .absolute.top-0.left-0.right-0.h-0\.5,
-.theme-academia-light [class*="h-0.5"] {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #8b6914,
-    #2c1a0e,
-    transparent
-  ) !important;
-  opacity: 0.4 !important;
-}
-
-/* Brutal cards — parchment surface dark border */
-.theme-academia-light .brutal-card {
-  background: #ede0c4 !important;
-  border-color: #2c1a0e !important;
-  border-width: 2px !important;
-  box-shadow: 4px 4px 0px #8b6914 !important;
-}
-.theme-academia-light .brutal-card:hover {
-  border-color: #1a0f05 !important;
-  box-shadow: 6px 6px 0px #8b6914 !important;
-}
-
-/* Glass cards */
-.theme-academia-light .glass-card {
-  background: rgba(237, 224, 196, 0.9) !important;
-  border-color: rgba(139, 105, 20, 0.3) !important;
-  box-shadow:
-    0 4px 24px rgba(44, 26, 14, 0.15),
-    inset 0 0 0 1px rgba(139, 105, 20, 0.15) !important;
-}
-.theme-academia-light .glass-card:hover {
-  border-color: rgba(139, 105, 20, 0.5) !important;
-  box-shadow:
-    0 8px 32px rgba(139, 105, 20, 0.2),
-    inset 0 0 0 1px rgba(139, 105, 20, 0.25) !important;
-}
-
-/* Skill pills */
-.theme-academia-light .skill-pill-design,
-.theme-academia-light .skill-pill-dev {
-  background: rgba(139, 105, 20, 0.08) !important;
-  border-color: rgba(139, 105, 20, 0.4) !important;
-  color: #8b6914 !important;
-}
-.theme-academia-light .skill-pill-design:hover,
-.theme-academia-light .skill-pill-dev:hover {
-  background: rgba(139, 105, 20, 0.2) !important;
-  border-color: #8b6914 !important;
-  color: #2c1a0e !important;
-}
-
-/* Buttons */
-.theme-academia-light .brutal-btn {
-  background: #2c1a0e;
-  color: #f5e6c8;
-  border-color: #2c1a0e;
-  box-shadow: 4px 4px 0px #8b6914;
-  font-family: var(--font-syne);
-}
-.theme-academia-light .brutal-btn:hover {
-  background: #8b6914;
-  color: #f5e6c8;
-  box-shadow: 6px 6px 0px #2c1a0e;
-}
-.theme-academia-light .brutal-btn-outline {
-  border-color: #2c1a0e;
-  color: #2c1a0e;
-  box-shadow: 4px 4px 0px #8b6914;
-}
-.theme-academia-light .brutal-btn-outline:hover {
-  background: #2c1a0e;
-  color: #f5e6c8;
-}
-
-/* Badge */
-.theme-academia-light .badge-available-design {
-  border-color: #8b6914;
-  color: #8b6914;
-  background: rgba(139, 105, 20, 0.08);
-}
-
-/* Timeline */
-.theme-academia-light .experience-timeline-line {
-  background: linear-gradient(180deg, #8b6914, #2c1a0e) !important;
-  opacity: 0.35 !important;
-}
-
-/* Nav */
-.theme-academia-light header {
-  background: rgba(245, 230, 200, 0.9) !important;
-  border-bottom-color: rgba(139, 105, 20, 0.2) !important;
-  backdrop-filter: blur(16px) !important;
-}
-
-/* Line grid — warm parchment */
-.theme-academia-light .line-grid {
-  background-image:
-    linear-gradient(rgba(139, 105, 20, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 105, 20, 0.07) 1px, transparent 1px) !important;
-}
-
-/* Dot grid */
-.theme-academia-light .dot-grid {
-  background-image: radial-gradient(
-    rgba(139, 105, 20, 0.1) 1px,
-    transparent 1px
-  ) !important;
-}
-
-/* Scrollbar */
-.theme-academia-light ::-webkit-scrollbar-track {
-  background: #f5e6c8;
-}
-.theme-academia-light ::-webkit-scrollbar-thumb {
-  background: rgba(139, 105, 20, 0.3);
-}
-.theme-academia-light ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 105, 20, 0.55);
-}
-
-/* Font overrides */
-.theme-academia-light h1,
-.theme-academia-light h2,
-.theme-academia-light h3 {
-  font-family: var(--font-syne) !important;
-  letter-spacing: 0.02em;
-  color: #1a0f05 !important;
-}
-.theme-academia-light .font-mono {
-  font-family: var(--font-jetbrains) !important;
-  color: rgba(139, 105, 20, 0.7);
-}
-.theme-academia-light .font-poppins {
-  color: rgba(26, 15, 5, 0.7);
-}
-
-/* Card bottom fade — parchment */
-.theme-academia-light .brutal-card .absolute.bottom-0 {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(237, 224, 196, 0.97)
-  ) !important;
-}
-
-/* Selection color */
-.theme-academia-light ::selection {
-  background: rgba(139, 105, 20, 0.25);
-  color: #1a0f05;
 }
 
 @layer base {
@@ -822,43 +227,42 @@
     @apply backdrop-blur-heavy bg-[#0a0a0f]/70 border-b border-white/10;
   }
 
-  /* ── Brutalist (designer mode) ── Spiderman default */
+  /* ── Brutalist (designer mode) ── KTM/KLX via theme overrides */
   .brutal-card {
-    @apply border-2 transition-all duration-150;
-    background-color: #12121e !important;
-    border-color: #e63946 !important;
-    box-shadow: 4px 4px 0px #1d3557;
+    @apply border-2 transition-all duration-150 rounded-sm;
+    background-color: var(--theme-surface, #12121e) !important;
+    border-color: var(--theme-primary, #e85d00) !important;
+    box-shadow: 4px 4px 0px var(--theme-secondary, #1a1a1a);
   }
   .brutal-card-hover {
     @apply brutal-card hover:-translate-x-0.5 hover:-translate-y-0.5;
   }
   .brutal-card-hover:hover {
-    box-shadow: 6px 6px 0px #1d3557;
+    box-shadow: 6px 6px 0px var(--theme-secondary, #1a1a1a);
   }
   .brutal-btn {
     @apply font-mono font-bold border-2 px-6 py-3
            transition-all duration-150;
-    background-color: #e63946 !important;
-    color: #f1faee !important;
-    border-color: #e63946 !important;
-    box-shadow: 4px 4px 0px #1d3557;
+    background-color: var(--theme-primary, #e85d00) !important;
+    color: #ffffff !important;
+    border-color: var(--theme-primary, #e85d00) !important;
+    box-shadow: 4px 4px 0px var(--theme-secondary, #1a1a1a);
   }
   .brutal-btn:hover {
-    background-color: #1d3557 !important;
-    border-color: #1d3557 !important;
-    box-shadow: 6px 6px 0px #e63946;
+    background-color: var(--theme-secondary, #1a1a1a) !important;
+    border-color: var(--theme-secondary, #1a1a1a) !important;
+    box-shadow: 4px 4px 0px var(--theme-primary, #e85d00);
   }
   .brutal-btn-outline {
     @apply bg-transparent font-mono font-bold border-2 px-6 py-3
            transition-all duration-150;
-    color: #e63946 !important;
-    border-color: #e63946 !important;
-    box-shadow: 4px 4px 0px #1d3557;
+    color: var(--theme-primary, #e85d00) !important;
+    border-color: var(--theme-primary, #e85d00) !important;
+    box-shadow: 4px 4px 0px var(--theme-secondary, #1a1a1a);
   }
   .brutal-btn-outline:hover {
-    background-color: #e63946 !important;
-    color: #f1faee !important;
-    box-shadow: 6px 6px 0px #1d3557;
+    background-color: var(--theme-primary, #e85d00) !important;
+    color: #ffffff !important;
   }
 
   /* ── Dev mode buttons (pearl + gold, high contrast on obsidian) ── */
@@ -903,14 +307,13 @@
   .skill-pill-design {
     @apply px-3 py-1.5 text-xs font-mono
            bg-transparent border-2 transition-all duration-150;
-    border-color: rgba(230, 57, 70, 0.45);
-    color: #e63946;
+    border-color: color-mix(in srgb, var(--theme-primary, #e85d00) 45%, transparent);
+    color: var(--theme-primary, #e85d00);
   }
   .skill-pill-design:hover {
-    background-color: #e63946;
-    border-color: #e63946;
-    color: #f1faee;
-    box-shadow: 2px 2px 0px #1d3557;
+    background-color: color-mix(in srgb, var(--theme-primary, #e85d00) 12%, transparent);
+    border-color: var(--theme-primary, #e85d00);
+    color: var(--theme-text, #f1faee);
   }
 
   /* ── Section headings ── */
@@ -934,8 +337,8 @@
   .badge-available-design {
     @apply inline-flex items-center gap-2 px-3 py-1
            border-2 text-sm font-mono font-bold uppercase;
-    border-color: #e63946;
-    color: #e63946;
+    border-color: var(--theme-primary, #e85d00);
+    color: var(--theme-primary, #e85d00);
   }
 
   /* Toggle border shimmer */
@@ -996,7 +399,7 @@
     color: transparent;
   }
   .text-gradient-design {
-    background: linear-gradient(135deg, #e63946 0%, #1d3557 100%);
+    background: linear-gradient(135deg, var(--theme-primary, #e85d00) 0%, var(--theme-secondary, #1a1a1a) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -2066,7 +1469,7 @@ html.ld-light {
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: hero-name-shimmer-shift 28s ease-in-out infinite;
+  animation: hero-name-shimmer-shift 18s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .ld-light .hero-name-shimmer {
@@ -2184,57 +1587,6 @@ html.ld-light {
     #faf7f2 100%
   ) !important;
 }
-.ld-light.theme-spiderman .bg-design,
-.ld-light.theme-spiderman section {
-  background-color: #fdf2f2 !important;
-}
-.ld-light.theme-spiderman .brutal-card {
-  background: linear-gradient(
-    155deg,
-    #fffefb 0%,
-    #fff5f5 100%
-  ) !important;
-  border-color: rgba(230, 57, 70, 0.35) !important;
-  box-shadow:
-    0 4px 22px rgba(62, 48, 28, 0.06),
-    3px 3px 0 rgba(29, 53, 87, 0.14) !important;
-}
-.ld-light.theme-spiderman .text-white {
-  color: #1a0a0c !important;
-}
-.ld-light.theme-spiderman .text-white\/40,
-.ld-light.theme-spiderman .text-white\/30,
-.ld-light.theme-spiderman .text-white\/20 {
-  color: rgba(26, 10, 12, 0.4) !important;
-}
-.ld-light.theme-spiderman header {
-  background: rgba(253, 242, 242, 0.9) !important;
-  border-bottom-color: rgba(230, 57, 70, 0.15) !important;
-}
-.ld-light.theme-spiderman ::-webkit-scrollbar-track {
-  background: #fdf2f2;
-}
-
-.ld-light.theme-academia-dark .bg-design,
-.ld-light.theme-academia-dark section {
-  background-color: #fdf6e3 !important;
-}
-.ld-light.theme-academia-dark .text-white {
-  color: #2c1a0e !important;
-}
-.ld-light.theme-academia-dark .brutal-card {
-  background: #fdf6e3 !important;
-  border-color: #c9a84c !important;
-}
-.ld-light.theme-academia-dark header {
-  background: rgba(253, 246, 227, 0.9) !important;
-}
-
-.ld-light.theme-bauhaus .bg-design,
-.ld-light.theme-bauhaus section {
-  background-color: #ffffff !important;
-}
-
 /* ── DARK MODE (restores originals) ── */
 .ld-dark .bg-dev {
   background-color: #0a0a0f !important;
@@ -2311,7 +1663,7 @@ html.ld-light {
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: hero-name-shimmer-shift 32s ease-in-out infinite;
+  animation: hero-name-shimmer-shift 20s linear infinite;
 }
 @keyframes hero-name-shimmer-shift {
   0%,
@@ -2359,3 +1711,594 @@ html.ld-light {
   background: rgba(201, 168, 76, 0.35);
   color: #ffffff;
 }
+
+/* ════════════════════════════════════════
+   KTM — LIGHT · ALWAYS · ORANGE + BLACK
+════════════════════════════════════════ */
+
+.theme-ktm {
+  --theme-primary:      #e85d00;
+  --theme-secondary:    #1a1a1a;
+  --theme-accent:       #ff7a1a;
+  --theme-bg:           #fff8f2;
+  --theme-surface:      #fff3ea;
+  --theme-text:         #0f0f0f;
+  --theme-text-muted:   rgba(15,15,15,0.48);
+  --theme-border:       rgba(232,93,0,0.32);
+  --theme-glow:         rgba(232,93,0,0.14);
+  --theme-gradient:     linear-gradient(135deg, #e85d00 0%, #ff7a1a 100%);
+  --theme-pill-bg:      transparent;
+  --theme-pill-border:  rgba(232,93,0,0.38);
+  --theme-pill-text:    #e85d00;
+  --theme-shadow:       4px 4px 0px #1a1a1a;
+}
+
+/* KTM base — light only */
+html.ld-light.theme-ktm .bg-design,
+html.ld-light.theme-ktm section { background-color: #fff8f2 !important; }
+
+/* KTM text — dark on light */
+html.ld-light.theme-ktm .text-white,
+html.ld-light.theme-ktm .hover\:text-white:hover { color: #0f0f0f !important; }
+html.ld-light.theme-ktm .text-white\/80,
+html.ld-light.theme-ktm .text-white\/70,
+html.ld-light.theme-ktm .text-white\/60 { color: rgba(15,15,15,0.65) !important; }
+html.ld-light.theme-ktm .text-white\/50,
+html.ld-light.theme-ktm .text-white\/40 { color: rgba(15,15,15,0.45) !important; }
+html.ld-light.theme-ktm .text-white\/30,
+html.ld-light.theme-ktm .text-white\/25,
+html.ld-light.theme-ktm .text-white\/20 { color: rgba(15,15,15,0.28) !important; }
+
+/* KTM — headings — Big Shoulders (light) */
+html.ld-light.theme-ktm h1,
+html.ld-light.theme-ktm h2,
+html.ld-light.theme-ktm h3,
+html.ld-light.theme-ktm .section-heading-design,
+html.ld-light.theme-ktm .font-bebas {
+  font-family:    var(--font-big-shoulders) !important;
+  font-weight:    900;
+  letter-spacing: 0.02em;
+}
+html.ld-light.theme-ktm .section-heading-design span { color: #e85d00 !important; }
+
+/* KTM — accent overrides (shared) */
+.theme-ktm [class*="text-\[#e63946\]"],
+.theme-ktm [class*="text-\[#39FF14\]"]       { color: #e85d00 !important; }
+.theme-ktm [class*="text-\[#e63946\]\/60"],
+.theme-ktm [class*="text-\[#39FF14\]\/60"]   { color: rgba(232,93,0,0.6) !important; }
+.theme-ktm [class*="border-\[#39FF14\]"],
+.theme-ktm [class*="border-\[#e63946\]"]     { border-color: #e85d00 !important; }
+
+/* KTM — heading bar (light) */
+html.ld-light.theme-ktm .w-24.h-1 {
+  background: linear-gradient(90deg, #e85d00, #ff7a1a) !important;
+}
+
+/* KTM — brutal cards (light) */
+html.ld-light.theme-ktm .brutal-card {
+  background:   #ffffff !important;
+  border-color: rgba(232,93,0,0.32) !important;
+  box-shadow:   4px 4px 0px #1a1a1a !important;
+}
+html.ld-light.theme-ktm .brutal-card:hover {
+  border-color: rgba(232,93,0,0.65) !important;
+  box-shadow:   6px 6px 0px #1a1a1a !important;
+  background:   #fffaf6 !important;
+}
+html.ld-light.theme-ktm .brutal-card h2,
+html.ld-light.theme-ktm .brutal-card h3 {
+  color:       #0f0f0f !important;
+  font-family: var(--font-big-shoulders) !important;
+  font-weight: 900;
+}
+html.ld-light.theme-ktm .brutal-card p,
+html.ld-light.theme-ktm .brutal-card .font-poppins  { color: rgba(15,15,15,0.6) !important; }
+html.ld-light.theme-ktm .brutal-card .font-mono     { color: rgba(232,93,0,0.7) !important; }
+
+/* KTM — glass cards (light) */
+html.ld-light.theme-ktm .glass-card {
+  background:   rgba(255,255,255,0.9) !important;
+  border-color: rgba(232,93,0,0.18) !important;
+  box-shadow:   0 4px 20px rgba(232,93,0,0.07),
+                inset 0 0 0 1px rgba(232,93,0,0.08) !important;
+}
+html.ld-light.theme-ktm .glass-card:hover {
+  border-color: rgba(232,93,0,0.35) !important;
+  box-shadow:   0 8px 32px rgba(232,93,0,0.1),
+                inset 0 0 0 1px rgba(232,93,0,0.15) !important;
+}
+
+/* KTM — skill pills (light) */
+html.ld-light.theme-ktm .skill-pill-design {
+  border-color: rgba(232,93,0,0.38) !important;
+  color:        #e85d00 !important;
+  background:   transparent !important;
+  font-family:  var(--font-jetbrains) !important;
+}
+html.ld-light.theme-ktm .skill-pill-design:hover {
+  background:   rgba(232,93,0,0.1) !important;
+  border-color: #e85d00 !important;
+}
+
+/* KTM — buttons (light) */
+html.ld-light.theme-ktm .brutal-btn {
+  background:     #e85d00 !important;
+  color:          #ffffff !important;
+  border-color:   #e85d00 !important;
+  box-shadow:     4px 4px 0px #1a1a1a !important;
+  font-family:    var(--font-big-shoulders) !important;
+  font-weight:    700;
+  letter-spacing: 0.08em;
+  font-size:      1rem;
+}
+html.ld-light.theme-ktm .brutal-btn:hover {
+  background:   #1a1a1a !important;
+  border-color: #1a1a1a !important;
+  box-shadow:   4px 4px 0px #e85d00 !important;
+}
+html.ld-light.theme-ktm .brutal-btn-outline {
+  background:     transparent !important;
+  color:          #e85d00 !important;
+  border-color:   #e85d00 !important;
+  box-shadow:     4px 4px 0px #1a1a1a !important;
+  font-family:    var(--font-big-shoulders) !important;
+  font-weight:    700;
+  letter-spacing: 0.08em;
+}
+html.ld-light.theme-ktm .brutal-btn-outline:hover {
+  background:   #e85d00 !important;
+  color:        #ffffff !important;
+}
+
+/* KTM — badge (light) */
+html.ld-light.theme-ktm .badge-available-design {
+  border-color: rgba(232,93,0,0.45) !important;
+  color:        #e85d00 !important;
+  background:   rgba(232,93,0,0.05) !important;
+  font-family:  var(--font-jetbrains) !important;
+}
+
+/* KTM — timeline (light) */
+html.ld-light.theme-ktm .experience-timeline-line {
+  background: linear-gradient(180deg, #e85d00, #ff7a1a) !important;
+  opacity: 0.45 !important;
+}
+
+/* KTM — grids (light) */
+html.ld-light.theme-ktm .line-grid {
+  background-image:
+    linear-gradient(rgba(232,93,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,93,0,0.06) 1px, transparent 1px) !important;
+}
+html.ld-light.theme-ktm .dot-grid {
+  background-image: radial-gradient(
+    rgba(232,93,0,0.08) 1px, transparent 1px
+  ) !important;
+}
+
+/* KTM — nav */
+html.ld-light.theme-ktm header {
+  background:          rgba(255,248,242,0.96) !important;
+  border-bottom-color: rgba(232,93,0,0.18) !important;
+  backdrop-filter:     blur(20px) !important;
+}
+html.ld-light.theme-ktm .nav-shell-design-floating {
+  background:    rgba(255,248,242,0.97) !important;
+  border:        1.5px solid rgba(232,93,0,0.32) !important;
+  box-shadow:    4px 4px 0px #1a1a1a,
+                 0 8px 32px rgba(232,93,0,0.08) !important;
+  border-radius: 2px !important;
+}
+html.ld-light.theme-ktm .nav-shell-design-anchored {
+  background:          rgba(255,248,242,0.96) !important;
+  border-bottom-color: rgba(232,93,0,0.18) !important;
+}
+html.ld-light.theme-ktm .design-nav-pill-active {
+  background: rgba(232,93,0,0.1) !important;
+  border:     1px solid rgba(232,93,0,0.4) !important;
+  border-radius: 2px !important;
+}
+html.ld-light.theme-ktm .mobile-nav-overlay-design {
+  background: rgba(255,248,242,0.98) !important;
+}
+
+/* KTM — scrollbar + selection */
+html.ld-light.theme-ktm ::-webkit-scrollbar-track { background: #fff8f2; }
+html.ld-light.theme-ktm ::-webkit-scrollbar-thumb               { background: rgba(232,93,0,0.28); }
+html.ld-light.theme-ktm ::-webkit-scrollbar-thumb:hover          { background: rgba(232,93,0,0.52); }
+html.ld-light.theme-ktm ::selection {
+  background: rgba(232,93,0,0.15);
+  color: #0f0f0f;
+}
+
+/* ── KTM DARK MODE — sport-tech futuristic ── */
+
+html.ld-dark.theme-ktm {
+  --theme-primary:     #e85d00;
+  --theme-secondary:   #b0b8c1;
+  --theme-accent:      #ff7a1a;
+  --theme-bg:          #080808;
+  --theme-surface:     #0f0f0f;
+  --theme-text:        #f5f5f5;
+  --theme-text-muted:  rgba(245,245,245,0.45);
+  --theme-border:      rgba(232,93,0,0.4);
+  --theme-glow:        rgba(232,93,0,0.2);
+  --theme-gradient:    linear-gradient(135deg,#e85d00 0%,#b0b8c1 100%);
+  --theme-pill-border: rgba(232,93,0,0.45);
+  --theme-pill-text:   #e85d00;
+  --theme-shadow:      4px 4px 0px #b0b8c1;
+}
+
+html.ld-dark.theme-ktm .bg-design,
+html.ld-dark.theme-ktm section {
+  background-color: #080808 !important;
+}
+
+html.ld-dark.theme-ktm .text-white,
+html.ld-dark.theme-ktm .hover\:text-white:hover {
+  color: #f5f5f5 !important;
+}
+html.ld-dark.theme-ktm .text-white\/70,
+html.ld-dark.theme-ktm .text-white\/60 {
+  color: rgba(245,245,245,0.65) !important;
+}
+html.ld-dark.theme-ktm .text-white\/50,
+html.ld-dark.theme-ktm .text-white\/40 {
+  color: rgba(245,245,245,0.42) !important;
+}
+html.ld-dark.theme-ktm .text-white\/30,
+html.ld-dark.theme-ktm .text-white\/25,
+html.ld-dark.theme-ktm .text-white\/20 {
+  color: rgba(245,245,245,0.25) !important;
+}
+
+html.ld-dark.theme-ktm .section-heading-design {
+  color: #f5f5f5 !important;
+}
+html.ld-dark.theme-ktm .section-heading-design span {
+  color: #e85d00 !important;
+}
+html.ld-dark.theme-ktm h1,
+html.ld-dark.theme-ktm h2,
+html.ld-dark.theme-ktm h3 {
+  font-family: var(--font-big-shoulders) !important;
+  font-weight: 900;
+  color: #f5f5f5 !important;
+}
+
+html.ld-dark.theme-ktm [class*="text-\[#e63946\]"],
+html.ld-dark.theme-ktm [class*="text-\[#39FF14\]"] {
+  color: #e85d00 !important;
+}
+html.ld-dark.theme-ktm [class*="text-\[#e63946\]\/60"],
+html.ld-dark.theme-ktm [class*="text-\[#39FF14\]\/60"] {
+  color: rgba(232,93,0,0.6) !important;
+}
+
+html.ld-dark.theme-ktm .w-24.h-1 {
+  background: linear-gradient(
+    90deg, #e85d00, #b0b8c1
+  ) !important;
+}
+
+/* Dark cards — black surface, orange border, cyan shadow */
+html.ld-dark.theme-ktm .brutal-card {
+  background:   #0f0f0f !important;
+  border-color: rgba(232,93,0,0.4) !important;
+  box-shadow:   4px 4px 0px #b0b8c1 !important;
+}
+html.ld-dark.theme-ktm .brutal-card:hover {
+  border-color: rgba(232,93,0,0.75) !important;
+  box-shadow:   6px 6px 0px #b0b8c1,
+                0 0 24px rgba(176,184,193,0.08) !important;
+  background:   #141414 !important;
+}
+
+/* Experience design cards — higher contrast, modern aesthetic */
+.exp-design-card .exp-card-inner {
+  border-radius: 2px !important;
+}
+html.ld-light.theme-ktm .exp-design-card .exp-card-inner {
+  background: #ffffff !important;
+  border-color: rgba(232,93,0,0.35) !important;
+}
+html.ld-light.theme-ktm .exp-design-card .exp-card-inner .font-poppins {
+  color: rgba(15,15,15,0.88) !important;
+}
+html.ld-light.theme-ktm .exp-design-card .exp-card-inner .font-mono {
+  color: rgba(232,93,0,0.95) !important;
+}
+html.ld-dark.theme-ktm .exp-design-card .exp-card-inner {
+  background: #111111 !important;
+  border-color: rgba(232,93,0,0.45) !important;
+}
+html.ld-dark.theme-ktm .exp-design-card .exp-card-inner .font-poppins {
+  color: rgba(250,250,250,0.9) !important;
+}
+html.ld-dark.theme-ktm .exp-design-card .exp-card-inner .font-mono {
+  color: #e85d00 !important;
+}
+
+/* Experience design cards — orange blur glow on hover */
+.exp-design-card.group:hover .brutal-card {
+  box-shadow: 4px 4px 0px #1a1a1a,
+              0 0 32px rgba(232,93,0,0.25),
+              0 0 48px rgba(232,93,0,0.12) !important;
+}
+html.ld-dark.theme-ktm .exp-design-card.group:hover .brutal-card {
+  box-shadow: 6px 6px 0px #b0b8c1,
+              0 0 32px rgba(232,93,0,0.3),
+              0 0 56px rgba(232,93,0,0.15) !important;
+}
+html.ld-dark.theme-ktm .brutal-card h2,
+html.ld-dark.theme-ktm .brutal-card h3 {
+  color:       #f5f5f5 !important;
+  font-family: var(--font-big-shoulders) !important;
+  font-weight: 900;
+}
+html.ld-dark.theme-ktm .brutal-card p,
+html.ld-dark.theme-ktm .brutal-card .font-poppins {
+  color: rgba(245,245,245,0.55) !important;
+}
+html.ld-dark.theme-ktm .brutal-card .font-mono {
+  color: #b0b8c1 !important;
+  opacity: 0.75;
+}
+
+/* Dark glass cards */
+html.ld-dark.theme-ktm .glass-card {
+  background:   rgba(15,15,15,0.9) !important;
+  border-color: rgba(232,93,0,0.2) !important;
+  box-shadow:   0 4px 24px rgba(0,0,0,0.6),
+                inset 0 0 0 1px rgba(232,93,0,0.08) !important;
+}
+html.ld-dark.theme-ktm .glass-card:hover {
+  border-color: rgba(232,93,0,0.4) !important;
+  box-shadow:   0 8px 32px rgba(0,0,0,0.7),
+                0 0 20px rgba(176,184,193,0.06),
+                inset 0 0 0 1px rgba(232,93,0,0.15) !important;
+}
+
+/* Dark skill pills */
+html.ld-dark.theme-ktm .skill-pill-design {
+  border-color: rgba(232,93,0,0.4) !important;
+  color:        #e85d00 !important;
+  background:   transparent !important;
+  font-family:  var(--font-jetbrains) !important;
+}
+html.ld-dark.theme-ktm .skill-pill-design:hover {
+  background:   rgba(232,93,0,0.1) !important;
+  border-color: #e85d00 !important;
+  box-shadow:   0 0 12px rgba(176,184,193,0.12) !important;
+}
+
+/* Dark buttons */
+html.ld-dark.theme-ktm .brutal-btn {
+  background:     #e85d00 !important;
+  color:          #080808 !important;
+  border-color:   #e85d00 !important;
+  box-shadow:     4px 4px 0px #b0b8c1 !important;
+  font-family:    var(--font-big-shoulders) !important;
+  font-weight:    700;
+  letter-spacing: 0.08em;
+}
+html.ld-dark.theme-ktm .brutal-btn:hover {
+  background:   #b0b8c1 !important;
+  border-color: #b0b8c1 !important;
+  color:        #080808 !important;
+  box-shadow:   4px 4px 0px #e85d00 !important;
+}
+html.ld-dark.theme-ktm .brutal-btn-outline {
+  background:     transparent !important;
+  color:          #e85d00 !important;
+  border-color:   #e85d00 !important;
+  box-shadow:     4px 4px 0px #b0b8c1 !important;
+  font-family:    var(--font-big-shoulders) !important;
+  font-weight:    700;
+  letter-spacing: 0.08em;
+}
+html.ld-dark.theme-ktm .brutal-btn-outline:hover {
+  background:   #e85d00 !important;
+  color:        #080808 !important;
+  box-shadow:   4px 4px 0px #b0b8c1 !important;
+}
+
+/* Dark badge */
+html.ld-dark.theme-ktm .badge-available-design {
+  border-color: rgba(232,93,0,0.5) !important;
+  color:        #e85d00 !important;
+  background:   rgba(232,93,0,0.07) !important;
+  font-family:  var(--font-jetbrains) !important;
+}
+
+/* Dark timeline */
+html.ld-dark.theme-ktm .experience-timeline-line {
+  background: linear-gradient(
+    180deg, #e85d00, #b0b8c1
+  ) !important;
+  opacity: 0.45 !important;
+}
+
+/* Dark grids */
+html.ld-dark.theme-ktm .line-grid {
+  background-image:
+    linear-gradient(rgba(232,93,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(176,184,193,0.04) 1px, transparent 1px)
+  !important;
+}
+html.ld-dark.theme-ktm .dot-grid {
+  background-image: radial-gradient(
+    rgba(232,93,0,0.07) 1px, transparent 1px
+  ) !important;
+}
+
+/* Dark nav */
+html.ld-dark.theme-ktm header {
+  background:          rgba(8,8,8,0.96) !important;
+  border-bottom-color: rgba(232,93,0,0.2) !important;
+  backdrop-filter:     blur(20px) !important;
+}
+html.ld-dark.theme-ktm .nav-shell-design-floating {
+  background:    rgba(8,8,8,0.97) !important;
+  border:        1.5px solid rgba(232,93,0,0.35) !important;
+  box-shadow:    4px 4px 0px #b0b8c1,
+                 0 8px 32px rgba(0,0,0,0.6) !important;
+  border-radius: 2px !important;
+}
+html.ld-dark.theme-ktm .nav-shell-design-anchored {
+  background:          rgba(8,8,8,0.96) !important;
+  border-bottom-color: rgba(232,93,0,0.2) !important;
+}
+html.ld-dark.theme-ktm .design-nav-pill-active {
+  background:    rgba(232,93,0,0.1) !important;
+  border:        1px solid rgba(232,93,0,0.42) !important;
+  border-radius: 2px !important;
+}
+html.ld-dark.theme-ktm .mobile-nav-overlay-design {
+  background: rgba(8,8,8,0.98) !important;
+}
+
+/* Dark scrollbar */
+html.ld-dark.theme-ktm ::-webkit-scrollbar-track {
+  background: #080808;
+}
+html.ld-dark.theme-ktm ::-webkit-scrollbar-thumb {
+  background: rgba(232,93,0,0.3);
+}
+html.ld-dark.theme-ktm ::-webkit-scrollbar-thumb:hover {
+  background: rgba(232,93,0,0.55);
+}
+
+/* Dark selection */
+html.ld-dark.theme-ktm ::selection {
+  background: rgba(176,184,193,0.18);
+  color: #f5f5f5;
+}
+
+/* ── Dark metallic sweep — orange to silver ── */
+.text-metallic-ktm-dark {
+  background: linear-gradient(
+    105deg,
+    #cc4400 0%,
+    #e85d00 16%,
+    #ff8844 24%,
+    #ffffff 29%,
+    #d0d4d8 34%,
+    #b0b8c1 48%,
+    #e85d00 65%,
+    #cc4400 80%,
+    #b0b8c1 100%
+  );
+  background-size:             300% auto;
+  -webkit-background-clip:     text;
+  background-clip:             text;
+  -webkit-text-fill-color:     transparent;
+  animation: metallic-sweep 4s linear infinite;
+}
+
+/* ════════════════════════════════════════
+   SHARED NAV SHELL — designer mode
+════════════════════════════════════════ */
+
+.nav-shell-design-anchored {
+  background: color-mix(in srgb, var(--theme-bg,#0d0d14) 90%, transparent);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35),
+              0 1px 0 var(--theme-border,rgba(232,93,0,0.32));
+}
+.nav-shell-design-floating {
+  background: color-mix(in srgb, var(--theme-bg,#0d0d14) 92%, transparent);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45),
+              3px 3px 0px color-mix(
+                in srgb, var(--theme-secondary,#1a1a1a) 55%, transparent
+              );
+}
+.design-nav-pill-active {
+  background: color-mix(in srgb, var(--theme-primary,#e85d00) 12%, transparent);
+  border:     1px solid color-mix(
+    in srgb, var(--theme-primary,#e85d00) 38%, transparent
+  );
+}
+.mobile-nav-overlay-design {
+  background: color-mix(in srgb, var(--theme-bg,#0d0d14) 96%, transparent);
+}
+
+/* ════════════════════════════════════════
+   METALLIC SWEEPS — KTM
+════════════════════════════════════════ */
+
+@keyframes metallic-sweep {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Experience — dark shimmer sweep, there-but-not-there */
+@keyframes exp-shimmer-sweep {
+  0%   { background-position: -50% 50%; }
+  100% { background-position: 150% 50%; }
+}
+
+/* Experience cards — slow smooth shimmer, never stops on mode switch */
+.exp-card-shimmer {
+  background-size: 200% 100%;
+  animation: exp-card-shimmer 10s ease-in-out infinite;
+}
+html.ld-light.theme-ktm .exp-card-shimmer {
+  background-image: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(232,93,0,0.07) 48%,
+    rgba(255,250,245,0.5) 50%,
+    rgba(232,93,0,0.05) 52%,
+    transparent 65%,
+    transparent 100%
+  );
+}
+html.ld-dark.theme-ktm .exp-card-shimmer {
+  background-image: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255,255,255,0.06) 48%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.06) 52%,
+    transparent 65%,
+    transparent 100%
+  );
+}
+@keyframes exp-card-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .exp-shimmer-layer,
+  .exp-card-shimmer {
+    animation: none !important;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.text-metallic-ktm {
+  background: linear-gradient(
+    105deg,
+    #cc4a00 0%,
+    #e85d00 18%,
+    #ff9944 26%,
+    #ffffff 30%,
+    #ffcc88 34%,
+    #ff7a1a 50%,
+    #e85d00 70%,
+    #cc4a00 85%,
+    #ff7a1a 100%
+  );
+  background-size:             300% auto;
+  -webkit-background-clip:     text;
+  background-clip:             text;
+  -webkit-text-fill-color:     transparent;
+  animation: metallic-sweep 4s linear infinite;
+}
+

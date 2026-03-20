@@ -12,6 +12,7 @@ import {
   DESIGN_THEMES,
   DEV_THEMES,
   getDefaultTheme,
+  type DesignTheme,
   type ThemeConfig,
 } from "@/lib/themes";
 
@@ -22,54 +23,33 @@ type ThemeState = {
   devTheme: string;
 };
 
-const VALID_DESIGN_THEMES = [
-  "spiderman",
-  "academia-dark",
-  "academia-light",
-  "bauhaus",
-] as const;
+const validDesign: DesignTheme[] = ["ktm"];
 
 function loadThemeState(): ThemeState {
   if (typeof window === "undefined") {
-    return { designTheme: "spiderman", devTheme: "glass" };
+    return { designTheme: "ktm", devTheme: "glass" };
   }
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { designTheme: "spiderman", devTheme: "glass" };
+    if (!raw) return { designTheme: "ktm", devTheme: "glass" };
     const parsed = JSON.parse(raw) as ThemeState;
-    // Migrate stale "klx" to "spiderman"; "academia" → "academia-dark"
-    const savedDesign =
-      parsed.designTheme === "klx"
-        ? "spiderman"
-        : parsed.designTheme === "academia"
-          ? "academia-dark"
-          : parsed.designTheme;
-    const validDesign = VALID_DESIGN_THEMES.includes(
-      savedDesign as (typeof VALID_DESIGN_THEMES)[number]
-    );
-    const validDev = DEV_THEMES.some((t) => t.id === parsed.devTheme);
-    const designTheme = validDesign ? savedDesign : "spiderman";
-    // Persist migration if we had klx or invalid theme
-    if (parsed.designTheme === "klx" || !validDesign) {
+    const saved = parsed.designTheme ?? "";
+    if (!validDesign.includes(saved as DesignTheme)) {
+      const validDev = DEV_THEMES.some((t) => t.id === (parsed.devTheme ?? "glass"));
       const next = {
-        designTheme: "spiderman" as const,
-        devTheme: validDev ? parsed.devTheme : "glass",
+        designTheme: "ktm",
+        devTheme: validDev ? (parsed.devTheme ?? "glass") : "glass",
       };
       saveThemeState(next);
+      return next;
     }
-    // Persist legacy "academia" → academia-dark
-    if (parsed.designTheme === "academia") {
-      saveThemeState({
-        designTheme: "academia-dark",
-        devTheme: validDev ? parsed.devTheme : "glass",
-      });
-    }
+    const validDev = DEV_THEMES.some((t) => t.id === parsed.devTheme);
     return {
-      designTheme: designTheme === "spiderman" ? "spiderman" : designTheme,
+      designTheme: parsed.designTheme,
       devTheme: validDev ? parsed.devTheme : "glass",
     };
   } catch {
-    return { designTheme: "spiderman", devTheme: "glass" };
+    return { designTheme: "ktm", devTheme: "glass" };
   }
 }
 
@@ -86,6 +66,8 @@ interface ThemeContextValue {
   theme: string;
   themes: ThemeConfig[];
   setTheme: (id: string) => void;
+  designTheme: string;
+  devTheme: string;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
@@ -117,6 +99,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved) as ThemeState;
+        if (parsed.designTheme === "klx") {
+          const next = { ...parsed, designTheme: "ktm" as const };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+          setState((prev) => ({ ...prev, designTheme: "ktm" }));
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const active =
       mode === "developer" ? state.devTheme : state.designTheme;
     const valid = themes.some((t) => t.id === active);
@@ -135,6 +133,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         theme,
         themes,
         setTheme,
+        designTheme: state.designTheme,
+        devTheme: state.devTheme,
       }}
     >
       {children}
@@ -148,4 +148,8 @@ export function useTheme() {
     throw new Error("useTheme must be used within ThemeProvider");
   }
   return ctx;
+}
+
+export function useThemeContext() {
+  return useTheme();
 }

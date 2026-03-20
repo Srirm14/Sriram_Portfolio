@@ -37,7 +37,7 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
 
   return (
     <motion.div
-      className="glass-card rounded-xl p-6 cursor-pointer relative overflow-hidden group transition-all duration-300 h-full"
+      className="glass-card rounded-sm p-6 cursor-pointer relative overflow-hidden group transition-all duration-300 h-full"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       whileHover={{ y: -4 }}
@@ -55,7 +55,7 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
         }}
       />
       <div
-        className="absolute inset-0 rounded-xl transition-opacity duration-300 pointer-events-none"
+        className="absolute inset-0 rounded-sm transition-opacity duration-300 pointer-events-none"
         style={{
           background: `radial-gradient(circle at 50% 0%, ${link.devAccent}08 0%, transparent 70%)`,
           opacity: hovered ? 1 : 0,
@@ -65,7 +65,7 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
             <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300"
+              className="w-10 h-10 rounded-sm flex items-center justify-center flex-shrink-0 transition-all duration-300"
               style={{
                 background: `${link.devAccent}15`,
                 border: `1px solid ${link.devAccent}30`,
@@ -119,7 +119,7 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
               onClick={(e) => e.stopPropagation()}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg font-mono text-xs transition-all duration-200 no-underline"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-sm font-mono text-xs transition-all duration-200 no-underline"
               style={{
                 background: `${link.devAccent}20`,
                 border: `1px solid ${link.devAccent}30`,
@@ -139,7 +139,7 @@ export function ContactCardDev({ link }: ContactCardDevProps) {
           {link.canCopy && (
             <button
               onClick={handleCopy}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg font-mono text-xs transition-all duration-200"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-sm font-mono text-xs transition-all duration-200"
               style={{
                 background: copied
                   ? `${link.devAccent}30`

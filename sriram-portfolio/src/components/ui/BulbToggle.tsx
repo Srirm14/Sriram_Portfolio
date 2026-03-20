@@ -17,21 +17,25 @@ function BulbToggleCompact() {
   const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
 
+  const handleClick = () => {
+    toggleLightDark();
+  };
+
   const primaryColor = isDev
     ? isLight
       ? "#c9a84c"
       : "rgba(201,168,76,0.4)"
     : isLight
-      ? "#e63946"
-      : "rgba(230,57,70,0.35)";
+      ? "#e85d00"
+      : "rgba(232,93,0,0.5)";
 
-  const glowColor = isDev ? "rgba(201,168,76,0.45)" : "rgba(230,57,70,0.4)";
-  const glowColorOuter = isDev ? "rgba(201,168,76,0.2)" : "rgba(230,57,70,0.15)";
+  const glowColor = isDev ? "rgba(201,168,76,0.45)" : "rgba(232,93,0,0.4)";
+  const glowColorOuter = isDev ? "rgba(201,168,76,0.2)" : "rgba(232,93,0,0.15)";
 
   return (
     <button
       type="button"
-      onClick={toggleLightDark}
+      onClick={handleClick}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
       className={cn(
         "flex h-6 w-6 cursor-pointer items-center justify-center",
@@ -44,7 +48,7 @@ function BulbToggleCompact() {
         background: isLight
           ? isDev
             ? "rgba(201,168,76,0.1)"
-            : "rgba(230,57,70,0.08)"
+            : "rgba(232,93,0,0.08)"
           : "transparent",
       }}
     >
@@ -91,13 +95,17 @@ function BulbToggleHanging() {
   const mode = useModeStore((s) => s.mode);
   const isDev = mode === "developer";
 
+  const handleClick = () => {
+    toggleLightDark();
+  };
+
   const wireColor = isDev
     ? isLight
       ? "rgba(166,139,82,0.55)"
       : "rgba(201,168,76,0.38)"
     : isLight
-      ? "rgba(230,57,70,0.5)"
-      : "rgba(230,57,70,0.35)";
+      ? "rgba(232,93,0,0.5)"
+      : "rgba(232,93,0,0.4)";
 
   const bulbGlow = isDev
     ? isLight
@@ -112,13 +120,13 @@ function BulbToggleHanging() {
       ? "#8b7355"
       : "rgba(201,168,76,0.45)"
     : isLight
-      ? "#e63946"
-      : "rgba(230,57,70,0.4)";
+      ? "#e85d00"
+      : "rgba(232,93,0,0.5)";
 
   return (
     <button
       type="button"
-      onClick={toggleLightDark}
+      onClick={handleClick}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
       className="group relative flex cursor-pointer select-none flex-col items-center"
       style={{ width: "28px", height: "52px", marginTop: "-8px" }}
@@ -244,7 +252,7 @@ function BulbToggleHanging() {
           "absolute -bottom-6 left-1/2 -translate-x-1/2",
           "whitespace-nowrap font-mono text-[9px]",
           "opacity-0 transition-opacity duration-200 group-hover:opacity-100",
-          isDev ? "text-[rgba(42,36,30,0.35)]" : "text-[#e63946]/40",
+          isDev ? "text-[rgba(42,36,30,0.35)]" : "text-[#e85d00]/40",
         )}
       >
         {isLight ? "dark" : "light"}

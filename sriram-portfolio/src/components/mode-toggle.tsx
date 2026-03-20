@@ -47,8 +47,8 @@ export function ModeToggle() {
                       ? "text-[rgba(42,36,30,0.42)] hover:text-[rgba(28,22,18,0.88)]"
                       : "text-[#f0ece4]/45 hover:text-[#f0ece4]/80"
                     : isLight
-                      ? "text-[rgba(42,36,30,0.42)] hover:text-[rgba(200,60,70,0.85)]"
-                      : "text-white hover:drop-shadow-[0_0_8px_rgba(230,57,70,0.5)]",
+                      ? "text-[rgba(42,36,30,0.42)] hover:text-[var(--theme-primary,#e85d00)]"
+                      : "text-white hover:drop-shadow-[0_0_8px_rgba(232,93,0,0.5)]",
               )}
             >
               <Icon className="size-3.5 shrink-0" strokeWidth={2.5} />
@@ -69,7 +69,7 @@ export function ModeToggle() {
         ) : (
           <motion.div
             layoutId="mode-toggle-indicator"
-            className="absolute inset-y-0.5 left-[calc(50%+2px)] z-0 w-[calc(50%-4px)] rounded-full bg-[#e63946]"
+            className="absolute inset-y-0.5 left-[calc(50%+2px)] z-0 w-[calc(50%-4px)] rounded-full bg-[var(--theme-primary,#e85d00)]"
             transition={{
               type: "spring",
               stiffness: 400,

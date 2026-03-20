@@ -108,7 +108,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
             className="flex flex-col gap-4 md:gap-6"
           >
             {/* What I focus on card */}
-            <ScrollReveal variant="fade-up" delay={0.1} className="glass-card p-6 rounded-xl">
+            <ScrollReveal variant="fade-up" delay={0.1} className="glass-card p-6 rounded-sm">
               <p className="ld-section-eyebrow mb-4 font-mono text-xs uppercase tracking-widest">
                 What I focus on
               </p>
@@ -116,7 +116,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                 {FOCUS_ITEMS.map(({ Icon, title, desc }) => (
                   <div key={title} className="flex items-start gap-3">
                     <span
-                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg
+                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm
                                  border border-[rgba(201,168,76,0.22)] bg-[rgba(201,168,76,0.07)]
                                  text-[#c9a84c]"
                       aria-hidden
@@ -137,7 +137,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
             </ScrollReveal>
 
             {/* Currently exploring card */}
-            <ScrollReveal variant="fade-up" delay={0.2} className="glass-card flex-1 rounded-xl border border-[#c9a84c]/25 p-5">
+            <ScrollReveal variant="fade-up" delay={0.2} className="glass-card flex-1 rounded-sm border border-[#c9a84c]/25 p-5">
               <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest">
                 Currently exploring
               </p>
@@ -159,7 +159,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
               </div>
               <div className="flex gap-3 border-t border-[rgba(201,168,76,0.12)] pt-4">
                 <span
-                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg
+                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm
                              border border-[rgba(201,168,76,0.22)] bg-[rgba(201,168,76,0.07)]
                              text-[#c9a84c]"
                   aria-hidden

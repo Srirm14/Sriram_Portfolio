@@ -76,6 +76,7 @@ const config: Config = {
         grotesk: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
         syne: ["var(--font-syne)", "system-ui", "sans-serif"],
         bebas: ["Bebas Neue", "system-ui", "sans-serif"],
+        "big-shoulders": ["Big Shoulders Display", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },
 

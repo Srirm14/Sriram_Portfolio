@@ -47,8 +47,8 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             <motion.h1
               {...fadeUp}
               transition={{
-                duration: 0.65,
-                delay: 0.06,
+                duration: 0.35,
+                delay: 0,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="hero-name-shimmer text-balance font-grotesk text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
@@ -144,8 +144,8 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
           <motion.h1
             {...fadeUp}
             transition={{
-              duration: 0.75,
-              delay: 0.06,
+              duration: 0.25,
+              delay: 0,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="hero-name-shimmer-dark text-balance relative z-[1] font-grotesk text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"

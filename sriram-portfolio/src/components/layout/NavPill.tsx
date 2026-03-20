@@ -4,10 +4,21 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useModeStore } from "@/store";
+import { useThemeContext } from "@/context/ThemeContext";
 import { ModeToggle } from "@/components/mode-toggle";
 import { navLinks } from "@/lib/data/nav";
 import { BulbToggle } from "@/components/ui/BulbToggle";
 import { cn } from "@/lib/utils";
+
+const DESIGN_COLORS = {
+  ktm: {
+    primary: "#e85d00",
+    primaryRgb: "232,93,0",
+    border: "rgba(232,93,0,0.4)",
+    hover: "rgba(232,93,0,0.12)",
+    shadow: "#1a1a1a",
+  },
+} as const;
 
 const scrollToSection = (href: string) => {
   const id = href.replace("#", "");
@@ -21,6 +32,7 @@ interface NavLinkPillProps {
   readonly link: { href: string; label: string };
   readonly isActive: boolean;
   readonly isDev: boolean;
+  readonly designColors?: (typeof DESIGN_COLORS)[keyof typeof DESIGN_COLORS];
   readonly onNavigate: (href: string) => void;
 }
 
@@ -41,7 +53,7 @@ function MobileNavLink({
         "font-grotesk text-2xl font-semibold transition-colors",
         isDev
           ? "dev-nav-link-mobile text-[#f0ece4] hover:text-[#e8d5a3]"
-          : "text-white hover:text-[#e63946]",
+          : "text-white hover:text-[var(--theme-primary)]",
       )}
     >
       {link.label}
@@ -70,7 +82,7 @@ function AnchoredNavLink({
           "text-sm font-medium transition-colors",
           isDev
             ? "dev-nav-link text-[#f0ece4]/85 hover:text-[#f0ece4]"
-            : "text-white/80 hover:text-[#e63946]",
+            : "text-white/80 hover:text-[var(--theme-primary)]",
         )}
       >
         {link.label}
@@ -79,7 +91,7 @@ function AnchoredNavLink({
   );
 }
 
-function NavLinkPill({ link, isActive, isDev, onNavigate }: NavLinkPillProps) {
+function NavLinkPill({ link, isActive, isDev, designColors, onNavigate }: NavLinkPillProps) {
   return isDev ? (
     <button
       type="button"
@@ -104,14 +116,21 @@ function NavLinkPill({ link, isActive, isDev, onNavigate }: NavLinkPillProps) {
       type="button"
       onClick={() => onNavigate(link.href)}
       className={cn(
-        "relative px-3 py-1 font-mono text-xs uppercase transition-all duration-150",
-        isActive ? "text-[#e63946]" : "text-white/40 hover:text-[#e63946]/70",
+        "relative px-3 py-1.5 font-mono text-xs uppercase tracking-wider transition-all duration-200 rounded-sm",
+        isActive
+          ? "design-nav-pill-active text-[var(--theme-primary)]"
+          : "text-white/50 hover:text-[var(--theme-primary)]/90",
       )}
     >
-      {isActive && (
+      {isActive && designColors && (
         <motion.div
           layoutId="nav-active-design"
-          className="absolute inset-0 bg-[rgba(230,57,70,0.08)] border border-[#e63946]/40"
+          className="absolute inset-0 rounded-sm border"
+          style={{
+            background: `rgba(${designColors.primaryRgb},0.1)`,
+            borderColor: designColors.border,
+            boxShadow: `0 0 12px rgba(${designColors.primaryRgb},0.15)`,
+          }}
           transition={{ type: "spring", stiffness: 500, damping: 35 }}
         />
       )}
@@ -122,6 +141,11 @@ function NavLinkPill({ link, isActive, isDev, onNavigate }: NavLinkPillProps) {
 
 export function NavPill() {
   const mode = useModeStore((s) => s.mode);
+  const { designTheme } = useThemeContext();
+  const designColors =
+    mode === "designer"
+      ? (DESIGN_COLORS[designTheme as keyof typeof DESIGN_COLORS] ?? DESIGN_COLORS.ktm)
+      : undefined;
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -195,7 +219,7 @@ export function NavPill() {
           "transition-all duration-300",
           isDev
             ? "nav-surface-anchored-dev backdrop-blur-[16px] bg-[rgba(10,10,11,0.92)] border-b border-[rgba(201,168,76,0.14)] shadow-[0_4px_28px_rgba(0,0,0,0.45),0_0_0_1px_rgba(201,168,76,0.06),inset_0_1px_0_rgba(240,236,228,0.04)]"
-            : "backdrop-blur-[12px] bg-[rgba(13,13,20,0.9)] border-b border-[rgba(230,57,70,0.2)]",
+            : "nav-shell-design-anchored backdrop-blur-[16px] border-b",
         )}
       >
         <button
@@ -206,10 +230,10 @@ export function NavPill() {
           {/* Mobile: SV monogram */}
           <span
             className={cn(
-              "md:hidden w-8 h-8 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0",
+              "md:hidden w-8 h-8 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0 transition-colors",
               isDev
                 ? "rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a3] text-[#0a0a0b]"
-                : "border-2 border-[#e63946] text-[#e63946]",
+                : "border-2 text-[var(--theme-primary)] border-[var(--theme-primary)]",
             )}
           >
             SV
@@ -225,14 +249,15 @@ export function NavPill() {
                 {"Sriram Venkatachalam".split("").map((char, i) => (
                   <span
                     key={i}
-                    className="inline-block transition-all duration-150 hover:text-[#e63946] hover:-translate-y-0.5"
+                    className="inline-block transition-all duration-150 hover:text-[var(--theme-primary)] hover:-translate-y-0.5"
                     style={{ transitionDelay: `${i * 15}ms` }}
                   >
                     {char === " " ? "\u00A0" : char}
                   </span>
                 ))}
                 <span
-                  className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#e63946] group-hover:w-full transition-all duration-300 shadow-[0_0_6px_#e63946]"
+                  className="absolute bottom-0 left-0 h-[2px] w-0 bg-[var(--theme-primary)] group-hover:w-full transition-all duration-300"
+                  style={{ boxShadow: "0 0 8px var(--theme-primary)" }}
                 />
               </span>
             )}
@@ -283,10 +308,10 @@ export function NavPill() {
     >
       <div
         className={cn(
-          "relative flex items-center gap-1 px-2 py-2",
+          "relative flex items-center gap-1 px-2 py-2 backdrop-blur-[16px]",
           isDev
             ? "nav-surface-dev rounded-full backdrop-blur-[20px] bg-[rgba(10,10,11,0.9)] border border-[rgba(201,168,76,0.16)] shadow-[0_12px_40px_rgba(0,0,0,0.55),0_0_0_1px_rgba(201,168,76,0.14),0_0_32px_rgba(201,168,76,0.07)]"
-            : "rounded-none backdrop-blur-[16px] bg-[rgba(13,13,20,0.9)] border-2 border-[rgba(230,57,70,0.35)] shadow-[0_8px_32px_rgba(0,0,0,0.5),4px_4px_0px_#1d3557]",
+            : "nav-shell-design-floating rounded-none",
         )}
       >
         {isDev && (
@@ -306,7 +331,7 @@ export function NavPill() {
             "w-7 h-7 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0",
             isDev
               ? "rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a3] text-[#0a0a0b] hover:scale-110 transition-transform duration-200"
-              : "border-2 border-[#e63946] text-[#e63946] hover:bg-[#e63946] hover:text-[#f1faee] transition-all duration-150",
+              : "border-2 border-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-white transition-all duration-200",
           )}
         >
           SV
@@ -314,24 +339,25 @@ export function NavPill() {
         <div
           className={cn(
             "w-px h-4 mx-1 flex-shrink-0",
-            isDev ? "bg-[rgba(201,168,76,0.2)]" : "bg-[#e63946]/20",
+            isDev ? "bg-[rgba(201,168,76,0.2)]" : "bg-[var(--theme-primary)]/20",
           )}
         />
         <div className="hidden items-center gap-0 md:flex">
           {navLinks.map((link) => (
-            <NavLinkPill
-              key={link.href}
-              link={link}
-              isActive={activeSection === link.href.replace("#", "")}
-              isDev={isDev}
-              onNavigate={scrollToSection}
-            />
+                <NavLinkPill
+                  key={link.href}
+                  link={link}
+                  isActive={activeSection === link.href.replace("#", "")}
+                  isDev={isDev}
+                  designColors={designColors}
+                  onNavigate={scrollToSection}
+                />
           ))}
         </div>
         <div
           className={cn(
             "w-px h-4 mx-1 flex-shrink-0",
-            isDev ? "bg-[rgba(201,168,76,0.2)]" : "bg-[#e63946]/20",
+            isDev ? "bg-[rgba(201,168,76,0.2)]" : "bg-[var(--theme-primary)]/20",
           )}
         />
         <button
@@ -374,7 +400,10 @@ export function NavPill() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="mobile-nav-overlay fixed inset-0 z-[9998] bg-[#0a0a0b]/96 backdrop-blur-xl"
+            className={cn(
+              "mobile-nav-overlay fixed inset-0 z-[9998] backdrop-blur-xl",
+              isDev ? "bg-[#0a0a0b]/96" : "mobile-nav-overlay-design",
+            )}
           >
             <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-6">
               <button
@@ -395,19 +424,14 @@ export function NavPill() {
                     "w-12 h-12 flex items-center justify-center font-mono text-sm font-bold",
                     isDev
                       ? "rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d5a3] text-[#0a0a0b]"
-                      : "border-2 border-[#e63946] text-[#e63946]",
+                      : "border-2 border-[var(--theme-primary)] text-[var(--theme-primary)]",
                   )}
                 >
                   SV
                 </span>
               </button>
               {navLinks.map((link) => (
-                <MobileNavLink
-                  key={link.href}
-                  link={link}
-                  isDev={isDev}
-                  onNavigate={handleNavClick}
-                />
+                <MobileNavLink key={link.href} link={link} isDev={isDev} onNavigate={handleNavClick} />
               ))}
               <div className="mt-4">
                 <ModeToggle />

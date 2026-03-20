@@ -126,7 +126,7 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
 
   return (
     <div
-      className="glass-card rounded-xl overflow-hidden w-full max-w-2xl mx-auto flex flex-col h-full min-h-[300px]"
+      className="glass-card rounded-sm overflow-hidden w-full max-w-2xl mx-auto flex flex-col h-full min-h-[300px]"
     >
       {/* Terminal title bar */}
       <div

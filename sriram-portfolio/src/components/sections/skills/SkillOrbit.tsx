@@ -42,7 +42,7 @@ export function SkillOrbit({
           borderColor:
             mode === "developer"
               ? "rgba(255,255,255,0.06)"
-              : "rgba(230,57,70,0.12)",
+              : `${color}20`,
         }}
       />
 
@@ -106,14 +106,16 @@ export function SkillOrbit({
                     boxShadow: `3px 3px 0px ${color}40`,
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = color;
-                    (e.currentTarget as HTMLElement).style.color = "#000";
-                    (e.currentTarget as HTMLElement).style.boxShadow = `4px 4px 0px ${color}`;
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = color;
+                    el.style.color = "#fff";
+                    el.style.boxShadow = `4px 4px 0px ${color}`;
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "transparent";
-                    (e.currentTarget as HTMLElement).style.color = color;
-                    (e.currentTarget as HTMLElement).style.boxShadow = `3px 3px 0px ${color}40`;
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = "transparent";
+                    el.style.color = color;
+                    el.style.boxShadow = `3px 3px 0px ${color}40`;
                   }}
                 >
                   {skill}

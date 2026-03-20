@@ -25,7 +25,7 @@ export const contactLinks: ContactLink[] = [
     canNavigate: true,
     icon: "Linkedin",
     devAccent: "#c9a84c",
-    designAccent: "#e63946",
+    designAccent: "#e85d00",
   },
   {
     id: "email",
@@ -38,7 +38,7 @@ export const contactLinks: ContactLink[] = [
     canNavigate: true,
     icon: "Mail",
     devAccent: "#e8d5a3",
-    designAccent: "#e63946",
+    designAccent: "#e85d00",
   },
   {
     id: "behance",
@@ -51,6 +51,6 @@ export const contactLinks: ContactLink[] = [
     canNavigate: true,
     icon: "Globe",
     devAccent: "#d4a843",
-    designAccent: "#e63946",
+    designAccent: "#e85d00",
   },
 ];

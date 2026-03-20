@@ -88,7 +88,7 @@ export function ProjectDrawer({
               "w-4/5 max-w-[90vw] md:w-[min(55%,680px)] md:max-w-[680px]",
               isDev
                 ? "border-l border-[rgba(201,168,76,0.18)]"
-                : "border-l-2 border-[#e63946]"
+                : "border-l-2 border-[#e85d00]"
             )}
             style={{
               background: isLight
@@ -102,10 +102,10 @@ export function ProjectDrawer({
               boxShadow: isLight
                 ? isDev
                   ? "-24px 0 48px rgba(62,48,28,0.08), -1px 0 0 rgba(201,168,76,0.18), inset 0 0 0 1px rgba(201,168,76,0.1)"
-                  : "-16px 0 40px rgba(62,48,28,0.07), -2px 0 0 rgba(230,57,70,0.25)"
+                  : "-16px 0 40px rgba(62,48,28,0.07), -2px 0 0 rgba(232,93,0,0.25)"
                 : isDev
                   ? "-24px 0 64px rgba(0,0,0,0.55), -1px 0 0 rgba(201,168,76,0.12), inset 0 0 0 1px rgba(201,168,76,0.06)"
-                  : "-4px 0 0 #e63946",
+                  : "-4px 0 0 #e85d00",
               isolation: "isolate",
             }}
             initial={{ x: "100%" }}
@@ -154,7 +154,7 @@ export function ProjectDrawer({
                     className="absolute top-0 right-0 w-0 h-0 opacity-15"
                     style={{
                       borderLeft: "80px solid transparent",
-                      borderTop: "80px solid #e63946",
+                      borderTop: "80px solid #e85d00",
                     }}
                   />
                 </>
@@ -171,7 +171,7 @@ export function ProjectDrawer({
                   "transition-all duration-200",
                   isDev
                     ? "rounded-full bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.25)] text-[#f0ece4]/70 hover:text-[#f0ece4] hover:bg-[rgba(201,168,76,0.14)]"
-                    : "border-2 border-[#e63946]/50 text-[#e63946] hover:bg-[#e63946] hover:text-black"
+                    : "border-2 border-[#e85d00]/50 text-[#e85d00] hover:bg-[#e85d00] hover:text-black"
                 )}
               >
                 <X className="w-4 h-4" />
@@ -192,8 +192,8 @@ export function ProjectDrawer({
                             borderRadius: "999px",
                           }
                         : {
-                            border: "1px solid rgba(230,57,70,0.5)",
-                            color: "#e63946",
+                            border: "1px solid rgba(232,93,0,0.5)",
+                            color: "#e85d00",
                           }
                     }
                   >
@@ -250,7 +250,7 @@ export function ProjectDrawer({
                         )
                       : cn(
                           "font-mono",
-                          isLight ? "text-[rgba(200,60,70,0.65)]" : "text-[#e63946]/60",
+                          isLight ? "text-[rgba(232,93,0,0.65)]" : "text-[#e85d00]/60",
                         ),
                   )}
                 >
@@ -274,8 +274,8 @@ export function ProjectDrawer({
                       ? "text-[rgba(42,36,30,0.4)]"
                       : "text-[#f0ece4]/35"
                     : isLight
-                      ? "text-[rgba(200,60,70,0.45)]"
-                      : "text-[#e63946]/40",
+                      ? "text-[rgba(232,93,0,0.45)]"
+                      : "text-[#e85d00]/40",
                 )}
               >
                 {isDev ? "⏱ " : "// "}
@@ -289,7 +289,7 @@ export function ProjectDrawer({
                   height: isDev ? "1px" : "2px",
                   background: isDev
                     ? "rgba(201,168,76,0.12)"
-                    : "rgba(230,57,70,0.15)",
+                    : "rgba(232,93,0,0.15)",
                 }}
               />
 
@@ -311,7 +311,7 @@ export function ProjectDrawer({
                     <span
                       className="flex-shrink-0 mt-1 font-mono text-sm"
                       style={{
-                        color: isDev ? grad!.from : "#e63946",
+                        color: isDev ? grad!.from : "#e85d00",
                       }}
                     >
                       {isDev ? "▹" : "→"}
@@ -345,7 +345,7 @@ export function ProjectDrawer({
                   height: isDev ? "1px" : "2px",
                   background: isDev
                     ? "rgba(201,168,76,0.12)"
-                    : "rgba(230,57,70,0.15)",
+                    : "rgba(232,93,0,0.15)",
                 }}
               />
 
@@ -359,7 +359,7 @@ export function ProjectDrawer({
                 <p
                   className={cn(
                     "font-mono text-xs uppercase tracking-widest mb-3",
-                    isDev ? "text-[#c9a84c]/80" : "text-[#e63946]/40"
+                    isDev ? "text-[#c9a84c]/80" : "text-[#e85d00]/40"
                   )}
                 >
                   {isDev ? "Stack" : "Tools"}
@@ -396,7 +396,7 @@ export function ProjectDrawer({
                     "flex items-center justify-center gap-1.5 py-2 font-mono text-xs transition-all duration-200",
                     isDev
                       ? "rounded-lg border"
-                      : "border-2 border-[#e63946]/60 text-[#e63946] hover:bg-[#e63946] hover:text-black uppercase"
+                      : "border-2 border-[#e85d00]/60 text-[#e85d00] hover:bg-[#e85d00] hover:text-black uppercase"
                   )}
                   style={
                     isDev

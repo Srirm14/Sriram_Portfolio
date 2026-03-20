@@ -12,6 +12,9 @@ import {
   Syne,
 } from "next/font/google";
 import "@fontsource/bebas-neue";
+import "@fontsource/big-shoulders-display/400.css";
+import "@fontsource/big-shoulders-display/700.css";
+import "@fontsource/big-shoulders-display/900.css";
 import "./globals.css";
 
 const inter = Inter({

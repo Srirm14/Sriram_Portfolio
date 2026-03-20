@@ -61,10 +61,10 @@ function AbstractIllustration({
   const from = g.from;
   const via = g.via;
   const to = g.to;
-  // Designer mode: illustration uses Spiderman palette; dev uses pearl/gold via getCardGradient
-  const cardFrom = isDev ? from : "#e63946";
-  const cardVia = isDev ? via : "#1d3557";
-  const cardTo = isDev ? to : "#457b9d";
+  // Designer mode: KTM palette; dev uses pearl/gold via getCardGradient
+  const cardFrom = isDev ? from : "#e85d00";
+  const cardVia = isDev ? via : (isLight ? "#1a1a1a" : "#b0b8c1");
+  const cardTo = isDev ? to : (isLight ? "#ff7a1a" : "#b0b8c1");
 
   // Each project gets a unique abstract pattern
   const patterns: Record<string, React.ReactNode> = {
@@ -311,7 +311,7 @@ function AbstractIllustration({
                 y1="0"
                 x2={x2}
                 y2={y2}
-                stroke="#e63946"
+                stroke={cardFrom}
                 strokeWidth="0.4"
                 opacity={0.08 + i * 0.01}
               />
@@ -325,7 +325,7 @@ function AbstractIllustration({
               cy="0"
               r={r}
               fill="none"
-              stroke="#e63946"
+              stroke={cardFrom}
               strokeWidth="0.4"
               opacity={0.07 + i * 0.02}
               strokeDasharray="2 6"
@@ -337,7 +337,7 @@ function AbstractIllustration({
             y1="108"
             x2="20"
             y2="108"
-            stroke="#e63946"
+            stroke={cardFrom}
             strokeWidth="0.8"
             opacity="0.2"
           />
@@ -346,7 +346,7 @@ function AbstractIllustration({
             y1="104"
             x2="16"
             y2="112"
-            stroke="#e63946"
+            stroke={cardFrom}
             strokeWidth="0.8"
             opacity="0.2"
           />
@@ -356,7 +356,7 @@ function AbstractIllustration({
             y1="120"
             x2="50"
             y2="60"
-            stroke="#1d3557"
+            stroke={cardVia}
             strokeWidth="12"
             opacity="0.08"
           />
@@ -410,11 +410,11 @@ export function ProjectCard({
       ? {
           background: "rgba(255,252,247,0.98)",
           boxShadow:
-            "0 2px 20px rgba(62,48,28,0.06), inset 0 0 0 1px rgba(230,57,70,0.12)",
+            "0 2px 20px rgba(62,48,28,0.06), inset 0 0 0 1px rgba(232,93,0,0.12)",
         }
       : {
           background: "#0a0a0a",
-          boxShadow: "4px 4px 0px rgba(230,57,70,0.25)",
+          boxShadow: "4px 4px 0px rgba(232,93,0,0.25)",
         }
     : undefined;
 
@@ -425,8 +425,8 @@ export function ProjectCard({
       className={cn(
         "relative w-full cursor-pointer overflow-hidden",
         isDev
-          ? "vintage-dev-card group rounded-xl"
-          : "group rounded-xl border-2 border-[#e63946]/30",
+          ? "vintage-dev-card group rounded-sm"
+          : "group rounded-sm border-2 border-[#e85d00]/30",
       )}
       onClick={() => onClick(item)}
       initial={{ opacity: 0, y: 24 }}
@@ -490,13 +490,13 @@ export function ProjectCard({
                           }
                       : isLight
                         ? {
-                            border: "1px solid rgba(230,57,70,0.35)",
-                            color: "#c41e3a",
+                            border: "1px solid rgba(232,93,0,0.35)",
+                            color: "#e85d00",
                             background: "rgba(255,252,247,0.95)",
                           }
                         : {
-                            border: "1px solid rgba(230,57,70,0.4)",
-                            color: "#e63946",
+                            border: "1px solid rgba(232,93,0,0.4)",
+                            color: "#e85d00",
                             background: "rgba(0,0,0,0.4)",
                           }
                   }
@@ -519,8 +519,8 @@ export function ProjectCard({
                     ? "skill-pill-dev project-card-hero-tag"
                     : "border border-[rgba(201,168,76,0.2)] bg-[rgba(201,168,76,0.06)] text-[#f0ece4]/75 hover:bg-[rgba(201,168,76,0.12)] hover:text-[#f0ece4]"
                   : isLight
-                    ? "border border-[#e63946]/35 bg-[rgba(255,252,247,0.95)] text-[#b91c2c] hover:bg-[rgba(230,57,70,0.08)]"
-                    : "border border-[#e63946]/40 text-[#e63946]/80 hover:bg-[#e63946]/20 hover:text-[#e63946]",
+                    ? "border border-[#e85d00]/35 bg-[rgba(255,252,247,0.95)] text-[#e85d00] hover:bg-[rgba(232,93,0,0.08)]"
+                    : "border border-[#e85d00]/40 text-[#e85d00]/80 hover:bg-[#e85d00]/20 hover:text-[#e85d00]",
               )}
             >
               <span className="min-w-0 truncate text-right leading-tight">
@@ -543,8 +543,8 @@ export function ProjectCard({
                   color: grad.from,
                 }
               : {
-                  border: "1.5px solid #e63946",
-                  color: "#e63946",
+                  border: "1.5px solid #e85d00",
+                  color: "#e85d00",
                 }
           }
         >
@@ -619,8 +619,8 @@ export function ProjectCard({
               className={cn(
                 "flex-shrink-0 font-mono text-xs",
                 isLight
-                  ? "text-[rgba(180,60,70,0.45)]"
-                  : "text-[#e63946]/25",
+                  ? "text-[rgba(232,93,0,0.45)]"
+                  : "text-[#e85d00]/25",
               )}
             >
               {item.duration.split("–")[1]?.trim() ?? item.duration}
@@ -651,8 +651,8 @@ export function ProjectCard({
                 className={cn(
                   "font-mono px-2 py-0.5 text-[10px]",
                   isLight
-                    ? "text-[rgba(200,70,80,0.45)]"
-                    : "text-[#e63946]/30",
+                    ? "text-[rgba(232,93,0,0.45)]"
+                    : "text-[#e85d00]/30",
                 )}
               >
                 +{item.designTools.length - 3}
@@ -670,7 +670,7 @@ export function ProjectCard({
         style={{
           background: isDev
             ? `linear-gradient(90deg, ${grad.from}90, ${grad.to}45, transparent)`
-            : "rgba(230,57,70,0.4)",
+            : "rgba(232,93,0,0.4)",
         }}
       />
     </motion.div>

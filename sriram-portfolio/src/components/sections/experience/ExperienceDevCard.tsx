@@ -33,7 +33,7 @@ function CardContent({
 
   return (
     <div
-      className="experience-dev-card vintage-dev-card group relative w-full max-w-lg cursor-pointer overflow-hidden rounded-xl"
+      className="experience-dev-card vintage-dev-card group relative w-full max-w-lg cursor-pointer overflow-hidden rounded-sm"
       onClick={onToggle}
     >
       <div className="vintage-dev-card__shimmer" aria-hidden />
