@@ -2,11 +2,22 @@
 
 import { useRef, useEffect } from "react";
 import { RotateCw } from "lucide-react";
+import { useLightDark } from "@/context/LightDarkContext";
+import { cn } from "@/lib/utils";
 import { useTerminalType, type TerminalLine } from "@/hooks/useTerminalType";
 import { getYearsOfExperience } from "@/lib/experience";
 
 export interface SkillTerminalProps {
   onComplete?: () => void;
+}
+
+/** Readability on cream terminal — deepen default golds in light mode */
+function outputTextColor(hex: string | undefined, isLight: boolean): string {
+  if (!hex) return isLight ? "#6b5420" : "#e8d5a3";
+  if (!isLight) return hex;
+  if (hex === "#e8d5a3") return "#6b5420";
+  if (hex === "#c9a84c") return "#7a6020";
+  return hex;
 }
 
 /* Fast typing: reduced delays so content displays in ~2–3s */
@@ -100,6 +111,7 @@ const TERMINAL_LINES: TerminalLine[] = [
 ];
 
 export function SkillTerminal({ onComplete }: SkillTerminalProps) {
+  const { isLight } = useLightDark();
   const bottomRef = useRef<HTMLDivElement>(null);
   const { visibleLines, isComplete, restart } =
     useTerminalType(TERMINAL_LINES);
@@ -117,19 +129,34 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
       className="glass-card rounded-xl overflow-hidden w-full max-w-2xl mx-auto flex flex-col h-full min-h-[300px]"
     >
       {/* Terminal title bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/3">
+      <div
+        className={cn(
+          "flex items-center justify-between px-4 py-3 border-b",
+          isLight
+            ? "border-[rgba(62,48,28,0.12)] bg-[linear-gradient(180deg,rgba(255,252,247,0.98)_0%,rgba(245,240,230,0.95)_100%)]"
+            : "border-white/5 bg-white/3",
+        )}
+      >
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
           <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
           <div className="w-3 h-3 rounded-full bg-[#28c840]" />
         </div>
-        <span className="font-mono text-xs text-white/30">
+        <span
+          className={cn(
+            "font-mono text-xs",
+            isLight ? "text-[rgba(42,36,30,0.45)]" : "text-white/30",
+          )}
+        >
           sriram@portfolio — skills
         </span>
         <button
           type="button"
           onClick={restart}
-          className="font-mono text-xs text-white/20 hover:text-[#c9a84c] transition-colors duration-200 flex items-center gap-1"
+          className={cn(
+            "font-mono text-xs hover:text-[#c9a84c] transition-colors duration-200 flex items-center gap-1",
+            isLight ? "text-[rgba(42,36,30,0.4)]" : "text-white/20",
+          )}
         >
           <RotateCw className="w-3 h-3" />
           replay
@@ -140,7 +167,12 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
       <div
         className="p-5 font-mono text-sm leading-relaxed overflow-y-auto overscroll-contain"
         style={{
-          background: "rgba(10,10,11,0.96)",
+          background: isLight
+            ? "linear-gradient(165deg, #faf8f4 0%, #f3efe6 48%, #ebe4d8 100%)"
+            : "rgba(10,10,11,0.96)",
+          boxShadow: isLight
+            ? "inset 0 1px 0 rgba(255,255,255,0.85), inset 0 0 0 1px rgba(201,168,76,0.08)"
+            : undefined,
           flex: "1 1 0",
           minHeight: 0,
           maxHeight: "100%",
@@ -154,11 +186,26 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
 
             {line.type === "command" && (
               <div className="flex items-center gap-2 w-full">
-                <span className="text-[#c9a84c] select-none flex-shrink-0">
-                  <span className="text-[#e8d5a3]">~/portfolio</span>
-                  <span className="text-white/40"> $ </span>
+                <span className="select-none flex-shrink-0">
+                  <span
+                    className={cn(
+                      isLight ? "text-[#8a7038]" : "text-[#e8d5a3]",
+                    )}
+                  >
+                    ~/portfolio
+                  </span>
+                  <span
+                    className={cn(isLight ? "text-[rgba(42,36,30,0.38)]" : "text-white/40")}
+                  >
+                    {" "}
+                    $ 
+                  </span>
                 </span>
-                <span className="text-white">{line.content}</span>
+                <span
+                  className={cn(isLight ? "text-[#1e1814]" : "text-white")}
+                >
+                  {line.content}
+                </span>
               </div>
             )}
 
@@ -166,7 +213,7 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
               <div className="pl-0 w-full">
                 <span
                   className="leading-relaxed"
-                  style={{ color: line.color ?? "#e8d5a3" }}
+                  style={{ color: outputTextColor(line.color, isLight) }}
                 >
                   {line.content}
                 </span>
@@ -177,8 +224,16 @@ export function SkillTerminal({ onComplete }: SkillTerminalProps) {
 
         {/* Blinking cursor at end */}
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-[#e8d5a3]">~/portfolio</span>
-          <span className="text-white/40"> $ </span>
+          <span
+            className={cn(isLight ? "text-[#8a7038]" : "text-[#e8d5a3]")}
+          >
+            ~/portfolio
+          </span>
+          <span
+            className={cn(isLight ? "text-[rgba(42,36,30,0.38)]" : "text-white/40")}
+          >
+            $ 
+          </span>
           <span className="w-2 h-4 bg-[#c9a84c] animate-blink inline-block" />
         </div>
 

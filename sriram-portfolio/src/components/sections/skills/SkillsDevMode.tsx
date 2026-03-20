@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { HoneycombBg } from "@/components/ui/backgrounds/HoneycombBg";
-import { cn } from "@/lib/utils";
 import { SkillTerminal } from "./SkillTerminal";
 import type { SkillCategory } from "./SkillsData";
 
@@ -125,10 +124,10 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                       <Icon className="h-4 w-4" strokeWidth={2} />
                     </span>
                     <div>
-                      <p className="ld-focus-title font-grotesk text-sm font-semibold text-[#f0ece4]">
+                      <p className="ld-focus-title font-grotesk text-sm font-semibold">
                         {title}
                       </p>
-                      <p className="ld-focus-desc font-poppins mt-0.5 text-xs text-[#f0ece4]/45">
+                      <p className="ld-focus-desc font-poppins mt-0.5 text-xs">
                         {desc}
                       </p>
                     </div>
@@ -139,7 +138,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
 
             {/* Currently exploring card */}
             <ScrollReveal variant="fade-up" delay={0.2} className="glass-card flex-1 rounded-xl border border-[#c9a84c]/25 p-5">
-              <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest text-[#b8956a]">
+              <p className="ld-section-eyebrow mb-3 font-mono text-xs uppercase tracking-widest">
                 Currently exploring
               </p>
               <div className="mb-4 flex flex-wrap gap-2">
@@ -152,9 +151,7 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                 ].map((item) => (
                   <span
                     key={item}
-                    className={cn(
-                      "ld-explore-pill rounded-full border border-[#c9a84c]/25 bg-[#c9a84c]/12 px-3 py-1 font-mono text-xs text-[#e8d5a3]",
-                    )}
+                    className="ld-explore-pill rounded-full border px-3 py-1 font-mono text-xs"
                   >
                     {item}
                   </span>
@@ -170,10 +167,10 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
                   <Bot className="h-4 w-4" strokeWidth={2} />
                 </span>
                 <div>
-                  <p className="ld-focus-title font-grotesk text-sm font-semibold text-[#f0ece4]">
+                  <p className="ld-focus-title font-grotesk text-sm font-semibold">
                     Vibe coding — among other things
                   </p>
-                  <p className="ld-focus-desc font-poppins mt-0.5 text-xs leading-relaxed text-[#f0ece4]/55">
+                  <p className="ld-focus-desc font-poppins mt-0.5 text-xs leading-relaxed">
                     I also connect with AI agents to design, build, and ship full
                     features fast — from prompt to production. Orchestrating
                     agents is just another tool in the belt.

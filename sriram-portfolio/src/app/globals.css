@@ -1089,7 +1089,8 @@ html[data-mode="developer"] .line-grid {
   background-size: 36px 36px !important;
 }
 
-html[data-mode="developer"] .glass-card {
+/* Dev mode dark surfaces — only when ld-dark; light uses .ld-light .glass-card pearl */
+html[data-mode="developer"].ld-dark .glass-card {
   background: rgba(17, 17, 20, 0.82) !important;
   border-color: rgba(201, 168, 76, 0.22) !important;
   box-shadow:
@@ -1097,7 +1098,7 @@ html[data-mode="developer"] .glass-card {
     inset 0 0 0 1px rgba(201, 168, 76, 0.08) !important;
 }
 
-html[data-mode="developer"] .glass-card:hover {
+html[data-mode="developer"].ld-dark .glass-card:hover {
   border-color: rgba(201, 168, 76, 0.38) !important;
 }
 
@@ -1118,7 +1119,7 @@ html[data-mode="developer"] .border-glow-cyan {
     0 0 20px rgba(201, 168, 76, 0.12) !important;
 }
 
-html[data-mode="developer"] .glass-card-hover:hover {
+html[data-mode="developer"].ld-dark .glass-card-hover:hover {
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(201, 168, 76, 0.2),
@@ -1262,6 +1263,20 @@ html.ld-light main {
   background: rgba(201, 168, 76, 0.12) !important;
   border-color: rgba(166, 139, 82, 0.35) !important;
   color: var(--ld-ink) !important;
+}
+
+/* Dark: skills / contact focus copy */
+.ld-dark .ld-focus-title {
+  color: #f4f0e8 !important;
+}
+.ld-dark .ld-focus-desc {
+  color: rgba(240, 236, 228, 0.55) !important;
+  line-height: 1.55 !important;
+}
+.ld-dark .ld-explore-pill {
+  background: rgba(201, 168, 76, 0.12) !important;
+  border-color: rgba(201, 168, 76, 0.25) !important;
+  color: #e8d5a3 !important;
 }
 
 /* Per-section ambient: barely-there gold glow + depth (texture, not decoration) */
