@@ -17,31 +17,15 @@ export function ModeHint() {
   const handleDismiss = useCallback(() => {
     setVisible(false);
     setDismissed(true);
-    sessionStorage.setItem("modeHintSeen", "true");
   }, []);
 
   useEffect(() => {
-    // Only show if not already seen this session
-    const seen = sessionStorage.getItem("modeHintSeen");
-    if (seen) return;
-
-    // Show after 3.5s delay
-    const timer = setTimeout(() => {
-      setVisible(true);
-    }, 3500);
-
-    return () => clearTimeout(timer);
+    // Show immediately — always visible for testing
+    setVisible(true);
   }, []);
 
-  // Auto dismiss after 8 seconds
-  useEffect(() => {
-    if (!visible) return;
-    const timer = setTimeout(() => handleDismiss(), 8000);
-    return () => clearTimeout(timer);
-  }, [visible, handleDismiss]);
-
-  // Don't render if already dismissed or in designer mode
-  if (dismissed || mode === "designer") return null;
+  // Don't render if already dismissed
+  if (dismissed) return null;
 
   return (
     <AnimatePresence>
@@ -61,17 +45,17 @@ export function ModeHint() {
             style={{
               background: isDev
                 ? "rgba(201,168,76,0.95)"
-                : "#e63946",
+                : "var(--theme-primary,#e85d00)",
               boxShadow: isDev
                 ? "0 0 8px rgba(201,168,76,0.5)"
-                : "0 0 8px rgba(230,57,70,0.6)",
+                : "0 0 8px rgba(232,93,0,0.6)",
             }}
           />
 
           {/* Tooltip card */}
           <div
             className={cn(
-              "relative flex flex-col gap-3 p-4 max-w-[220px]",
+              "relative flex flex-col gap-3 p-4 max-w-[260px]",
               isDev
                 ? cn(
                     "mode-hint-surface rounded-xl border backdrop-blur-[20px]",
@@ -80,8 +64,8 @@ export function ModeHint() {
                       : "border-[rgba(201,168,76,0.28)] bg-[rgba(10,10,11,0.96)] shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(201,168,76,0.12)]",
                   )
                 : isLight
-                  ? "mode-hint-surface rounded-xl border-2 border-[#e63946]/35 bg-[rgba(255,252,247,0.98)] shadow-[0_8px_28px_rgba(62,48,28,0.08)]"
-                  : "border-2 border-[#e63946] bg-[#0a0a0a] shadow-[4px_4px_0px_#e63946]",
+                  ? "mode-hint-surface rounded-xl border-2 border-[var(--theme-primary,#e85d00)]/35 bg-[rgba(255,252,247,0.98)] shadow-[0_8px_28px_rgba(62,48,28,0.08)]"
+                  : "border-2 border-[var(--theme-primary,#e85d00)] bg-[#0a0a0a] shadow-[4px_4px_0px_var(--theme-primary,#e85d00)]",
             )}
           >
             {/* Close button */}
@@ -97,7 +81,7 @@ export function ModeHint() {
                   ? isLight
                     ? "rounded-full text-[rgba(42,36,30,0.35)] hover:bg-[rgba(201,168,76,0.08)] hover:text-[rgba(28,22,18,0.75)]"
                     : "text-[#f0ece4]/30 hover:text-[#f0ece4]/70 rounded-full hover:bg-white/5"
-                  : "text-[#e63946]/40 hover:text-[#e63946]",
+                  : "text-[var(--theme-primary,#e85d00)]/40 hover:text-[var(--theme-primary,#e85d00)]",
               )}
             >
               <X className="w-3 h-3" />
@@ -118,7 +102,7 @@ export function ModeHint() {
                         border: "1px solid rgba(201,168,76,0.35)",
                       }
                     : {
-                        border: "2px solid #e63946",
+                        border: "2px solid var(--theme-primary,#e85d00)",
                         background: "transparent",
                       }
                 }
@@ -134,7 +118,7 @@ export function ModeHint() {
                 >
                   <Sparkles
                     className="w-4 h-4"
-                    style={{ color: isDev ? "#c9a84c" : "#e63946" }}
+                    style={{ color: isDev ? "#c9a84c" : "var(--theme-primary,#e85d00)" }}
                   />
                 </motion.div>
               </div>
@@ -147,10 +131,10 @@ export function ModeHint() {
                       ? isLight
                         ? "text-[#1c1612]"
                         : "text-[#f0ece4]"
-                      : "text-[#e63946] uppercase tracking-wide",
+                      : "text-[var(--theme-primary,#e85d00)] uppercase tracking-wide",
                   )}
                 >
-                  {isDev ? "Try designer mode" : "TRY DESIGNER MODE"}
+                  {isDev ? "Try designer mode" : "Try developer mode"}
                 </p>
                 <p
                   className={cn(
@@ -162,39 +146,11 @@ export function ModeHint() {
                       : "text-white/30",
                   )}
                 >
-                  {isDev
-                    ? "Hit the toggle — different vibe"
-                    : "SWITCH THE TOGGLE ↑"}
+                  Expert in both frontend & design — switch to see both
                 </p>
               </div>
             </div>
 
-            {/* Progress bar — auto dismiss timer */}
-            <div
-              className={cn(
-                "w-full overflow-hidden",
-                isDev ? "rounded-full h-px" : "h-0.5",
-              )}
-              style={{
-                background: isDev
-                  ? isLight
-                    ? "rgba(201,168,76,0.15)"
-                    : "rgba(255,255,255,0.06)"
-                  : "rgba(230,57,70,0.15)",
-              }}
-            >
-              <motion.div
-                className="h-full"
-                style={{
-                  background: isDev
-                    ? "linear-gradient(90deg, #c9a84c, #e8d5a3)"
-                    : "#e63946",
-                }}
-                initial={{ width: "100%" }}
-                animate={{ width: "0%" }}
-                transition={{ duration: 8, ease: "linear" }}
-              />
-            </div>
           </div>
         </motion.div>
       )}
