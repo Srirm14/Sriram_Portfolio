@@ -1,14 +1,16 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Send } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { useLightDark } from "@/context/LightDarkContext";
 import { HeroBackground } from "./HeroBackground";
 import { HeroStats } from "./HeroStats";
+import { HeroDevDots } from "./HeroDevDots";
 
 interface HeroDevModeProps {
-  meta: ReturnType<typeof import("@/lib/data").getMeta>;
+  readonly meta: ReturnType<typeof import("@/lib/data").getMeta>;
 }
 
 const fadeUp = {
@@ -16,16 +18,70 @@ const fadeUp = {
   animate: { opacity: 1, y: 0 },
 };
 
+type ScrollDir = "down" | "up" | "idle";
+
+function useScrollDirection(idleDelay = 500) {
+  const [dir, setDir] = useState<ScrollDir>("idle");
+  const lastY = useRef(0);
+  const idleRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const pendingDir = useRef<ScrollDir | null>(null);
+  const idleDelayRef = useRef(idleDelay);
+  idleDelayRef.current = idleDelay;
+
+  useEffect(() => {
+    const flushDir = () => {
+      rafRef.current = null;
+      const d = pendingDir.current;
+      if (d != null) {
+        setDir(d);
+        pendingDir.current = null;
+      }
+      if (idleRef.current) clearTimeout(idleRef.current);
+      idleRef.current = setTimeout(() => setDir("idle"), idleDelayRef.current);
+    };
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+      lastY.current = y;
+
+      if (Math.abs(delta) < 3) return;
+
+      pendingDir.current = delta > 0 ? "down" : "up";
+
+      if (rafRef.current == null) {
+        rafRef.current = requestAnimationFrame(flushDir);
+      } else {
+        if (idleRef.current) clearTimeout(idleRef.current);
+        idleRef.current = setTimeout(() => setDir("idle"), idleDelayRef.current);
+      }
+    };
+
+    lastY.current = window.scrollY;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+      if (idleRef.current) clearTimeout(idleRef.current);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [idleDelay]);
+
+  return dir;
+}
+
 export function HeroDevMode({ meta }: HeroDevModeProps) {
   const { isLight } = useLightDark();
+  const scrollDir = useScrollDirection(550);
 
   if (isLight) {
     return (
       <section
         id="hero"
-        className="hero-dev-light relative flex min-h-[100svh] items-center overflow-hidden bg-dev dot-grid"
+        className="hero-dev-light relative flex min-h-[100svh] items-center overflow-hidden bg-dev"
       >
         <HeroBackground mode="developer" appearance="light" />
+        <HeroDevDots isLight scrollDir={scrollDir} />
         <div
           className="hero-light-grain pointer-events-none absolute inset-0 z-[1]"
           aria-hidden
@@ -35,10 +91,10 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="badge-available-dev hero-light-badge mb-8 flex items-center gap-2 md:mb-10"
+            className="badge-available-dev hero-light-badge mb-8 flex min-w-0 max-w-full shrink-0 items-center gap-2 md:mb-10"
           >
-            <span className="h-2 w-2 animate-ping-slow rounded-full bg-[#b8956a]/90 shadow-[0_0_12px_rgba(201,168,76,0.45)]" />
-            <span className="font-mono text-sm text-[rgba(28,22,18,0.72)]">
+            <span className="h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2 animate-ping-slow rounded-full bg-[#b8956a]/90 shadow-[0_0_12px_rgba(201,168,76,0.45)]" />
+            <span className="font-mono text-xs sm:text-sm text-[rgba(28,22,18,0.72)] break-words">
               {meta.availability}
             </span>
           </motion.div>
@@ -87,7 +143,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
               delay: 0.2,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-3 md:mt-14 md:gap-4 lg:justify-start"
+            className="mt-12 flex flex-nowrap items-center justify-center gap-2 sm:flex-wrap sm:gap-3 md:mt-14 md:gap-4 lg:justify-start overflow-x-auto px-1 -mx-1 sm:overflow-visible sm:px-0 sm:mx-0"
           >
             <button
               type="button"
@@ -96,29 +152,17 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
                   .getElementById("experience")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="dev-btn flex items-center gap-2"
+              className="dev-btn flex shrink-0 items-center gap-1.5 px-3 py-2 text-xs sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
             >
-              <ArrowDown className="h-4 w-4" />
+              <ArrowDown className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
               View Experience
-            </button>
-            <button
-              type="button"
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="dev-btn-outline flex items-center gap-2"
-            >
-              <Send className="h-4 w-4" />
-              Apply
             </button>
             <Link
               href={meta.resume}
               download
-              className="dev-btn-outline flex items-center gap-2"
+              className="dev-btn-outline flex shrink-0 items-center gap-1.5 px-3 py-2 text-xs sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
             >
-              <Download className="h-4 w-4" />
+              <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
               Download Resume
             </Link>
           </motion.div>
@@ -139,9 +183,10 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
   return (
     <section
       id="hero"
-      className="hero-dev-dark relative flex min-h-[100svh] items-center overflow-hidden bg-dev dot-grid"
+      className="hero-dev-dark relative flex min-h-[100svh] items-center overflow-hidden bg-dev"
     >
       <HeroBackground mode="developer" appearance="dark" />
+      <HeroDevDots isLight={false} scrollDir={scrollDir} />
       <div
         className="hero-dark-grain pointer-events-none absolute inset-0 z-[1]"
         aria-hidden
@@ -155,10 +200,10 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="badge-available-dev mb-8 flex items-center gap-2 md:mb-10"
+          className="badge-available-dev mb-8 flex min-w-0 max-w-full shrink-0 items-center gap-2 md:mb-10"
         >
-          <span className="h-2 w-2 animate-ping-slow rounded-full bg-[#c9a84c]/90 shadow-[0_0_14px_rgba(201,168,76,0.35)]" />
-          <span className="font-mono text-sm text-[rgba(232,228,218,0.72)]">
+          <span className="h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2 animate-ping-slow rounded-full bg-[#c9a84c]/90 shadow-[0_0_14px_rgba(201,168,76,0.35)]" />
+          <span className="font-mono text-xs sm:text-sm text-[rgba(232,228,218,0.72)] break-words">
             {meta.availability}
           </span>
         </motion.div>
@@ -207,7 +252,7 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
             delay: 0.2,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-3 md:mt-14 md:gap-4 lg:justify-start"
+          className="mt-12 flex flex-nowrap items-center justify-center gap-2 sm:flex-wrap sm:gap-3 md:mt-14 md:gap-4 lg:justify-start overflow-x-auto px-1 -mx-1 sm:overflow-visible sm:px-0 sm:mx-0"
         >
           <button
             type="button"
@@ -216,29 +261,17 @@ export function HeroDevMode({ meta }: HeroDevModeProps) {
                 .getElementById("experience")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="dev-btn flex items-center gap-2"
+            className="dev-btn flex shrink-0 items-center gap-1.5 px-3 py-2 text-xs sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
           >
-            <ArrowDown className="h-4 w-4" />
+            <ArrowDown className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
             View Experience
-          </button>
-          <button
-            type="button"
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="dev-btn-outline flex items-center gap-2"
-          >
-            <Send className="h-4 w-4" />
-            Apply
           </button>
           <Link
             href={meta.resume}
             download
-            className="dev-btn-outline flex items-center gap-2"
+            className="dev-btn-outline flex shrink-0 items-center gap-1.5 px-3 py-2 text-xs sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
           >
-            <Download className="h-4 w-4" />
+            <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
             Download Resume
           </Link>
         </motion.div>

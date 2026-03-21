@@ -22,37 +22,37 @@ export function HeroBackground({ mode, appearance = "dark" }: HeroBackgroundProp
             background: `
               linear-gradient(165deg,
                 rgba(255, 253, 250, 0) 0%,
-                rgba(248, 238, 220, 0.45) 45%,
+                rgba(248, 238, 220, 0.28) 45%,
                 rgba(255, 252, 247, 0) 100%),
               radial-gradient(ellipse 80% 55% at 15% 20%,
-                rgba(255, 248, 235, 0.9) 0%,
+                rgba(255, 248, 235, 0.55) 0%,
                 transparent 55%),
               radial-gradient(ellipse 70% 50% at 85% 75%,
-                rgba(232, 213, 180, 0.35) 0%,
+                rgba(232, 213, 180, 0.2) 0%,
                 transparent 50%)
             `,
           }}
         />
-        {/* Soft gold blooms */}
+        {/* Soft gold blooms — reduced density */}
         <div
-          className="absolute -top-10 -right-10 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-90"
+          className="absolute -top-10 -right-10 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-55"
           style={{
             background:
-              "radial-gradient(circle, rgba(201,168,76,0.16) 0%, transparent 68%)",
+              "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 68%)",
           }}
         />
         <div
-          className="absolute bottom-0 left-0 h-[22rem] w-[22rem] rounded-full blur-3xl opacity-80"
+          className="absolute bottom-0 left-0 h-[22rem] w-[22rem] rounded-full blur-3xl opacity-50"
           style={{
             background:
-              "radial-gradient(circle, rgba(184,149,106,0.12) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(184,149,106,0.06) 0%, transparent 70%)",
           }}
         />
         <div
-          className="absolute top-1/3 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full blur-2xl opacity-70"
+          className="absolute top-1/3 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full blur-2xl opacity-45"
           style={{
             background:
-              "radial-gradient(circle, rgba(232,213,163,0.14) 0%, transparent 72%)",
+              "radial-gradient(circle, rgba(232,213,163,0.07) 0%, transparent 72%)",
           }}
         />
         {/* Diagonal reflection */}
@@ -80,27 +80,27 @@ export function HeroBackground({ mode, appearance = "dark" }: HeroBackgroundProp
         className="absolute inset-0 overflow-hidden pointer-events-none"
         aria-hidden
       >
-        {/* Primary ambient — soft gold behind headline zone (base wash lives on section.hero-dev-dark) */}
+        {/* Primary ambient — soft gold, reduced density */}
         <div
-          className="absolute left-1/2 top-[28%] h-[min(52vh,28rem)] w-[min(92vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] opacity-90"
+          className="absolute left-1/2 top-[28%] h-[min(52vh,28rem)] w-[min(92vw,40rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] opacity-55"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(201,168,76,0.11) 0%, rgba(139,115,85,0.04) 42%, transparent 68%)",
+              "radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, rgba(139,115,85,0.02) 42%, transparent 68%)",
           }}
         />
-        {/* Secondary blooms — diffused, low contrast */}
+        {/* Secondary blooms — lighter */}
         <div
-          className="absolute -left-24 top-[18%] h-[22rem] w-[22rem] rounded-full blur-[64px] opacity-70"
+          className="absolute -left-24 top-[18%] h-[22rem] w-[22rem] rounded-full blur-[64px] opacity-40"
           style={{
             background:
-              "radial-gradient(circle, rgba(232,213,163,0.06) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(232,213,163,0.035) 0%, transparent 70%)",
           }}
         />
         <div
-          className="absolute -right-16 bottom-[12%] h-[18rem] w-[18rem] rounded-full blur-[56px] opacity-60"
+          className="absolute -right-16 bottom-[12%] h-[18rem] w-[18rem] rounded-full blur-[56px] opacity-35"
           style={{
             background:
-              "radial-gradient(circle, rgba(201,168,76,0.055) 0%, transparent 72%)",
+              "radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 72%)",
           }}
         />
         {/* Hairline horizon — depth without noise */}

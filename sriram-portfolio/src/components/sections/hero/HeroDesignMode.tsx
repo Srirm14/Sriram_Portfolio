@@ -22,8 +22,10 @@ function useTypewriterName(text: string, delay: number = 350) {
 
   useEffect(() => {
     let i = 0;
-    setDisplayed("");
-    setDone(false);
+    const resetId = setTimeout(() => {
+      setDisplayed("");
+      setDone(false);
+    }, 0);
     const t = setTimeout(() => {
       interval.current = setInterval(() => {
         i += 1;
@@ -35,6 +37,7 @@ function useTypewriterName(text: string, delay: number = 350) {
       }, 52);
     }, delay);
     return () => {
+      clearTimeout(resetId);
       clearTimeout(t);
       if (interval.current) clearInterval(interval.current);
     };
@@ -226,7 +229,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...easeOut, delay: 0.22 }}
-              className="badge-collab-glow flex items-center gap-2.5 px-4 py-1.5 w-fit relative"
+              className="badge-collab-glow flex min-w-0 max-w-full shrink-0 items-center gap-2 px-3 py-1.5 w-fit relative sm:gap-2.5 sm:px-4"
               style={{
                 border: `1.5px solid ${t.badgeBorder}`,
                 background: t.badgeBg,
@@ -246,9 +249,10 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
                 }}
               />
               <span
+                className="break-words"
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  fontSize: "10px",
+                  fontSize: "clamp(9px, 2.2vw, 10px)",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
                 }}
@@ -273,12 +277,19 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
               Crafting interfaces that feel as good as they look
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — CSS-only hover for smooth, lag-free transitions */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...easeOut, delay: 0.34 }}
-              className="flex flex-wrap gap-3"
+              className={`hero-design-ctas flex flex-nowrap gap-2 sm:flex-wrap sm:gap-3 overflow-x-auto -mx-1 px-1 sm:overflow-visible sm:mx-0 sm:px-0 ${isLight ? "" : "ktm-dark"}`}
+              style={
+                {
+                  "--ktm-primary": t.primary,
+                  "--ktm-secondary": t.secondary,
+                  "--ktm-text-on": isLight ? "#ffffff" : "#080808",
+                } as React.CSSProperties
+              }
             >
               <button
                 type="button"
@@ -287,73 +298,49 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
                     .getElementById("experience")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
+                className="hero-design-cta-filled shrink-0"
                 style={{
                   fontFamily: "var(--font-big-shoulders)",
                   fontWeight: 700,
                   letterSpacing: "0.1em",
-                  fontSize: "0.95rem",
+                  fontSize: "clamp(0.7rem, 2.5vw, 0.95rem)",
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
-                  padding: "10px 24px",
+                  gap: "6px",
+                  padding: "clamp(8px, 2vw, 10px) clamp(16px, 4vw, 24px)",
                   background: t.primary,
                   color: isLight ? "#ffffff" : "#080808",
                   border: `2px solid ${t.primary}`,
                   boxShadow: `4px 4px 0px ${t.secondary}`,
                   cursor: "pointer",
-                  transition: "all 0.15s ease",
                   textTransform: "uppercase",
                 }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = t.secondary;
-                  el.style.borderColor = t.secondary;
-                  el.style.boxShadow = `4px 4px 0px ${t.primary}`;
-                  el.style.color = isLight ? "#ffffff" : "#080808";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = t.primary;
-                  el.style.borderColor = t.primary;
-                  el.style.boxShadow = `4px 4px 0px ${t.secondary}`;
-                  el.style.color = "#ffffff";
-                }}
               >
-                <ArrowDown style={{ width: 16, height: 16 }} />
+                <ArrowDown className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                 VIEW WORK
               </button>
 
               <Link
                 href={meta.resume}
                 download
+                className="hero-design-cta-outline shrink-0"
                 style={{
                   fontFamily: "var(--font-big-shoulders)",
                   fontWeight: 700,
                   letterSpacing: "0.1em",
-                  fontSize: "0.95rem",
+                  fontSize: "clamp(0.7rem, 2.5vw, 0.95rem)",
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
-                  padding: "10px 24px",
+                  gap: "6px",
+                  padding: "clamp(8px, 2vw, 10px) clamp(16px, 4vw, 24px)",
                   background: "transparent",
                   color: t.primary,
                   border: `2px solid ${t.primary}`,
                   boxShadow: `4px 4px 0px ${t.secondary}`,
-                  transition: "all 0.15s ease",
                   textTransform: "uppercase",
                 }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = t.primary;
-                  el.style.color = "#ffffff";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "transparent";
-                  el.style.color = t.primary;
-                }}
               >
-                <Download style={{ width: 16, height: 16 }} />
+                <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                 RESUME
               </Link>
             </motion.div>

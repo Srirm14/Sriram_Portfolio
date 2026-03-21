@@ -1390,6 +1390,16 @@ html.ld-light {
   ) !important;
   background-size: 32px 32px !important;
 }
+
+/* Dev hero — gold sand dots, expand/shrink on scroll */
+@media (prefers-reduced-motion: reduce) {
+  .hero-dev-dots-sand {
+    transition: none !important;
+  }
+  .hero-dev-dots-sand {
+    transform: scale(1) !important;
+  }
+}
 .ld-light .hero-light-grain {
   opacity: 0.5;
   mix-blend-mode: multiply;
@@ -2321,6 +2331,39 @@ html.ld-dark.theme-ktm .exp-card-shimmer {
 @media (prefers-reduced-motion: reduce) {
   .badge-collab-glow,
   .badge-dot-blink { animation: none; }
+}
+
+/* ── Hero Design CTAs: CSS-only hover for smooth transitions ── */
+.hero-design-ctas {
+  --ktm-primary: #e85d00;
+  --ktm-secondary: #1a1a1a;
+  --ktm-text-on: #ffffff;
+}
+.hero-design-ctas.ktm-dark {
+  --ktm-secondary: #b0b8c1;
+  --ktm-text-on: #080808;
+}
+.hero-design-cta-filled {
+  transition:
+    background-color 0.08s ease-out,
+    border-color 0.08s ease-out,
+    box-shadow 0.08s ease-out,
+    color 0.08s ease-out;
+}
+.hero-design-cta-filled:hover {
+  background-color: var(--ktm-secondary) !important;
+  border-color: var(--ktm-secondary) !important;
+  box-shadow: 4px 4px 0px var(--ktm-primary) !important;
+  color: var(--ktm-text-on) !important;
+}
+.hero-design-cta-outline {
+  transition:
+    background-color 0.08s ease-out,
+    color 0.08s ease-out;
+}
+.hero-design-cta-outline:hover {
+  background-color: var(--ktm-primary) !important;
+  color: var(--ktm-text-on) !important;
 }
 
 .text-metallic-ktm {
