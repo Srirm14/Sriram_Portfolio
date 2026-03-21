@@ -33,7 +33,7 @@ export function ContactDevMode({ contactLinks, meta }: ContactDevModeProps) {
             Let&apos;s <span className="text-gradient-dev">Connect</span>
           </h2>
           <p className="ld-section-lede mx-auto mt-3 max-w-md text-sm">
-            Open to senior frontend roles in Bengaluru or remote. Hover a card
+            Open to senior frontend roles and collaborations. Hover a card
             to open or copy.
           </p>
         </ScrollReveal>

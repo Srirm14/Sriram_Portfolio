@@ -58,14 +58,14 @@ export const metadata: Metadata = {
     template: "%s | Sriram Venkatachalam",
   },
   description:
-    `Senior Frontend Engineer with ${getYearsOfExperience()} years building large-scale React and Next.js applications. Open to roles in Bengaluru and Remote. Expert in TypeScript, Next.js, React, TanStack Query, and Design Systems.`,
+    `Senior Frontend Engineer with ${getYearsOfExperience()} years building large-scale React and Next.js applications. available for senior roles and collaborations. Expert in TypeScript, Next.js, React, TanStack Query, and Design Systems.`,
   keywords: [
     "Senior Frontend Engineer",
     "React Developer",
     "Next.js Engineer",
     "TypeScript",
-    "Frontend Developer Bengaluru",
-    "Remote Frontend Engineer India",
+    "Senior Frontend Engineer",
+    "Full Stack Developer",
     "Design Systems",
     "TanStack Query",
     "Zustand",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     siteName: "Sriram Venkatachalam",
     title: "Sriram Venkatachalam — Senior Frontend Engineer",
     description:
-      `Senior Frontend Engineer with ${getYearsOfExperience()} years building scalable products with React & Next.js. Open to roles in Bengaluru / Remote.`,
+      `Senior Frontend Engineer with ${getYearsOfExperience()} years building scalable products with React & Next.js. Available for senior roles and collaborations.`,
     images: [
       {
         url: "/opengraph-image",
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sriram Venkatachalam — Senior Frontend Engineer",
     description:
-      "Senior Frontend Engineer · React · Next.js · TypeScript · Open to roles in Bengaluru / Remote.",
+      "Senior Frontend Engineer · React · Next.js · TypeScript · Available for senior roles and collaborations.",
     images: ["/opengraph-image"],
   },
   robots: {

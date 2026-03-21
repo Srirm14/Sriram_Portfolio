@@ -139,7 +139,7 @@ export function ContactDesignMode({
               color: isLight ? "rgba(15,15,15,0.62)" : "rgba(245,245,245,0.58)",
             }}
           >
-            Open to senior frontend roles in Bengaluru or remote. Hover a card
+            Available for collaborations. Hover a card
             to open or copy.
           </p>
         </ScrollReveal>

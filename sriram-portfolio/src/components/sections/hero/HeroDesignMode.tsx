@@ -80,7 +80,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
       ? "0 0 80px rgba(232,93,0,0.1)"
       : "0 0 80px rgba(232,93,0,0.1), 0 0 160px rgba(176,184,193,0.03)",
     words: KTM_WORDS,
-    roleLabel: "Product Designer · Frontend Engineer",
+    roleLabel: "Product Designer",
   };
 
   const easeOut = {
@@ -202,16 +202,14 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
             }}
           />
           <p
+            key={`role-${isLight}`}
             style={{
               fontFamily: "var(--font-big-shoulders)",
               fontWeight: 700,
               fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              background: `linear-gradient(90deg,${t.roleFrom},${t.roleTo})`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: t.primary,
             }}
           >
             {t.roleLabel}
@@ -223,25 +221,28 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
                         lg:items-end gap-8 lg:gap-16">
           {/* Left — badge + subline + CTAs */}
           <div className="flex flex-col gap-5 max-w-lg">
-            {/* Badge */}
+            {/* Badge — blink + glow */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...easeOut, delay: 0.22 }}
-              className="flex items-center gap-2.5 px-4 py-1.5 w-fit"
+              className="badge-collab-glow flex items-center gap-2.5 px-4 py-1.5 w-fit relative"
               style={{
                 border: `1.5px solid ${t.badgeBorder}`,
                 background: t.badgeBg,
                 color: t.badgeColor,
+                boxShadow: `0 0 20px rgba(232,93,0,0.25), 0 0 40px rgba(232,93,0,0.12)`,
               }}
             >
               <span
+                className="badge-dot-blink"
                 style={{
                   width: "6px",
                   height: "6px",
                   borderRadius: "50%",
                   background: t.primary,
                   flexShrink: 0,
+                  display: "inline-block",
                 }}
               />
               <span
@@ -252,7 +253,7 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
                   textTransform: "uppercase",
                 }}
               >
-                {meta.availability}
+                {meta.availabilityDesign ?? meta.availability}
               </span>
             </motion.div>
 

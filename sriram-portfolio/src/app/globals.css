@@ -2282,6 +2282,47 @@ html.ld-dark.theme-ktm .exp-card-shimmer {
   50%       { opacity: 0; }
 }
 
+@keyframes badge-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(232,93,0,0.22), 0 0 40px rgba(232,93,0,0.1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(232,93,0,0.38), 0 0 56px rgba(232,93,0,0.18);
+  }
+}
+
+/* Cool smooth blink — dot breathes with soft glow */
+@keyframes badge-dot-blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 8px #e85d00, 0 0 16px rgba(232,93,0,0.6);
+  }
+  45% {
+    opacity: 0.4;
+    transform: scale(0.85);
+    box-shadow: 0 0 4px rgba(232,93,0,0.5), 0 0 10px rgba(232,93,0,0.3);
+  }
+  55% {
+    opacity: 0.4;
+    transform: scale(0.85);
+    box-shadow: 0 0 4px rgba(232,93,0,0.5), 0 0 10px rgba(232,93,0,0.3);
+  }
+}
+
+.badge-collab-glow {
+  animation: badge-glow-pulse 2.5s ease-in-out infinite;
+}
+
+.badge-dot-blink {
+  animation: badge-dot-blink 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-collab-glow,
+  .badge-dot-blink { animation: none; }
+}
+
 .text-metallic-ktm {
   background: linear-gradient(
     105deg,

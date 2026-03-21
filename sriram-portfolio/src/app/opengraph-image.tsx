@@ -57,7 +57,7 @@ export default async function Image() {
             }}
           />
           <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "14px" }}>
-            Open to roles · Bengaluru / Remote
+            Available for senior roles & collaborations
           </span>
         </div>
 
