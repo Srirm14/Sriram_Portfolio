@@ -153,17 +153,25 @@ export function NavPill() {
   const isDev = mode === "developer";
 
   useEffect(() => {
+    let raf = 0;
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled((prev) => {
-        if (y > 100) return true;
-        if (y < 50) return false;
-        return prev; // hysteresis: prevent flicker at threshold
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        setScrolled((prev) => {
+          if (y > 80) return true;
+          if (y < 40) return false;
+          return prev;
+        });
       });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -208,15 +216,15 @@ export function NavPill() {
     <motion.header
       key="anchored"
       className="fixed top-0 left-0 right-0 z-[9999] isolate"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      exit={{ y: -100 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -80, opacity: 0 }}
+      transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div
         className={cn(
           "flex h-16 w-full items-center justify-between px-6 md:px-12",
-          "transition-all duration-300",
+          "transition-all duration-150",
           isDev
             ? "nav-surface-anchored-dev backdrop-blur-[16px] bg-[rgba(10,10,11,0.92)] border-b border-[rgba(201,168,76,0.14)] shadow-[0_4px_28px_rgba(0,0,0,0.45),0_0_0_1px_rgba(201,168,76,0.06),inset_0_1px_0_rgba(240,236,228,0.04)]"
             : "nav-shell-design-anchored backdrop-blur-[16px] border-b",
@@ -301,10 +309,10 @@ export function NavPill() {
     <motion.div
       key="floating"
       className="fixed top-5 left-1/2 z-[9999] isolate w-fit"
-      initial={{ x: "-50%", y: -100, opacity: 0 }}
+      initial={{ x: "-50%", y: -60, opacity: 0 }}
       animate={{ x: "-50%", y: 0, opacity: 1 }}
-      exit={{ x: "-50%", y: -100, opacity: 0 }}
-      transition={{ type: "spring", stiffness: 400, damping: 35 }}
+      exit={{ x: "-50%", y: -60, opacity: 0 }}
+      transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div
         className={cn(
@@ -388,7 +396,7 @@ export function NavPill() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         {scrolled ? floatingPill : anchoredHeader}
       </AnimatePresence>
 

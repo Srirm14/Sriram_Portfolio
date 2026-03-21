@@ -145,9 +145,9 @@ export function ContactDesignMode({
         </ScrollReveal>
 
         <StaggerChildren
-          className="columns-1 md:columns-3 gap-4 md:gap-6 max-w-3xl mx-auto space-y-4 md:space-y-6"
-          staggerDelay={0.12}
-          childClassName="break-inside-avoid"
+          className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-4xl mx-auto"
+          staggerDelay={0.1}
+          childClassName=""
         >
           {contactLinks.map((link) => (
             <ContactCard key={link.id} link={link} mode="designer" />

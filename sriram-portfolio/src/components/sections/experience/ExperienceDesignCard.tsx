@@ -17,9 +17,11 @@ const PRIMARY = "#e85d00";
 function CardContent({
   item,
   isLight,
+  compact: isCompact,
 }: {
   item: ExperienceItem;
   isLight?: boolean;
+  compact?: boolean;
 }) {
   const {
     company,
@@ -35,19 +37,31 @@ function CardContent({
 
   return (
     <div className="exp-design-card group relative overflow-visible">
-      {/* Orange blur glow on hover */}
+      {/* Orange blur glow on hover — lighter for performance */}
       <div
-        className="absolute -inset-3 rounded-sm opacity-0 blur-2xl transition-opacity duration-300 ease-out group-hover:opacity-100 pointer-events-none"
+        className="absolute -inset-2 rounded-sm opacity-0 blur-xl transition-opacity duration-200 ease-out group-hover:opacity-100 pointer-events-none"
         style={{
           zIndex: -1,
-          background: `radial-gradient(ellipse 75% 55% at 50% 50%, rgba(232,93,0,0.4) 0%, rgba(232,93,0,0.15) 45%, transparent 70%)`,
+          background: `radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,93,0,0.28) 0%, transparent 65%)`,
         }}
         aria-hidden
       />
-      <div className="exp-card-inner brutal-card p-6 w-full max-w-lg hover:shadow-brutal-lg hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200 rounded-sm relative overflow-hidden">
-      {/* Slow smooth shimmer — CSS-based so it never stops on mode switch */}
-      <div className="exp-card-shimmer absolute inset-0 rounded-sm pointer-events-none" aria-hidden />
-      <div className="relative z-[1]">
+      <div
+        className={cn(
+          "exp-card-inner brutal-card relative w-full max-w-lg rounded-sm overflow-hidden transition-all duration-200 ease-out hover:-translate-y-0.5",
+          isCompact ? "p-5 pl-6" : "p-6 pl-7"
+        )}
+      >
+        {/* Left edge — gradient bar */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-1 rounded-l-sm pointer-events-none"
+          style={{
+            background: `linear-gradient(180deg, ${PRIMARY}, #ff7a1a80)`,
+            opacity: 0.9,
+          }}
+        />
+        <div className="exp-card-shimmer absolute inset-0 rounded-sm pointer-events-none" aria-hidden />
+        <div className="relative z-[1]">
       <div className="flex items-start justify-between gap-4">
         <p
           className="font-syne font-semibold text-lg tracking-tight"
@@ -131,33 +145,32 @@ export function ExperienceDesignCard({
   if (compact) {
     return (
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
         transition={{
           type: "spring",
-          stiffness: 300,
-          damping: 25,
-          delay: index * 0.12,
+          stiffness: 400,
+          damping: 28,
+          delay: index * 0.06,
         }}
-        className="pl-6"
-        style={{ borderLeft: `2px solid ${PRIMARY}50` }}
+        className="w-full"
       >
-        <CardContent item={item} isLight={isLight} />
+        <CardContent item={item} isLight={isLight} compact />
       </motion.div>
     );
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
         type: "spring",
-        stiffness: 300,
-        damping: 25,
-        delay: index * 0.12,
+        stiffness: 420,
+        damping: 28,
+        delay: index * 0.06,
       }}
       className="relative grid grid-cols-[1fr_auto_1fr] gap-8 items-start"
     >

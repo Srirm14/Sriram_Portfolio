@@ -62,9 +62,9 @@ export function ExperienceDesignMode({
         <div
           className="absolute inset-0 exp-shimmer-layer"
           style={{
-            background: `linear-gradient(105deg, transparent 0%, transparent 30%, ${primary}12 48%, ${primary}10 52%, transparent 70%, transparent 100%)`,
-            backgroundSize: "80% 100%",
-            animation: "exp-shimmer-sweep 12s ease-in-out infinite",
+            background: `linear-gradient(105deg, transparent 0%, transparent 35%, ${primary}08 48%, ${primary}06 52%, transparent 65%, transparent 100%)`,
+            backgroundSize: "70% 100%",
+            animation: "exp-shimmer-sweep 14s linear infinite",
           }}
         />
 
@@ -180,7 +180,7 @@ export function ExperienceDesignMode({
             }}
             initial={{ height: 0 }}
             animate={{ height: lineInView ? "100%" : 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           />
 
           {/* Desktop: alternating timeline */}
