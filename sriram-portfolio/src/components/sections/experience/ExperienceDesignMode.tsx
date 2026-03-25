@@ -31,7 +31,6 @@ export function ExperienceDesignMode({
       className="relative overflow-hidden px-4 py-14 md:px-6 md:py-24 lg:px-12"
       style={{
         backgroundColor: isLight ? "#fff8f2" : "#080808",
-        willChange: "transform",
       }}
     >
       {/* Top accent — hairline */}
@@ -46,7 +45,7 @@ export function ExperienceDesignMode({
 
       {/* ── The road traveled — ghostly abstraction ── */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden [contain:paint]"
         aria-hidden
       >
         {/* Dark gradient base — depth */}
@@ -59,13 +58,17 @@ export function ExperienceDesignMode({
           }}
         />
 
-        {/* Animated shimmer sweep — there but not there */}
+        {/* Static wash — no animation (smoother scroll than shimmer sweep) */}
         <div
-          className="absolute inset-0 exp-shimmer-layer"
+          className="absolute inset-0"
           style={{
-            background: `linear-gradient(105deg, transparent 0%, transparent 35%, ${primary}08 48%, ${primary}06 52%, transparent 65%, transparent 100%)`,
-            backgroundSize: "70% 100%",
-            animation: "exp-shimmer-sweep 14s linear infinite",
+            background: `linear-gradient(
+              115deg,
+              transparent 0%,
+              ${primary}05 45%,
+              transparent 70%
+            )`,
+            opacity: isLight ? 0.85 : 0.65,
           }}
         />
 

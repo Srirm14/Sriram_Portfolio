@@ -43,7 +43,7 @@ export function ExperienceFocusPillars({ variant }: ExperienceFocusPillarsProps)
         {DESIGN_EXPERIENCE_FOCUS_PILLARS.map((pillar) => (
           <li
             key={pillar.id}
-            className="rounded-lg border px-4 py-3 text-left backdrop-blur-sm"
+            className="rounded-lg border px-4 py-3 text-left"
             style={{
               borderColor: isLight
                 ? "rgba(232,93,0,0.22)"

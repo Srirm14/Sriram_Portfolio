@@ -105,22 +105,22 @@ export function HeroDesignMode({ meta }: HeroDesignModeProps) {
       {isLight ? (
         <div
           className="pointer-events-none absolute
-                     top-0 right-0 w-[500px] h-[500px] z-0"
+                     top-0 right-0 w-[420px] h-[420px] z-0"
           style={{
             background:
               "radial-gradient(circle,rgba(232,93,0,0.07) 0%,transparent 65%)",
-            filter: "blur(48px)",
+            filter: "blur(28px)",
           }}
           aria-hidden
         />
       ) : (
         <div
           className="pointer-events-none absolute
-                     top-0 right-0 w-[500px] h-[500px] z-0"
+                     top-0 right-0 w-[420px] h-[420px] z-0"
           style={{
             background:
               "radial-gradient(circle,rgba(232,93,0,0.04) 0%,rgba(176,184,193,0.02) 40%,transparent 70%)",
-            filter: "blur(48px)",
+            filter: "blur(28px)",
           }}
           aria-hidden
         />

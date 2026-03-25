@@ -43,9 +43,9 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
         }}
       />
 
-      {/* Background abstraction */}
+      {/* Background abstraction — static SVG, lighter than hero (no SMIL animations) */}
       <div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
+        className="absolute inset-0 pointer-events-none overflow-hidden [contain:paint]"
         aria-hidden
       >
         <svg
@@ -67,9 +67,9 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
           </defs>
 
           <g mask="url(#proj-mask)">
-            {/* LEFT — speed lines radiating from top-left */}
-            {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
-              const gap = 18;
+            {/* LEFT — fewer speed lines (scroll perf) */}
+            {[0, 2, 4, 6].map((i) => {
+              const gap = 22;
               const xBase = 8 + i * gap;
               return (
                 <line
@@ -105,10 +105,10 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
               opacity={isLight ? 0.6 : 0.55}
             />
 
-            {/* Left — horizontal tick marks */}
-            {Array.from({ length: 16 }).map((_, i) => {
-              const isMajor = i % 4 === 0;
-              const y = `${(i + 1) * (100 / 17)}%`;
+            {/* Left — horizontal tick marks (reduced count) */}
+            {Array.from({ length: 9 }).map((_, i) => {
+              const isMajor = i % 3 === 0;
+              const y = `${(i + 1) * (100 / 10)}%`;
               return (
                 <line
                   key={`lt-${i}`}
@@ -138,12 +138,12 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
               opacity={isLight ? 0.22 : 0.2}
             />
 
-            {/* RIGHT — grid of small dots */}
-            {Array.from({ length: 10 }).map((_, row) =>
-              Array.from({ length: 4 }).map((_, col) => {
-                const xPct = 97 - col * 1.2;
-                const yPct = 8 + row * 9;
-                const fade = 1 - (col / 3) * 0.6;
+            {/* RIGHT — sparse dot grid */}
+            {Array.from({ length: 6 }).map((_, row) =>
+              Array.from({ length: 3 }).map((_, col) => {
+                const xPct = 97 - col * 1.4;
+                const yPct = 10 + row * 14;
+                const fade = 1 - (col / 2) * 0.55;
                 return (
                   <circle
                     key={`dot-${row}-${col}`}
@@ -175,23 +175,6 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
               opacity={isLight ? 0.2 : 0.18}
             />
 
-            {/* Animated scan — orange */}
-            <rect x="0" y="0" width="100%" height="1.5" fill={primary}>
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0,0;0,900;0,0"
-                dur="11s"
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="0;0.45;0"
-                keyTimes="0;0.5;1"
-                dur="11s"
-                repeatCount="indefinite"
-              />
-            </rect>
           </g>
         </svg>
       </div>
@@ -199,10 +182,10 @@ export function ProjectsDesignMode({ projects }: ProjectsDesignModeProps) {
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
           <p

@@ -6,11 +6,9 @@ interface KtmBgProps {
 }
 
 export function KtmBg({ opacity = 1, isLight = true }: KtmBgProps) {
-  const toRad = (d: number) => (d * Math.PI) / 180;
-
   return (
     <div
-      className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+      className="absolute inset-0 z-0 overflow-hidden pointer-events-none [contain:paint]"
       data-bg={isLight ? "ktm" : "ktm-dark"}
       aria-hidden
       style={{
@@ -109,7 +107,7 @@ export function KtmBg({ opacity = 1, isLight = true }: KtmBgProps) {
           height: "600px",
           background:
             "radial-gradient(circle,rgba(232,93,0,0.06) 0%,transparent 65%)",
-          filter: "blur(60px)",
+          filter: "blur(36px)",
           opacity: isLight ? 0 : 1,
           transition: "opacity 0.6s ease",
         }}
@@ -126,7 +124,7 @@ export function KtmBg({ opacity = 1, isLight = true }: KtmBgProps) {
           height: "400px",
           background:
             "radial-gradient(circle,rgba(176,184,193,0.03) 0%,transparent 65%)",
-          filter: "blur(48px)",
+          filter: "blur(32px)",
           opacity: isLight ? 0 : 1,
           transition: "opacity 0.6s ease",
         }}
@@ -152,13 +150,6 @@ export function KtmBg({ opacity = 1, isLight = true }: KtmBgProps) {
             <rect width="1200" height="900" fill="url(#ktm-fade-v)" />
           </mask>
 
-          {/* Scan line gradient */}
-          <linearGradient id="ktm-scan-g" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#e85d00" stopOpacity="0" />
-            <stop offset="45%" stopColor="#e85d00" stopOpacity="0.5" />
-            <stop offset="55%" stopColor="#ff7a1a" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#e85d00" stopOpacity="0" />
-          </linearGradient>
         </defs>
 
         <g mask="url(#ktm-mask-v)">
@@ -291,157 +282,6 @@ export function KtmBg({ opacity = 1, isLight = true }: KtmBgProps) {
               </g>
             ))}
 
-          {/* ── TACHOMETER — dark mode only ── */}
-          {!isLight &&
-            (() => {
-              const cx = 780,
-                cy = 980;
-              const arc = (r: number, a1: number, a2: number) => {
-                const x1 = cx + r * Math.cos(toRad(a1));
-                const y1 = cy + r * Math.sin(toRad(a1));
-                const x2 = cx + r * Math.cos(toRad(a2));
-                const y2 = cy + r * Math.sin(toRad(a2));
-                return `M ${x1.toFixed(1)},${y1.toFixed(1)} A ${r} ${r} 0 0 1 ${x2.toFixed(1)},${y2.toFixed(1)}`;
-              };
-              return (
-                <>
-                  <path
-                    d={arc(680, 210, 330)}
-                    fill="none"
-                    stroke="#b0b8c1"
-                    strokeWidth="0.8"
-                    opacity="0.06"
-                  />
-                  <path
-                    d={arc(620, 210, 330)}
-                    fill="none"
-                    stroke="#b0b8c1"
-                    strokeWidth="0.4"
-                    opacity="0.04"
-                  />
-                  <path
-                    d={arc(650, 305, 330)}
-                    fill="none"
-                    stroke="#e85d00"
-                    strokeWidth="10"
-                    opacity="0.08"
-                    strokeLinecap="round"
-                  />
-                  {Array.from({ length: 25 }).map((_, i) => {
-                    const deg = 210 + i * (120 / 24);
-                    const rad = toRad(deg);
-                    const isMajor = i % 4 === 0;
-                    const isRed = deg > 305;
-                    const r1 = 680,
-                      r2 = isMajor ? 640 : 658;
-                    return (
-                      <line
-                        key={`t-${i}`}
-                        x1={cx + r1 * Math.cos(rad)}
-                        y1={cy + r1 * Math.sin(rad)}
-                        x2={cx + r2 * Math.cos(rad)}
-                        y2={cy + r2 * Math.sin(rad)}
-                        stroke={isRed ? "#e85d00" : "#b0b8c1"}
-                        strokeWidth={isMajor ? "1.5" : "0.6"}
-                        opacity={isMajor ? (isRed ? 0.12 : 0.08) : 0.05}
-                      />
-                    );
-                  })}
-                  {[0, 2, 4, 6, 8, 10, 12].map((rpm, i) => {
-                    const deg = 210 + i * (120 / 6);
-                    const rad = toRad(deg);
-                    const x = cx + 590 * Math.cos(rad);
-                    const y = cy + 590 * Math.sin(rad);
-                    return (
-                      <text
-                        key={`r-${i}`}
-                        x={x}
-                        y={y}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fontFamily="monospace"
-                        fontSize="14"
-                        fill={deg > 305 ? "#e85d00" : "#b0b8c1"}
-                        opacity={deg > 305 ? 0.1 : 0.06}
-                      >
-                        {rpm}
-                      </text>
-                    );
-                  })}
-                  {(() => {
-                    const rad = toRad(312);
-                    const tx = cx + 670 * Math.cos(rad);
-                    const ty = cy + 670 * Math.sin(rad);
-                    const bx = cx + 40 * Math.cos(rad + Math.PI);
-                    const by = cy + 40 * Math.sin(rad + Math.PI);
-                    return (
-                      <>
-                        <line
-                          x1={bx}
-                          y1={by}
-                          x2={tx}
-                          y2={ty}
-                          stroke="#e85d00"
-                          strokeWidth="2"
-                          opacity="0.2"
-                          strokeLinecap="round"
-                        />
-                        <circle
-                          cx={cx}
-                          cy={cy}
-                          r="8"
-                          fill="#e85d00"
-                          opacity="0.12"
-                        />
-                        <circle
-                          cx={cx}
-                          cy={cy}
-                          r="3"
-                          fill="#e85d00"
-                          opacity="0.25"
-                        />
-                      </>
-                    );
-                  })()}
-                  <text
-                    x="780"
-                    y="330"
-                    textAnchor="middle"
-                    fontFamily="monospace"
-                    fontSize="11"
-                    fill="#b0b8c1"
-                    opacity="0.06"
-                    letterSpacing="2"
-                  >
-                    × 100 RPM
-                  </text>
-                </>
-              );
-            })()}
-
-          {/* ── CHECKERED FLAG — dark mode top-left ── */}
-          {!isLight && (
-            <>
-              {Array.from({ length: 8 }).map((_, row) =>
-                Array.from({ length: 6 }).map((_, col) => {
-                  const isOrange = (row + col) % 2 === 0;
-                  const fade = 1 - (col / 5) * 0.65 - (row / 7) * 0.45;
-                  return (
-                    <rect
-                      key={`chk-${row}-${col}`}
-                      x={col * 28}
-                      y={row * 28}
-                      width="28"
-                      height="28"
-                      fill={isOrange ? "#e85d00" : "#0a0a0a"}
-                      opacity={isOrange ? 0.08 * fade : 0.1 * fade}
-                    />
-                  );
-                })
-              )}
-            </>
-          )}
-
           {/* Center vertical — light mode only */}
           {isLight && (
             <line
@@ -456,23 +296,6 @@ export function KtmBg({ opacity = 1, isLight = true }: KtmBgProps) {
             />
           )}
 
-          {/* Animated scan line */}
-          <rect
-            x="0"
-            y="0"
-            width="1200"
-            height="2"
-            fill="url(#ktm-scan-g)"
-            opacity={isLight ? 0.6 : 0.2}
-          >
-            <animateTransform
-              attributeName="transform"
-              type="translate"
-              values="0,0;0,900;0,0"
-              dur="10s"
-              repeatCount="indefinite"
-            />
-          </rect>
         </g>
       </svg>
 
