@@ -5,10 +5,11 @@ import { motion, useInView } from "framer-motion";
 import { ExperienceDevCard } from "./ExperienceDevCard";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CircuitBg } from "@/components/ui/backgrounds/CircuitBg";
+import { ExperienceFocusPillars } from "./ExperienceFocusPillars";
 import type { ExperienceItem } from "./ExperienceData";
 
 interface ExperienceDevModeProps {
-  experiences: ExperienceItem[];
+  readonly experiences: ExperienceItem[];
 }
 
 export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
@@ -47,6 +48,8 @@ export function ExperienceDevMode({ experiences }: ExperienceDevModeProps) {
             Click any card to expand
           </p>
         </ScrollReveal>
+
+        <ExperienceFocusPillars variant="developer" />
 
         <div ref={lineRef} className="relative z-10">
           <motion.div

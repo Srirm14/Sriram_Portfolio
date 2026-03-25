@@ -4,11 +4,12 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLightDark } from "@/context/LightDarkContext";
 import { ExperienceDesignCard } from "./ExperienceDesignCard";
+import { ExperienceFocusPillars } from "./ExperienceFocusPillars";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { ExperienceItem } from "./ExperienceData";
 
 interface ExperienceDesignModeProps {
-  experiences: ExperienceItem[];
+  readonly experiences: ExperienceItem[];
 }
 
 export function ExperienceDesignMode({
@@ -168,6 +169,8 @@ export function ExperienceDesignMode({
             }}
           />
         </ScrollReveal>
+
+        <ExperienceFocusPillars variant="designer" />
 
         <div ref={lineRef} className="relative">
           <motion.div

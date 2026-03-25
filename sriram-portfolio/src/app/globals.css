@@ -712,6 +712,53 @@ html.ld-light main {
     );
 }
 
+/* Experience focus pillars — dev section; dark default, ld-light readable */
+.experience-focus-pillars__item {
+  border-radius: 0.5rem;
+  border: 1px solid
+    color-mix(in srgb, var(--theme-primary, #c9a84c) 22%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--theme-primary, #c9a84c) 6%,
+    transparent
+  );
+  padding: 0.75rem 1rem;
+  text-align: left;
+  backdrop-filter: blur(6px);
+}
+.experience-focus-pillars__title {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 1.25;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--theme-primary, #c9a84c);
+}
+.experience-focus-pillars__body {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.625;
+  color: rgba(240, 236, 228, 0.78);
+}
+
+.ld-light .experience-focus-pillars__item {
+  border-color: color-mix(
+    in srgb,
+    var(--theme-primary, #c9a84c) 30%,
+    rgba(62, 48, 28, 0.22)
+  );
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(62, 48, 28, 0.04);
+}
+.ld-light .experience-focus-pillars__title {
+  color: color-mix(in srgb, var(--theme-primary, #c9a84c) 72%, #2c2418);
+}
+.ld-light .experience-focus-pillars__body {
+  color: rgba(30, 24, 20, 0.74);
+}
+
 .ld-light .ld-section-ambient--work::before {
   background:
     radial-gradient(
@@ -2384,5 +2431,13 @@ html.ld-dark.theme-ktm .exp-card-shimmer {
   background-clip:             text;
   -webkit-text-fill-color:     transparent;
   animation: metallic-sweep 4s linear infinite;
+}
+
+/* View Transitions API — timing when using document.startViewTransition / Next ViewTransition */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
