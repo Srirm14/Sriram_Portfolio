@@ -98,6 +98,13 @@ export function SkillsDevMode({ skills: _skills }: SkillsDevModeProps) {
               className="flex-1 min-h-0 flex flex-col"
             >
               {inView && <SkillTerminal />}
+              <div aria-label="Tech stack" className="sr-only">
+                TypeScript, JavaScript, React, Next.js, Angular, React Native,
+                Zustand, Redux, TanStack Query, Tailwind CSS, Material UI,
+                Formily, React Hook Form, TipTap, Playwright, Vercel, Figma,
+                Git, Design Systems, Component Architecture, Performance
+                Optimisation, E2E Testing
+              </div>
             </ScrollReveal>
           </div>
 

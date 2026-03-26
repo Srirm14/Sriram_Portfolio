@@ -31,7 +31,8 @@ export function getMeta() {
     devRole: "Senior Software Developer",
     subtitle: `${getYearsOfExperience()} Years · React · Next.js · TypeScript`,
     location: "Bengaluru, India",
-    availability: "Available for senior roles & collaborations",
+    availability:
+      "Senior Frontend Engineer — open to Staff/Lead roles at product companies",
     availabilityDesign: "Available for collaborations",
     email: "sriramvenkatachalam1406@gmail.com",
     linkedin: "https://www.linkedin.com/in/sriram-venkatachalam-976a0016a/",

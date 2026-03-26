@@ -31,10 +31,15 @@ function CardContent({
   const { company, role, duration, location, type, devBullets, devStack } =
     item;
 
+  const hasExpandable = devBullets.length > 2;
+
   return (
     <div
-      className="experience-dev-card vintage-dev-card group relative w-full max-w-lg cursor-pointer overflow-hidden rounded-sm"
-      onClick={onToggle}
+      className={cn(
+        "experience-dev-card vintage-dev-card group relative w-full max-w-lg overflow-hidden rounded-sm",
+        hasExpandable && "cursor-pointer",
+      )}
+      onClick={hasExpandable ? onToggle : undefined}
     >
       <div className="vintage-dev-card__shimmer" aria-hidden />
       <div className="vintage-dev-card__inner relative p-6 sm:p-7">
@@ -50,13 +55,15 @@ function CardContent({
                 </p>
               )}
             </div>
-            <ChevronDown
-              className={cn(
-                "h-4 w-4 flex-shrink-0 text-white/40 transition-transform duration-300",
-                "group-hover:text-[#c9a84c]/90",
-                expanded && "rotate-180",
-              )}
-            />
+            {hasExpandable && (
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 flex-shrink-0 text-white/40 transition-transform duration-300",
+                  "group-hover:text-[#c9a84c]/90",
+                  expanded && "rotate-180",
+                )}
+              />
+            )}
           </div>
 
           <div className="vintage-dev-card__meta mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] sm:text-xs">
@@ -71,24 +78,36 @@ function CardContent({
           </div>
 
           <ul className="mt-5 list-none space-y-3">
-            {devBullets.slice(0, 2).map((bullet, i) => (
-              <li
-                key={i}
-                className="experience-dev-card__bullet vintage-dev-card__bullet font-poppins text-sm leading-relaxed"
-              >
-                {bullet}
-              </li>
-            ))}
+            {(hasExpandable ? devBullets.slice(0, 2) : devBullets).map(
+              (bullet, i) => (
+                <li
+                  key={i}
+                  className="experience-dev-card__bullet vintage-dev-card__bullet font-poppins text-sm leading-relaxed"
+                >
+                  {bullet}
+                </li>
+              ),
+            )}
           </ul>
 
-          <p className="mt-4 font-mono text-[11px] text-[#c9a84c]/70 transition-colors group-hover:text-[#c9a84c]">
-            {expanded
-              ? "— collapse"
-              : `+ ${Math.max(0, devBullets.length - 2)} more`}
-          </p>
+          {hasExpandable && (
+            <p className="mt-4 font-mono text-[11px] text-[#c9a84c]/70 transition-colors group-hover:text-[#c9a84c]">
+              {expanded ? "— collapse" : `+ ${devBullets.length - 2} more`}
+            </p>
+          )}
+
+          {!hasExpandable && devStack.length > 0 && (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {devStack.map((tech) => (
+                <span key={tech} className="skill-pill-dev">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
 
           <AnimatePresence>
-            {expanded && (
+            {hasExpandable && expanded && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}

@@ -59,8 +59,9 @@ export const experiences: ExperienceItem[] = [
     type: "Full-time",
     accentColor: "#06b6d4",
     devBullets: [
-      "Front-end developer at a social media analytics firm — developed product features, optimized performance, and resolved issues across sprints.",
-      "Designed and implemented intuitive UIs using Agile methodologies and Jira for task management.",
+      "Owned 3 core product modules in a 100K+ user B2B SaaS — end-to-end from design handoff to production, across quarterly sprints.",
+      "Built a shared component library adopted across 4 engineering teams — reducing UI inconsistency and accelerating feature delivery.",
+      "Implemented Playwright E2E test coverage that caught 3 critical regressions before production.",
       "Optimized application performance through effective state management and reusable components.",
       "Conducted performance analysis to improve responsiveness and scalability; resolved issues via debugging and POCs.",
       "Contributed to internal design system — component APIs, design tokens, and documentation adopted across teams.",
@@ -96,7 +97,7 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
     accentColor: "#CC0000",
     devBullets: [
-      "Interned in the software industry, tackling various technical challenges and gaining a broad understanding of the field, deepening knowledge and practical experience.",
+      "Interned at Zoho — worked on internal tooling and gained early exposure to enterprise software development practices.",
     ],
     devStack: ["HTML", "CSS", "JavaScript", "Deluge", "React"],
     designBullets: [],

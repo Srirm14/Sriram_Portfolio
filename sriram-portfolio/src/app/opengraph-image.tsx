@@ -57,7 +57,7 @@ export default async function Image() {
             }}
           />
           <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "14px" }}>
-            Available for senior roles & collaborations
+            Senior Frontend Engineer — open to Staff/Lead roles at product companies
           </span>
         </div>
 
