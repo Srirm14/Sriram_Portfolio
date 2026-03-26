@@ -62,8 +62,7 @@ export const experiences: ExperienceItem[] = [
       "Owned 3 core product modules in a 100K+ user B2B SaaS — end-to-end from design handoff to production, across quarterly sprints.",
       "Built a shared component library adopted across 4 engineering teams — reducing UI inconsistency and accelerating feature delivery.",
       "Implemented Playwright E2E test coverage that caught 3 critical regressions before production.",
-      "Optimized application performance through effective state management and reusable components.",
-      "Conducted performance analysis to improve responsiveness and scalability; resolved issues via debugging and POCs.",
+      "Reduced initial load on a core analytics dashboard by ~30% through route-level code-splitting, lazy-loaded features, and trimming redundant state subscriptions.",
       "Contributed to internal design system — component APIs, design tokens, and documentation adopted across teams.",
     ],
     devStack: [
