@@ -22,6 +22,51 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
+    id: "inhand",
+    title: "InHand",
+    shortDesc:
+      "Salary intelligence for India — CTC → in-hand, tax regimes, editable breakdown, lifestyle planning, offer comparison, EMI and wealth tools",
+    featured: true,
+    duration: "Apr 2026",
+    link: "https://www.inhandapp.in/",
+    linkLabel: "Open app",
+    devBullets: [
+      "Built a salary intelligence product for India (CTC → monthly in-hand) with a transparent, editable breakup across PF/TDS/professional tax.",
+      "Implemented old vs new regime comparison plus decision tools: offer comparison, EMI stress-test, lifestyle planner, and wealth outlook — all based on real in-hand.",
+      "Next.js app with Supabase auth and optional cloud persistence for salary/offer sessions; payroll/tax math runs client-side for instant iteration.",
+      "Shipped end-to-end in ~2 days using an AI-agent workflow; added Playwright E2E with repeatable reports to keep releases safe.",
+      "Demo login (Premium): sriram14.ai@gmail.com / viewer@demo (basic + premium flows available).",
+    ],
+    designBullets: [],
+    devTech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Supabase",
+      "TanStack Query",
+      "Zustand",
+      "React Hook Form",
+      "Zod",
+      "@react-pdf/renderer",
+      "Framer Motion",
+      "Sonner",
+      "Razorpay",
+      "Resend",
+      "Playwright",
+      "Figma",
+    ],
+    designTools: [],
+    tags: ["Product", "FinTech", "Salary", "Decision Tools"],
+    designTags: [],
+    gradient: {
+      from: "#0ea5e9",
+      via: "#22c55e",
+      to: "#eab308",
+    },
+  },
+  {
     id: "delta",
     title: "Delta CRM Platform",
     shortDesc:

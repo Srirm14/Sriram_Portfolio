@@ -2,12 +2,208 @@
 
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useCallback } from "react";
-import { X, ExternalLink } from "lucide-react";
+import { useEffect, useCallback, useMemo, useRef, useState } from "react";
+import { X, ExternalLink, Copy, Check } from "lucide-react";
 import type { ProjectItem } from "./ProjectsData";
 import { getCardGradient } from "./projectGradients";
 import { useLightDark } from "@/context/LightDarkContext";
 import { cn } from "@/lib/utils";
+
+type DemoBullet = { label: string; creds: string; note?: string };
+
+type DemoCreds = { email?: string; password?: string };
+
+function parseDemoCreds(creds: string): DemoCreds {
+  // Accepts formats like:
+  // "email / password"
+  // "email / pass" (with variable whitespace)
+  const raw = creds.trim();
+  if (!raw) return {};
+  const parts = raw.split("/").map((p) => p.trim()).filter(Boolean);
+  if (parts.length >= 2) return { email: parts[0], password: parts.slice(1).join(" / ") };
+  return { email: raw };
+}
+
+function parseDemoBullet(text: string): DemoBullet | null {
+  const t = text.trim();
+  if (!t.toLowerCase().startsWith("demo login")) return null;
+
+  const [left, restRaw = ""] = t.split(":");
+  const label = (left || "Demo login").trim();
+  const rest = restRaw.trim();
+  if (!rest) return { label, creds: "" };
+
+  const noteStart = rest.lastIndexOf("(");
+  const noteEnd = rest.lastIndexOf(")");
+  const hasNote = noteStart !== -1 && noteEnd !== -1 && noteEnd > noteStart;
+
+  const creds = (hasNote ? rest.slice(0, noteStart) : rest).trim().replace(/\.$/, "");
+  const note = hasNote ? rest.slice(noteStart + 1, noteEnd).trim() : undefined;
+  return { label, creds, note };
+}
+
+function useCopyToClipboard() {
+  const [lastCopied, setLastCopied] = useState<string | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof globalThis.setTimeout> | null>(
+    null,
+  );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current != null) {
+        globalThis.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const copy = useCallback(async (text: string) => {
+    if (!text) return false;
+    try {
+      if (globalThis.navigator?.clipboard?.writeText) {
+        await globalThis.navigator.clipboard.writeText(text);
+      } else {
+        const el = document.createElement("textarea");
+        el.value = text;
+        el.setAttribute("readonly", "");
+        el.style.position = "fixed";
+        el.style.left = "-9999px";
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        el.remove();
+      }
+
+      setLastCopied(text);
+      if (timeoutRef.current != null) globalThis.clearTimeout(timeoutRef.current);
+      timeoutRef.current = globalThis.setTimeout(() => setLastCopied(null), 1200);
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  return { copy, lastCopied };
+}
+
+function CredentialRow({
+  label,
+  value,
+  accent,
+  isLight,
+  onCopy,
+  copied,
+}: Readonly<{
+  label: string;
+  value: string;
+  accent: string;
+  isLight: boolean;
+  onCopy: () => void;
+  copied: boolean;
+}>) {
+  return (
+    <div
+      className={cn(
+        "flex items-center justify-between gap-2 rounded-md border px-2.5 py-2",
+        isLight ? "bg-[rgba(255,252,247,0.65)]" : "bg-[rgba(10,10,11,0.25)]",
+      )}
+      style={{ borderColor: `${accent}25` }}
+    >
+      <div className="min-w-0">
+        <div className="font-mono text-[10px] uppercase tracking-widest" style={{ color: `${accent}CC` }}>
+          {label}
+        </div>
+        <div
+          className={cn(
+            "mt-1 font-mono text-[12px] leading-snug",
+            isLight ? "text-[rgba(42,36,30,0.82)]" : "text-[#f0ece4]/82",
+          )}
+        >
+          <span className="select-text break-all">{value}</span>
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={onCopy}
+        className={cn(
+          "shrink-0 inline-flex items-center justify-center rounded-md border px-2 py-1.5 transition-colors",
+          isLight ? "hover:bg-[rgba(0,0,0,0.03)]" : "hover:bg-[rgba(255,255,255,0.05)]",
+        )}
+        style={{ borderColor: `${accent}35`, color: accent }}
+        aria-label={`Copy ${label}`}
+        title={`Copy ${label}`}
+      >
+        {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+      </button>
+    </div>
+  );
+}
+
+function DemoLoginCallout({
+  demo,
+  isLight,
+  accent,
+}: Readonly<{
+  demo: DemoBullet;
+  isLight: boolean;
+  accent: string;
+}>) {
+  const { copy, lastCopied } = useCopyToClipboard();
+  const creds = useMemo(() => parseDemoCreds(demo.creds), [demo.creds]);
+
+  return (
+    <div
+      className="rounded-lg border p-3"
+      style={{ borderColor: `${accent}35`, background: `${accent}10` }}
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <span
+          className="font-mono text-[11px] px-2 py-1 rounded-full border"
+          style={{
+            borderColor: `${accent}45`,
+            color: accent,
+            background: `${accent}14`,
+          }}
+        >
+          {demo.label}
+        </span>
+      </div>
+
+      <div className="mt-3 grid gap-2">
+        {creds.email ? (
+          <CredentialRow
+            label="Email"
+            value={creds.email}
+            accent={accent}
+            isLight={isLight}
+            onCopy={() => void copy(creds.email!)}
+            copied={lastCopied === creds.email}
+          />
+        ) : null}
+        {creds.password ? (
+          <CredentialRow
+            label="Password"
+            value={creds.password}
+            accent={accent}
+            isLight={isLight}
+            onCopy={() => void copy(creds.password!)}
+            copied={lastCopied === creds.password}
+          />
+        ) : null}
+      </div>
+
+      {demo.note ? (
+        <p
+          className={cn(
+            "mt-2 text-xs font-poppins",
+            isLight ? "text-[rgba(42,36,30,0.6)]" : "text-[#f0ece4]/55",
+          )}
+        >
+          {demo.note}
+        </p>
+      ) : null}
+    </div>
+  );
+}
 
 interface ProjectDrawerProps {
   item: ProjectItem | null;
@@ -37,7 +233,7 @@ export function ProjectDrawer({
 
   // Lock body scroll only on mobile
   useEffect(() => {
-    if (item && typeof window !== "undefined" && window.innerWidth < 768) {
+    if (item && globalThis.window !== undefined && window.innerWidth < 768) {
       document.body.style.overflow = "hidden";
     }
     return () => {
@@ -216,26 +412,53 @@ export function ProjectDrawer({
                 {!isLight && (
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/90 to-transparent pointer-events-none" />
                 )}
-                <motion.h2
-                  key={`${item.id}-title`}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15, duration: 0.4 }}
-                  className={cn(
-                    "relative z-10 text-xl md:text-3xl",
-                    isDev
-                      ? cn(
-                          "font-grotesk font-bold",
-                          isLight ? "text-[#1c1612]" : "text-[#f0ece4]",
-                        )
-                      : cn(
-                          isLight ? "text-[#1a1410]" : "text-white",
-                          !isDev && "font-bebas tracking-widest uppercase",
-                        ),
-                  )}
-                >
-                  {item.title}
-                </motion.h2>
+                <div className="relative z-10 flex items-center gap-2">
+                  <motion.h2
+                    key={`${item.id}-title`}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15, duration: 0.4 }}
+                    className={cn(
+                      "text-xl md:text-3xl",
+                      isDev
+                        ? cn(
+                            "font-grotesk font-bold",
+                            isLight ? "text-[#1c1612]" : "text-[#f0ece4]",
+                          )
+                        : cn(
+                            isLight ? "text-[#1a1410]" : "text-white",
+                            !isDev && "font-bebas tracking-widest uppercase",
+                          ),
+                    )}
+                  >
+                    {item.title}
+                  </motion.h2>
+                  {item.link ? (
+                    <motion.a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.22, duration: 0.3 }}
+                      className={cn(
+                        "inline-flex h-9 w-9 items-center justify-center rounded-full border backdrop-blur-sm transition-colors",
+                        isDev
+                          ? isLight
+                            ? "border-[rgba(201,168,76,0.28)] bg-[rgba(201,168,76,0.10)] text-[rgba(28,22,18,0.7)] hover:bg-[rgba(201,168,76,0.16)]"
+                            : "border-[rgba(201,168,76,0.22)] bg-[rgba(201,168,76,0.08)] text-[#f0ece4]/75 hover:bg-[rgba(201,168,76,0.14)] hover:text-[#f0ece4]"
+                          : isLight
+                            ? "border-[#e85d00]/35 bg-[rgba(255,252,247,0.75)] text-[#e85d00] hover:bg-[rgba(232,93,0,0.10)]"
+                            : "border-[#e85d00]/40 bg-[rgba(0,0,0,0.25)] text-[#e85d00]/85 hover:bg-[#e85d00]/20 hover:text-[#e85d00]",
+                      )}
+                      aria-label={item.linkLabel ?? "Open link"}
+                      title={item.linkLabel ?? "Open link"}
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </motion.a>
+                  ) : null}
+                </div>
                 <motion.p
                   key={`${item.id}-desc`}
                   initial={{ opacity: 0, y: 10 }}
@@ -295,47 +518,75 @@ export function ProjectDrawer({
 
               {/* Bullets */}
               <div className="flex flex-col gap-4">
-                {bullets.map((bullet, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex gap-3 items-start"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: 0.25 + i * 0.07,
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 22,
-                    }}
-                  >
-                    <span
-                      className="flex-shrink-0 mt-1 font-mono text-sm"
-                      style={{
-                        color: isDev ? grad!.from : "#e85d00",
+                {bullets.map((bullet, i) => {
+                  const demo = isDev ? parseDemoBullet(bullet) : null;
+
+                  if (demo) {
+                    return (
+                      <motion.div
+                        key={`${item.id}-demo-${demo.label}-${demo.creds}`}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: 0.25 + i * 0.07,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 22,
+                        }}
+                      >
+                        <DemoLoginCallout
+                          demo={demo}
+                          isLight={isLight}
+                          accent={grad!.from}
+                        />
+                      </motion.div>
+                    );
+                  }
+
+                  return (
+                    <motion.div
+                      key={`${item.id}-bullet-${bullet}`}
+                      className="flex gap-3 items-start"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: 0.25 + i * 0.07,
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 22,
                       }}
                     >
-                      {isDev ? "▹" : "→"}
-                    </span>
-                    <p
-                      className={cn(
-                        "text-sm leading-relaxed",
-                        isDev
-                          ? cn(
-                              "font-poppins",
-                              isLight
-                                ? "text-[rgba(42,36,30,0.78)]"
-                                : "text-[#f0ece4]/72",
-                            )
-                          : cn(
-                              "font-poppins",
-                              isLight ? "text-[rgba(42,36,30,0.65)]" : "text-white/60",
-                            ),
-                      )}
-                    >
-                      {bullet}
-                    </p>
-                  </motion.div>
-                ))}
+                      <span
+                        className="flex-shrink-0 mt-1 font-mono text-sm"
+                        style={{
+                          color: isDev ? grad!.from : "#e85d00",
+                        }}
+                      >
+                        {isDev ? "▹" : "→"}
+                      </span>
+                      <p
+                        className={cn(
+                          "text-sm leading-relaxed",
+                          isDev
+                            ? cn(
+                                "font-poppins",
+                                isLight
+                                  ? "text-[rgba(42,36,30,0.78)]"
+                                  : "text-[#f0ece4]/72",
+                              )
+                            : cn(
+                                "font-poppins",
+                                isLight
+                                  ? "text-[rgba(42,36,30,0.65)]"
+                                  : "text-white/60",
+                              ),
+                        )}
+                      >
+                        {bullet}
+                      </p>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Divider */}

@@ -33,20 +33,31 @@ function loadThemeState(): ThemeState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { designTheme: "ktm", devTheme: "glass" };
     const parsed = JSON.parse(raw) as ThemeState;
-    const saved = parsed.designTheme ?? "";
+    // migrate old design theme id
+    const migrated: ThemeState = {
+      ...parsed,
+      designTheme: parsed.designTheme === "klx" ? "ktm" : parsed.designTheme,
+    };
+    if (migrated.designTheme !== parsed.designTheme) {
+      saveThemeState(migrated);
+    }
+
+    const saved = migrated.designTheme ?? "";
     if (!validDesign.includes(saved as DesignTheme)) {
-      const validDev = DEV_THEMES.some((t) => t.id === (parsed.devTheme ?? "glass"));
+      const validDev = DEV_THEMES.some(
+        (t) => t.id === (migrated.devTheme ?? "glass")
+      );
       const next = {
         designTheme: "ktm",
-        devTheme: validDev ? (parsed.devTheme ?? "glass") : "glass",
+        devTheme: validDev ? (migrated.devTheme ?? "glass") : "glass",
       };
       saveThemeState(next);
       return next;
     }
-    const validDev = DEV_THEMES.some((t) => t.id === parsed.devTheme);
+    const validDev = DEV_THEMES.some((t) => t.id === migrated.devTheme);
     return {
-      designTheme: parsed.designTheme,
-      devTheme: validDev ? parsed.devTheme : "glass",
+      designTheme: migrated.designTheme,
+      devTheme: validDev ? migrated.devTheme : "glass",
     };
   } catch {
     return { designTheme: "ktm", devTheme: "glass" };
@@ -97,22 +108,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     },
     [mode, themes],
   );
-
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved) as ThemeState;
-        if (parsed.designTheme === "klx") {
-          const next = { ...parsed, designTheme: "ktm" as const };
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-          setState((prev) => ({ ...prev, designTheme: "ktm" }));
-        }
-      } catch {
-        /* ignore */
-      }
-    }
-  }, []);
 
   useEffect(() => {
     const active =

@@ -6,6 +6,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useMemo,
   type ReactNode,
 } from "react";
 
@@ -19,15 +20,16 @@ interface LightDarkContextValue {
 
 const LightDarkContext = createContext<LightDarkContextValue | null>(null);
 
-export function LightDarkProvider({ children }: { children: ReactNode }) {
-  const [lightDark, setLightDark] = useState<LightDark>("dark");
-
-  useEffect(() => {
+export function LightDarkProvider({
+  children,
+}: Readonly<{
+  children: ReactNode;
+}>) {
+  const [lightDark, setLightDark] = useState<LightDark>(() => {
+    if (globalThis.window === undefined) return "dark";
     const saved = localStorage.getItem("lightDark") as LightDark;
-    if (saved === "light" || saved === "dark") {
-      setLightDark(saved);
-    }
-  }, []);
+    return saved === "light" || saved === "dark" ? saved : "dark";
+  });
 
   useEffect(() => {
     const html = document.documentElement;
@@ -43,14 +45,17 @@ export function LightDarkProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const value = useMemo(
+    () => ({
+      lightDark,
+      toggleLightDark,
+      isLight: lightDark === "light",
+    }),
+    [lightDark, toggleLightDark],
+  );
+
   return (
-    <LightDarkContext.Provider
-      value={{
-        lightDark,
-        toggleLightDark,
-        isLight: lightDark === "light",
-      }}
-    >
+    <LightDarkContext.Provider value={value}>
       {children}
     </LightDarkContext.Provider>
   );

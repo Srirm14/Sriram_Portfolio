@@ -27,7 +27,9 @@ function useScrollDirection(idleDelay = 500) {
   const rafRef = useRef<number | null>(null);
   const pendingDir = useRef<ScrollDir | null>(null);
   const idleDelayRef = useRef(idleDelay);
-  idleDelayRef.current = idleDelay;
+  useEffect(() => {
+    idleDelayRef.current = idleDelay;
+  }, [idleDelay]);
 
   useEffect(() => {
     const flushDir = () => {

@@ -563,9 +563,29 @@ export function ProjectCard({
           )}
         >
           <div className="flex items-start justify-between gap-3">
-            <h3 className="vintage-dev-card__title font-grotesk pr-1 text-[1rem] leading-snug sm:text-[1.05rem]">
-              {item.title}
-            </h3>
+            <div className="flex min-w-0 items-center gap-2">
+              <h3 className="vintage-dev-card__title min-w-0 font-grotesk pr-1 text-[1rem] leading-snug sm:text-[1.05rem]">
+                {item.title}
+              </h3>
+              {item.link ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={item.linkLabel ?? "Open link"}
+                  title={item.linkLabel ?? "Open link"}
+                  className={cn(
+                    "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border transition-colors",
+                    isLight
+                      ? "border-[rgba(201,168,76,0.25)] bg-[rgba(201,168,76,0.08)] text-[rgba(28,22,18,0.7)] hover:bg-[rgba(201,168,76,0.14)]"
+                      : "border-[rgba(201,168,76,0.22)] bg-[rgba(201,168,76,0.06)] text-[#f0ece4]/75 hover:bg-[rgba(201,168,76,0.12)] hover:text-[#f0ece4]",
+                  )}
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              ) : null}
+            </div>
           </div>
           <div className="vintage-dev-card__hairline my-3.5" aria-hidden />
           <p className="vintage-dev-card__meta project-card-dev-meta font-mono">
